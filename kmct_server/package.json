@@ -1,0 +1,19 @@
+{
+  "name": "kmct_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/www",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spike-rabbit/km-collaboration-tool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spike-rabbit/km-collaboration-tool/issues"
+  },
+  "homepage": "https://github.com/spike-rabbit/km-collaboration-tool#readme"
+}
