@@ -1,19 +1,27 @@
 {
-  "name": "kmct_server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "bin/www",
+  "name": "kmct-server",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build:live",
+    "build:live": "nodemon bin/www.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/spike-rabbit/km-collaboration-tool.git"
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "express": "~4.14.0",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.0"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/spike-rabbit/km-collaboration-tool/issues"
-  },
-  "homepage": "https://github.com/spike-rabbit/km-collaboration-tool#readme"
+  "devDependencies": {
+    "@types/morgan": "1.7.32",
+    "@types/node": "0.0.3",
+    "@types/body-parser": "0.0.33",
+    "@types/express": "4.0.34",
+    "codelyzer": "~2.0.0-beta.1",
+    "typescript": "~2.0.3",
+    "nodemon": "1.11.0",
+    "ts-node": "1.7.2"
+  }
 }
