@@ -37,10 +37,7 @@ jspm_packages
 .node_repl_history
 /kmct_server/app.js.map
 /kmct_server/app.js
-.idea/jsLibraryMappings.xml
-.idea/markdown-navigator.xml
-.idea/markdown-navigator/
-.idea/workspace.xml
+/.idea/*
 /kmct_server/routes/**/*.js.map
 /kmct_server/routes/**/*.js
 /kmct_server/bin/www.js.map
