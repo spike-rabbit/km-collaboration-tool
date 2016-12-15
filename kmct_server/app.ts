@@ -3,6 +3,7 @@ import * as index from "./routes/index";
 import * as users from "./routes/users";
 import * as path from "path";
 import * as cors from "cors";
+import {DatabaseManager} from "./DatabaseManager";
 import bodyParser = require("body-parser");
 import morgan = require("morgan");
 
@@ -12,8 +13,8 @@ import morgan = require("morgan");
 
 let app = express();
 
-app.set('views', path.join(__dirname, 'views'));
 
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(cors({origin: "http://localhost:4200"}));
 app.use(morgan('dev'));
@@ -43,4 +44,8 @@ app.use(function (err: any, req: express.Request, res: express.Response, next) {
     res.send(err);
 });
 
-export = app;
+let databaseManager = new DatabaseManager();
+console.log("läuft!");
+
+
+export {app}

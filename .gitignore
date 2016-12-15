@@ -40,5 +40,9 @@ jspm_packages
 /.idea/*
 /kmct_server/routes/**/*.js.map
 /kmct_server/routes/**/*.js
+/kmct_server/models/**/*.js
+/kmct_server/models/**/*.js.map
 /kmct_server/bin/www.js.map
 /kmct_server/bin/www.js
+/kmct_server/DatabaseManager.js.map
+/kmct_server/DatabaseManager.js
