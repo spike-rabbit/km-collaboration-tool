@@ -46,3 +46,7 @@ jspm_packages
 /kmct_server/bin/www.js
 /kmct_server/DatabaseManager.js.map
 /kmct_server/DatabaseManager.js
+/kmct_server/authentication-manager.js.map
+/kmct_server/authentication-manager.js
+/kmct_server/database-manager.js
+/kmct_server/database-manager.js.map
