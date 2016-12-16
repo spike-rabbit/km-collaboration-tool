@@ -1,4 +1,4 @@
-import {Component, AfterViewInit} from "@angular/core";
+import {Component, AfterViewInit, EventEmitter, Output} from "@angular/core";
 import {LoginService} from "../login.service";
 
 @Component({
@@ -8,10 +8,29 @@ import {LoginService} from "../login.service";
 })
 export class LoginComponent implements AfterViewInit {
 
-  constructor(private loginService : LoginService) {
+  @Output()
+  onLoginSuccess = new EventEmitter<void>();
+
+  constructor(private loginService: LoginService) {
   }
 
   ngAfterViewInit(): void {
+    this.initGoogleSignIn();
+  }
+
+  public onSignIn(googleUser) {
+    this.loginService.testLogin(googleUser.getAuthResponse().id_token).subscribe(value => this.onLoginSuccess.emit());
+  }
+
+  public onSignOut() {
+    this.initGoogleSignIn();
+  }
+
+  public onFailure(error: any) {
+    console.log(error);
+  }
+
+  private initGoogleSignIn() {
     gapi.signin2.render('my-signin', {
         scope: 'profile email',
         width: 240,
@@ -22,15 +41,5 @@ export class LoginComponent implements AfterViewInit {
         onfailure: param => this.onFailure(param)
       }
     );
-  }
-
-  public onSignIn(googleUser) {
-    console.log(googleUser);
-    console.log(googleUser.getAuthResponse().id_token);
-    this.loginService.testLogin(googleUser.getAuthResponse().id_token).subscribe(value => console.log(value));
-  }
-
-  public onFailure(error: any) {
-    console.log(error);
   }
 }

@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { TestService } from './test.service';
+import { KmctHttpService } from './kmct-http.service';
 
-describe('TestService', () => {
+describe('KmctHttpService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TestService]
+      providers: [KmctHttpService]
     });
   });
 
-  it('should ...', inject([TestService], (service: TestService) => {
+  it('should ...', inject([KmctHttpService], (service: KmctHttpService) => {
     expect(service).toBeTruthy();
   }));
 });

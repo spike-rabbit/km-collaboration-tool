@@ -1,4 +1,4 @@
-<h1>
-  {{title}}
-</h1>
-<app-login>Loading...</app-login>
+<!--Hier muss das Grundgerüst der Seite hin, was immer zu sehen sein soll-->
+
+<!--app-login sollte als overlay gestaltet sein. Es verschwindet automatisch wenn man eingelogged ist-->
+<app-login *ngIf="!isSignedIn" (onLoginSuccess)="onLoginSuccess()">Loading...</app-login>

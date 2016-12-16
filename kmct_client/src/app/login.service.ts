@@ -1,15 +1,18 @@
 import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
+import {Http, Response, Headers} from "@angular/http";
 import {base_url} from "../environments/environment";
 import {Observable} from "rxjs";
 
 @Injectable()
 export class LoginService {
 
+  private loginState
+
   constructor(private http: Http) {
   }
 
   testLogin(token: any) {
+    let headers = new Headers();
     return this.http.post(base_url + "/login", {token: token}).map(res => res.text()).catch(this.handleError);
   }
 

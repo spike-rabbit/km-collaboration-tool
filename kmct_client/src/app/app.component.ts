@@ -1,5 +1,4 @@
-import {Component, OnInit} from "@angular/core";
-import {TestService} from "./test.service";
+import {Component, OnInit, ApplicationRef} from "@angular/core";
 
 @Component({
   selector: 'app-root',
@@ -7,16 +6,18 @@ import {TestService} from "./test.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app works!';
+  isSignedIn: boolean;
 
-  constructor(private testService: TestService) {
+  constructor(private applicationRef: ApplicationRef) {
   }
 
-
   ngOnInit(): void {
-    this.testService.testRequest().subscribe(res => {
-      this.title = res;
-      console.log(res);
-    });
+    this.isSignedIn = false;
+  }
+
+  onLoginSuccess() {
+    this.isSignedIn = true;
+    // Otherwise Application is not re-rendered
+    this.applicationRef.tick();
   }
 }
