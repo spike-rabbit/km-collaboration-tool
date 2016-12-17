@@ -7,3 +7,11 @@ export interface KmctRequestOptions {
   headers?: Headers;
   sendAuthToken? : boolean;
 }
+
+export class User {
+  constructor(private firstname:string, private name : string, private roles : string[]){}
+
+  isUserInRole(role : string) {
+    return this.roles.indexOf(role) >= 0;
+  }
+}

@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers, RequestOptionsArgs, Response} from "@angular/http";
-import {KmctRequestOptions} from "../data-definitions";
-import {base_url} from "../environments/environment";
+import {KmctRequestOptions} from "../../data-definitions";
+import {base_url} from "../../environments/environment";
 import {Observable} from "rxjs";
 
 @Injectable()

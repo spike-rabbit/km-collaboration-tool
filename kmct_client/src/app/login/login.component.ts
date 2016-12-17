@@ -19,11 +19,8 @@ export class LoginComponent implements AfterViewInit {
   }
 
   public onSignIn(googleUser) {
-    this.loginService.testLogin(googleUser.getAuthResponse().id_token).subscribe(value => this.onLoginSuccess.emit());
-  }
-
-  public onSignOut() {
-    this.initGoogleSignIn();
+    this.onLoginSuccess.emit();
+    // this.loginService.testLogin(googleUser.getAuthResponse().id_token).subscribe(value => this.onLoginSuccess.emit());
   }
 
   public onFailure(error: any) {

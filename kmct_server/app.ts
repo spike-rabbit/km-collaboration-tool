@@ -9,8 +9,8 @@ import morgan = require("morgan");
 import {protect, ProtectedRequest} from "./authentication-manager";
 
 
-// let index = require('./routes/index');
-// let users = require('./routes/users');
+// let index = require('./coreRoutes/index');
+// let users = require('./coreRoutes/users');
 
 let app = express();
 

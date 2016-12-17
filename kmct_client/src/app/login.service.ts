@@ -2,18 +2,27 @@ import {Injectable} from "@angular/core";
 import {Http, Response, Headers} from "@angular/http";
 import {base_url} from "../environments/environment";
 import {Observable} from "rxjs";
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
+import {UrlStoreService} from "./global-services/url-store.service";
 
 @Injectable()
-export class LoginService {
+export class LoginService implements CanActivate {
 
-  private loginState
-
-  constructor(private http: Http) {
+  constructor(private http: Http, private urlStore : UrlStoreService) {
   }
+
+  private isSignedInd = false;
 
   testLogin(token: any) {
     let headers = new Headers();
+    this.isSignedInd = true;
     return this.http.post(base_url + "/login", {token: token}).map(res => res.text()).catch(this.handleError);
+  }
+
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
+    this.urlStore.storedUrl = state.url;
+    return true;
   }
 
   private handleError(error: Response | any) {
