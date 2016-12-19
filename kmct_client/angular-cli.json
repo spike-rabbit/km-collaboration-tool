@@ -18,7 +18,9 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.css"
+        "styles.less",
+        "bootstrap/bootstrap.less",
+        "bootstrap/theme.less"
       ],
       "scripts": [],
       "environments": {
@@ -28,7 +30,9 @@
       }
     }
   ],
-  "addons": [],
+  "addons": [
+
+  ],
   "packages": [],
   "e2e": {
     "protractor": {

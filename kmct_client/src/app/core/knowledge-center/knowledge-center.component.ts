@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KnowledgeCenterComponent implements OnInit {
 
+
+
   constructor() { }
+
 
   ngOnInit() {
   }
