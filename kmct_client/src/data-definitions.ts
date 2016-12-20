@@ -5,13 +5,25 @@ import {URLSearchParams, Headers} from "@angular/http";
 export interface KmctRequestOptions {
   search?: string | URLSearchParams;
   headers?: Headers;
-  sendAuthToken? : boolean;
+  sendAuthToken?: boolean;
 }
 
 export class User {
-  constructor(private firstname:string, private name : string, private roles : string[]){}
+  constructor(private firstname: string, private name: string, private roles: string[]) {
+  }
 
-  isUserInRole(role : string) {
+  isUserInRole(role: string) {
     return this.roles.indexOf(role) >= 0;
   }
+}
+
+export interface Ausbildungsnachweis {
+  mondayDate: Date;
+  createdBy : string;
+  isMine : string[];
+  monday?: string[];
+  tuesday?: string[];
+  wednesday?: string[];
+  thursday?: string[];
+  friday?: string[];
 }

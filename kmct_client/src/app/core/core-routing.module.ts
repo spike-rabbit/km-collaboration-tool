@@ -6,6 +6,8 @@ import {CoreComponent} from "./core.component";
 import {XchangeMarketComponent} from "./xchange-market/xchange-market.component";
 import {KnowledgeCenterComponent} from "./knowledge-center/knowledge-center.component";
 import {SigninStateService} from "../global-services/signin-state.service";
+import {AusbildungsnachweisComponent} from "./xchange-center/ausbildungsnachweis/ausbildungsnachweis.component";
+import {AusbildungsnachweisEditorComponent} from "./xchange-center/ausbildungsnachweis-editor/ausbildungsnachweis-editor.component";
 /**
  * Created by Maxi- PC on 17.12.2016.
  */
@@ -19,7 +21,13 @@ const coreRoutes: Routes = [{
       component: OverviewComponent
     }, {
       path: 'xcc',
-      component: XchangeCenterComponent
+      component: XchangeCenterComponent,
+    }, {
+      path: 'xcc/ausbildungsnachweis',
+      component: AusbildungsnachweisComponent
+    }, {
+      path: 'xcc/ausbildungsnachweis-bearbeiten',
+      component : AusbildungsnachweisEditorComponent
     }, {
       path: 'xcm',
       component: XchangeMarketComponent
