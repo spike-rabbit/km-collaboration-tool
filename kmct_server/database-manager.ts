@@ -20,7 +20,6 @@ export class DatabaseManager {
         this.companies = this.sequelize.define(CompanyTable, CompanySchema, defaultOptions);
         this.users = this.sequelize.define(UsersTable, UsersSchema, defaultOptions);
         console.log(UsersTable);
-        this.users.insertOrUpdate({id : 123, name : "berta", class_id : "FS141", firstname : "hugo"});
     }
 }
 
