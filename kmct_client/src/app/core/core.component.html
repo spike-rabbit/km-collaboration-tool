@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="#" class="navbar-brand">Es geht</a>
+      <a href="#" class="navbar-brand"><img src="../assets/images/km_logo.png"></a>
     </div>
     <div class="collapse navbar-collapse" id="mainNav">
       <ul class="nav navbar-nav">
@@ -16,21 +16,27 @@
         <li [routerLinkActive]="['active']"><a [routerLink]="['xcm']">XChange Market</a></li>
         <li [routerLinkActive]="['active']"><a [routerLink]="['knc']">Knowledge Center</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Profile <span
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Klasse verwalten<span
             class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Friends</a></li>
-            <li><a href="#">Settings</a></li>
+            <li><a href="#">Klassenmitglieder einladen</a></li>
+            <li><a href="#">Rechte verwalten</a></li>
           </ul>
         </li>
+        <li><a href="#">Administration</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <img src="../assets/images/km_notification.png" height="30px">
+        </li> <!--ToDo: schöner machen und anpassen-->
         <li><a href="#">Account</a></li>
       </ul>
     </div>
   </div>
 </nav>
+
+<div class="container">
 <p>
   core
   still works!
@@ -43,3 +49,4 @@
 <!--Submodules will be inserted here-->
 <router-outlet></router-outlet>
 
+</div>
