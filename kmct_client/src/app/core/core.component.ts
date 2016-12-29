@@ -8,14 +8,10 @@ import {Router} from "@angular/router";
 })
 export class CoreComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor() { }
 
   ngOnInit() {
 
-  }
-
-  isActive(route : string) : boolean  {
-    return this.router.isActive(route, false);
   }
 
 }

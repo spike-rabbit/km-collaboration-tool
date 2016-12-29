@@ -1,12 +1,9 @@
 import * as express from "express";
-import * as index from "./routes/index";
-import * as users from "./routes/users";
+import * as index from "./api/index";
 import * as path from "path";
 import * as cors from "cors";
-import {DatabaseManager} from "./database-manager";
 import bodyParser = require("body-parser");
 import morgan = require("morgan");
-import {protect, ProtectedRequest} from "./authentication-manager";
 
 
 // let index = require('./coreRoutes/index');
@@ -24,13 +21,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/', index);
-app.use('/users', users);
+app.use('/api', index);
 
-app.use(protect);
-app.get('/testen', function (req: ProtectedRequest, res: express.Response) {
-   res.send(req.user);
-});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -50,7 +42,6 @@ app.use(function (err: any, req: express.Request, res: express.Response, next) {
     res.send(err);
 });
 
-let databaseManager = new DatabaseManager();
 console.log("läuft!");
 
 

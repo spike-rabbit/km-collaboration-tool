@@ -10,8 +10,12 @@ export class KmctHttpService {
   constructor(private http: Http) {
   }
 
-  get(url: string, requestOptions?: KmctRequestOptions) : Observable<Response> {
+  get(url: string, requestOptions?: KmctRequestOptions): Observable<Response> {
     return this.http.get(KmctHttpService.appendURL(url), this.createRequestOptionsArgs(requestOptions));
+  }
+
+  post(url: string, body: any, requestOptions?: KmctRequestOptions): Observable<Response> {
+    return this.http.post(KmctHttpService.appendURL(url), body, this.createRequestOptionsArgs(requestOptions));
   }
 
   // Implement all http-methods similar to get

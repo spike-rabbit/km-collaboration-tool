@@ -38,8 +38,8 @@ jspm_packages
 /kmct_server/app.js.map
 /kmct_server/app.js
 /.idea/*
-/kmct_server/routes/**/*.js.map
-/kmct_server/routes/**/*.js
+/kmct_server/api/**/*.js.map
+/kmct_server/api/**/*.js
 /kmct_server/models/**/*.js
 /kmct_server/models/**/*.js.map
 /kmct_server/bin/www.js.map

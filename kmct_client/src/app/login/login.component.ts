@@ -1,5 +1,5 @@
 import {Component, AfterViewInit, EventEmitter, Output} from "@angular/core";
-import {LoginService} from "../login.service";
+import {SigninStateService} from "../global-services/signin-state.service";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ export class LoginComponent implements AfterViewInit {
   @Output()
   onLoginSuccess = new EventEmitter<void>();
 
-  constructor(private loginService: LoginService) {
+  constructor(private signinStateService: SigninStateService) {
   }
 
   ngAfterViewInit(): void {
@@ -20,7 +20,9 @@ export class LoginComponent implements AfterViewInit {
 
   public onSignIn(googleUser) {
     this.onLoginSuccess.emit();
-    // this.loginService.testLogin(googleUser.getAuthResponse().id_token).subscribe(value => this.onLoginSuccess.emit());
+    // TODO uncomment
+    // this.signinStateService.processSignIn(googleUser.getAuthResponse().id_token);
+
   }
 
   public onFailure(error: any) {
