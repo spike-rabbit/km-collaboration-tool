@@ -15,6 +15,7 @@ function postUser(req: express.Request, res: express.Response, next) {
                     database.users.findOrCreate({
                         where: {gid: userData.getPayload()['sub']},
                         defaults: {
+                            gid: userData.getPayload()['sub'],
                             classId: invitation.classId,
                             company: null,
                             name: userData.getPayload()['family_name'],
@@ -28,7 +29,10 @@ function postUser(req: express.Request, res: express.Response, next) {
                             // Der User existiert bereits
                             // Sollte bei korrektem Client nie vorkommen
                         }
-                    }).catch(next); // Irgendwas mit der DB stimmt nicht
+                    }).catch(err => {
+                        console.log(err);
+                        next(err);
+                    }); // Irgendwas mit der DB stimmt nicht
                 } else {
                     //TODO send Error 498
                     // ID-Token ist fehlerhaft
@@ -38,7 +42,10 @@ function postUser(req: express.Request, res: express.Response, next) {
             //TODO send Error 400
             // Invitation uuid wurde nicht gefunden
         }
-    }).catch(next); // Irgendwas mit der DB stimmt nicht
+    }).catch(err => {
+        console.log(err);
+        next(err);
+    }); // Irgendwas mit der DB stimmt nicht
 }
 
 function getUser(req: ProtectedRequest, res: express.Response) {

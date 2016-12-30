@@ -34,7 +34,8 @@ class DatabaseManager {
         this.companies = this.sequelize.define<CompanyInstance, Company>(CompanyTable, {
             id: {
                 type: Sequelize.INTEGER,
-                primaryKey: true
+                primaryKey: true,
+                autoIncrement: true
             },
             name: {
                 type: Sequelize.STRING
@@ -44,8 +45,10 @@ class DatabaseManager {
         this.users = this.sequelize.define<UsersInstance, User>(UsersTable, {
             id: {
                 type: Sequelize.INTEGER,
-                primaryKey: true
+                primaryKey: true,
+                autoIncrement: true
             },
+            gid: Sequelize.CHAR(45),
             name: Sequelize.CHAR(45),
             firstname: Sequelize.CHAR(45),
             classId: {type: Sequelize.CHAR(5), field: "class_id"},
@@ -61,7 +64,7 @@ class DatabaseManager {
         this.users.belongsTo(this.companies);
 
         this.invitations = this.sequelize.define<InvitationInstance, Invitation>(InvitationTable, {
-            uuid: Sequelize.CHAR(45),
+            uuid: {type: Sequelize.CHAR(45), primaryKey: true},
             classId: {type: Sequelize.CHAR(5), field: "class_id"}
         }, withDefOpts({
             classMethods: {

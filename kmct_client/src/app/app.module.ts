@@ -11,7 +11,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {UrlStoreService} from "./global-services/url-store.service";
 import {SigninStateService} from "./global-services/signin-state.service";
 
-const routes: Routes = [];
+const routes: Routes = [{path: "login", component: LoginComponent}, {path: "", redirectTo: "home", pathMatch: "full"}];
 
 @NgModule({
   declarations: [

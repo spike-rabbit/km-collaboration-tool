@@ -12,6 +12,7 @@ export interface Company {
 export interface User {
     id?: number;
     name: string;
+    gid: string;
     firstname: string;
     classId: string;
     company?: Company;
@@ -42,5 +43,5 @@ export interface InvitationModel extends Sequelize.Model<InvitationInstance, Inv
 
 // Tables
 export const CompanyTable = "company";
-export const UsersTable = 'getUser';
+export const UsersTable = 'user';
 export const InvitationTable = "invitation";

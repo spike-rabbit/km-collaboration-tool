@@ -19,13 +19,13 @@ export function protect(req: ProtectedRequest, res: express.Response, next: expr
                     req.user = user.toJSON();
                     next();
                 }).catch(reason => {
-                    res.send(404, {error: "user not found"});
+                    res.status(404).send({error: "user not found"});
                 });
             }
         });
     }
     else {
-        res.send(401, {error: "not authenticated"});
+        res.status(401).send({error: "not authenticated"});
     }
 }
 

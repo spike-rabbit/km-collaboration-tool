@@ -11,7 +11,7 @@ import morgan = require("morgan");
 
 let app = express();
 
-
+app.disable("etag");
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(cors({origin: "http://localhost:4200"}));
