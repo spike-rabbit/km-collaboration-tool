@@ -8,7 +8,6 @@ import {XchangeMarketModule} from "./xchange-market/xchange-market.module";
 import {KnowledgeCenterModule} from "./knowledge-center/knowledge-center.module";
 import {AlertModule, Ng2BootstrapModule, AlertConfig, TabsModule} from "ng2-bootstrap";
 
-
 @NgModule({
   imports: [
     CommonModule,
