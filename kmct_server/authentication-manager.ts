@@ -16,8 +16,13 @@ export function protect(req: ProtectedRequest, res: express.Response, next: expr
                 res.send({error: e});
             } else {
                 database.users.getUserByGid(login.getPayload()['sub']).then(user => {
-                    req.user = user.toJSON();
-                    next();
+                    let roles = user.getRoles().then(roles => {
+                        req.user = user.toJSON();
+                        req.user.roles = roles.map(role => {
+                            return {id: role.id}
+                        });
+                        next();
+                    });
                 }).catch(reason => {
                     res.status(404).send({error: "user not found"});
                 });
@@ -26,6 +31,23 @@ export function protect(req: ProtectedRequest, res: express.Response, next: expr
     }
     else {
         res.status(401).send({error: "not authenticated"});
+    }
+}
+
+export function requireRole(roles: string[] | string) {
+    return (req: ProtectedRequest, res: express.Response, next: express.NextFunction) => {
+        if (typeof roles == 'string') {
+            roles = [roles];
+        }
+
+        let roleMap = req.user.roles.map(r => r.id);
+        if (req.user && roles.every(role => roleMap.indexOf(role) >= 0)) {
+            next();
+        } else {
+            let error: any = new Error("Insufficient Rights");
+            error.status = 401;
+            next(error);
+        }
     }
 }
 

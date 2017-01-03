@@ -1,8 +1,11 @@
 import * as express from "express";
-import {ProtectedRequest, protect, verifyIdToken} from "../authentication-manager";
+import {ProtectedRequest, protect, verifyIdToken, requireRole} from "../authentication-manager";
 import {database} from "../database-manager";
+import {ROLES} from "../models/data-types";
+import {userAdministration} from "./user-administration";
 let router = express.Router();
 
+router.use("/uas", protect, requireRole(ROLES.ksspr), userAdministration);
 router.post('/user', postUser);
 router.get('/user', protect, getUser);
 
@@ -30,9 +33,10 @@ function postUser(req: express.Request, res: express.Response, next) {
                             // Sollte bei korrektem Client nie vorkommen
                         }
                     }).catch(err => {
+                        // Irgendwas mit der DB stimmt nicht
                         console.log(err);
                         next(err);
-                    }); // Irgendwas mit der DB stimmt nicht
+                    });
                 } else {
                     //TODO send Error 498
                     // ID-Token ist fehlerhaft
@@ -43,9 +47,10 @@ function postUser(req: express.Request, res: express.Response, next) {
             // Invitation uuid wurde nicht gefunden
         }
     }).catch(err => {
+        // Irgendwas mit der DB stimmt nicht
         console.log(err);
         next(err);
-    }); // Irgendwas mit der DB stimmt nicht
+    });
 }
 
 function getUser(req: ProtectedRequest, res: express.Response) {

@@ -14,7 +14,11 @@ import {
     InvitationModel,
     InvitationTable,
     InvitationInstance,
-    Invitation
+    Invitation,
+    Role,
+    RoleInstance,
+    RoleTable,
+    RoleModel
 } from "./models/data-types";
 import DefineOptions = Sequelize.DefineOptions;
 
@@ -23,12 +27,13 @@ class DatabaseManager {
     companies: CompanyModel;
     users: UsersModel;
     invitations: InvitationModel;
+    roles: RoleModel;
 
     constructor() {
         this.sequelize = new Sequelize('kmct', 'kmct_admin', 'G2i65%7089@u', {
             host: 'h2614523.stratoserver.net',
             dialect: 'mysql',
-            pool: {max: 5, min: 0, idle: 10000}
+            pool: {max: 5, min: 1, idle: 10000}
         });
 
         this.companies = this.sequelize.define<CompanyInstance, Company>(CompanyTable, {
@@ -39,6 +44,13 @@ class DatabaseManager {
             },
             name: {
                 type: Sequelize.STRING
+            }
+        }, withDefOpts());
+
+        this.roles = this.sequelize.define<RoleInstance, Role>(RoleTable, {
+            id: {
+                type: Sequelize.CHAR(5),
+                primaryKey: true
             }
         }, withDefOpts());
 
@@ -63,9 +75,21 @@ class DatabaseManager {
         }));
         this.users.belongsTo(this.companies);
 
+        let userHasRolesModel = this.sequelize.define("user_has_roles", {
+            user_id: Sequelize.INTEGER,
+            role_id: Sequelize.CHAR(5)
+        }, withDefOpts({freezeTableName: true}));
+
+        this.users.belongsToMany(this.roles, {through: userHasRolesModel});
+        this.roles.belongsToMany(this.users, {through: userHasRolesModel});
+
+
         this.invitations = this.sequelize.define<InvitationInstance, Invitation>(InvitationTable, {
             uuid: {type: Sequelize.CHAR(45), primaryKey: true},
-            classId: {type: Sequelize.CHAR(5), field: "class_id"}
+            classId: {type: Sequelize.CHAR(5), field: "class_id"},
+            name: Sequelize.CHAR(45),
+            firstname: Sequelize.CHAR(45),
+            email: Sequelize.CHAR(45)
         }, withDefOpts({
             classMethods: {
                 getInvitationByUUID: (uuid: string) => {
@@ -75,6 +99,7 @@ class DatabaseManager {
                 }
             }
         }));
+
 
     }
 }

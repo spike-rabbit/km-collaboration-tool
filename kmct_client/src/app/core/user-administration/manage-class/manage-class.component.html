@@ -1,0 +1,53 @@
+<div>
+
+  <div id="member-table" class="table-responsive">
+    <label for="member-table">Mitglieder</label>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Vorname</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of memberList">
+        <td>{{item.name}}</td>
+        <td>{{item.firstname}}</td>
+        <td>
+          <div class="text-right">
+            <button class="btn btn-danger glyphicon glyphicon-trash"></button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="invitation-table" class="table-responsive">
+    <label for="invitation-table">Offene Einladungen</label>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Vorname</th>
+        <th>Email</th>
+        <th>Link</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of invitationList">
+        <td>{{item.name}}</td>
+        <td>{{item.firstname}}</td>
+        <td>{{item.email}}</td>
+        <td>
+          <label>{{item.link}}</label>
+        </td>
+        <td>
+          <div class="text-right">
+            <button class="btn btn-danger glyphicon glyphicon-trash"></button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -8,6 +8,7 @@ import {KnowledgeCenterComponent} from "./knowledge-center/knowledge-center.comp
 import {SigninStateService} from "../global-services/signin-state.service";
 import {AusbildungsnachweisComponent} from "./xchange-center/ausbildungsnachweis/ausbildungsnachweis.component";
 import {AusbildungsnachweisEditorComponent} from "./xchange-center/ausbildungsnachweis-editor/ausbildungsnachweis-editor.component";
+import {ManageClassComponent} from "./user-administration/manage-class/manage-class.component";
 /**
  * Created by Maxi- PC on 17.12.2016.
  */
@@ -34,6 +35,9 @@ const coreRoutes: Routes = [{
     }, {
       path: 'knc',
       component: KnowledgeCenterComponent
+    }, {
+      path: 'uas/manage-class',
+      component: ManageClassComponent
     }]
 }];
 

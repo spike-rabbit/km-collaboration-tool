@@ -15,7 +15,7 @@ export class SigninStateService implements CanActivate {
 
   user: User;
 
-  constructor(private applicationRef: ApplicationRef, private urlStore: UrlStoreService, private router: Router, private http: KmctHttpService) {
+  constructor(private urlStore: UrlStoreService, private router: Router, private http: KmctHttpService) {
   }
 
   processSignIn(idToken: string, uuid: string) {
@@ -32,7 +32,6 @@ export class SigninStateService implements CanActivate {
       this.user = user;
       this.isSignedIn = true;
       let url = this.urlStore.storedUrl;
-      this.applicationRef.tick();
       if (!url || url && url.match(".*login")) {
         this.router.navigate(['/home/']);
       } else {

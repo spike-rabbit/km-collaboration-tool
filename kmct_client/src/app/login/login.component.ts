@@ -1,6 +1,6 @@
-import {Component, AfterViewInit, EventEmitter, Output, ApplicationRef} from "@angular/core";
+import {Component, AfterViewInit, NgZone} from "@angular/core";
 import {SigninStateService} from "../global-services/signin-state.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -9,10 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class LoginComponent implements AfterViewInit {
 
-  @Output()
-  onLoginSuccess = new EventEmitter<void>();
-
-  constructor(private applicationRef: ApplicationRef, private signinStateService: SigninStateService, private route: ActivatedRoute, private router: Router) {
+  constructor(private signinStateService: SigninStateService, private route: ActivatedRoute, private zone: NgZone) {
   }
 
   ngAfterViewInit(): void {
@@ -21,7 +18,9 @@ export class LoginComponent implements AfterViewInit {
 
   public onSignIn(googleUser) {
     this.route.params.subscribe(params => {
-      this.signinStateService.processSignIn(googleUser.getAuthResponse().id_token, params['invitation']);
+      this.zone.run(() => {
+        this.signinStateService.processSignIn(googleUser.getAuthResponse().id_token, params['invitation']);
+      });
     });
   }
 
