@@ -1,6 +1,7 @@
 import * as express from "express";
 import {ProtectedRequest} from "../authentication-manager";
 import {database} from "../database-manager";
+import * as uuid from "uuid";
 let router = express.Router();
 
 /* GET users listing. */
@@ -26,12 +27,26 @@ function getInvitations(req: ProtectedRequest, res: express.Response) {
 }
 
 function postInvitation(req: ProtectedRequest, res: express.Response) {
-    // Register DB
-    // Send added
+    let invitation = req.body.invitation;
+    invitation.classId = req.user.classId;
+    invitation.uuid = uuid.v4();
+    database.invitations.create(invitation).then(invitation => {
+        res.send({invitation: invitation.toJSON()});
+    }, reason => {
+        //TODO log better
+        //TODO send error to client
+        console.log(reason);
+    });
+
     // Send email to Target Address
 }
 
-function deleteInvitation(req: ProtectedRequest, res: express.Response, next: express.NextFunction) {
+function deleteInvitation(req: ProtectedRequest, res: express.Response) {
+    database.invitations.getInvitationByUUID(req.params['uuid']).then(invitation => invitation.destroy()).then(result => res.send(), reason => {
+        //TODO log better
+        //TODO send error to client
+        console.log(reason);
+    });
 }
 
 function getClassMember(req: ProtectedRequest, res: express.Response) {

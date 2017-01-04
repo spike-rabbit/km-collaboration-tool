@@ -18,6 +18,10 @@ export class KmctHttpService {
     return this.http.post(KmctHttpService.appendURL(url), body, this.createRequestOptionsArgs(requestOptions));
   }
 
+  delete(url: string, requestOptions?: KmctRequestOptions): Observable<Response> {
+    return this.http.delete(KmctHttpService.appendURL(url), this.createRequestOptionsArgs(requestOptions));
+  }
+
   // Implement all http-methods similar to get
 
   private static appendURL(url: string) {

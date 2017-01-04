@@ -24,15 +24,15 @@ export class SigninStateService implements CanActivate {
       return val.json();
     }).catch((error: Response) => {
       if (error.status = 404) {
-        return this.http.post("/api/user", {uuid: uuid, authenticationToken: idToken})
+        return this.http.post("/api/user", {uuid: uuid, authenticationToken: idToken}).map(res => res.json());
       } else {
         return Observable.throw(`${error.status} - ${error.statusText || ''}`);
       }
     }).subscribe(user => {
-      this.user = user;
+      this.user = new User(user.firstname,user.name, user.roles.map(role => role.id));
       this.isSignedIn = true;
       let url = this.urlStore.storedUrl;
-      if (!url || url && url.match(".*login")) {
+      if (!url || url && url.match(".*login.*")) {
         this.router.navigate(['/home/']);
       } else {
         this.router.navigate([url]);

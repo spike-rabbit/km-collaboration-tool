@@ -1,7 +1,7 @@
 import * as express from "express";
 import {ProtectedRequest, protect, verifyIdToken, requireRole} from "../authentication-manager";
 import {database} from "../database-manager";
-import {ROLES} from "../models/data-types";
+import {ROLES, UsersInstance} from "../models/data-types";
 import {userAdministration} from "./user-administration";
 let router = express.Router();
 
@@ -21,12 +21,16 @@ function postUser(req: express.Request, res: express.Response, next) {
                             gid: userData.getPayload()['sub'],
                             classId: invitation.classId,
                             company: null,
-                            name: userData.getPayload()['family_name'],
-                            firstname: userData.getPayload()['given_name']
+                            name: invitation.name,
+                            firstname: invitation.firstname,
                         }
-                    }).spread((user, created) => {
+                    }).spread((user: UsersInstance, created) => {
                         if (created) {
-                            res.send(user);
+                            user.addRole(ROLES.ksmem).then(value => {
+                                user.roles = [{id: ROLES.ksmem}];
+                                res.send(user);
+                                invitation.destroy().then();
+                            });
                         } else {
                             //TODO send Error 400
                             // Der User existiert bereits

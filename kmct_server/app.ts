@@ -2,6 +2,7 @@ import * as express from "express";
 import * as index from "./api/index";
 import * as path from "path";
 import * as cors from "cors";
+import * as NodeCache from "node-cache"
 import bodyParser = require("body-parser");
 import morgan = require("morgan");
 
@@ -9,7 +10,8 @@ import morgan = require("morgan");
 // let index = require('./coreRoutes/index');
 // let users = require('./coreRoutes/users');
 
-let app = express();
+export const kmctCache = new NodeCache({stdTTL: 5 * 60});
+export const app = express();
 
 app.disable("etag");
 app.set("env", "development");
@@ -45,4 +47,3 @@ app.use(function (err: any, req: express.Request, res: express.Response, next) {
 console.log("läuft!");
 
 
-export {app}
