@@ -14,7 +14,8 @@ export class XchangeCenterComponent implements OnInit {
   constructor() {
     this.ausbildungsnachweise = [
       new Ausbildungsnachweis(1, '12.1.17'),
-      new Ausbildungsnachweis(2, '23.1.17')
+      new Ausbildungsnachweis(2, '23.1.17'),
+      new Ausbildungsnachweis(3, '15.2.17')
     ]
 
   }

@@ -1,12 +1,12 @@
 <div>
 
+  <app-liste-ausbildungsnachweise [ausbildungsnachweise]="ausbildungsnachweise"></app-liste-ausbildungsnachweise>
+
   <!--Links werden noch parametrisiert um einen bestimmten Ausbildungsnachweis zu bearbeiten bzw. anzuzeigen-->
   <!-- Verweist auf AusbildungsnachweisComponent -->
-  <a routerLink="ausbildungsnachweis" class="btn btn-default btn-block">Ausbildungsnachweis ansehen</a>
+  <a routerLink="ausbildungsnachweis" class="btn btn-danger btn-block" >Ausbildungsnachweis ansehen</a>
   <!-- Verweist auf AusbildungsnachweisEditorComponent-->
   <a routerLink="ausbildungsnachweis-bearbeiten" class="btn btn-default btn-block">Ausbildungsnachweis bearbeiten</a>
-
-  <app-liste-ausbildungsnachweise [ausbildungsnachweise]="ausbildungsnachweise"></app-liste-ausbildungsnachweise>
 
 
 </div>

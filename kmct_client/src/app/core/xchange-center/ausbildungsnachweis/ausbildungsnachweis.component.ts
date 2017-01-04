@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-ausbildungsnachweis',
   templateUrl: './ausbildungsnachweis.component.html',
-  styleUrls: ['./ausbildungsnachweis.component.css']
+  styleUrls: ['./ausbildungsnachweis.component.css'],
+  inputs: ['ausbildungsnachweis']
 })
 export class AusbildungsnachweisComponent implements OnInit {
 
