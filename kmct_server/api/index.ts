@@ -27,9 +27,11 @@ function postUser(req: express.Request, res: express.Response, next) {
                     }).spread((user: UsersInstance, created) => {
                         if (created) {
                             user.addRole(ROLES.ksmem).then(value => {
-                                user.roles = [{id: ROLES.ksmem}];
-                                res.send(user);
-                                invitation.destroy().then();
+                                invitation.destroy().then(dvalue => {
+                                    let sendUser = user.toJSON();
+                                    sendUser.roles = [{id: ROLES.ksmem}];
+                                    res.send(sendUser);
+                                });
                             });
                         } else {
                             //TODO send Error 400
