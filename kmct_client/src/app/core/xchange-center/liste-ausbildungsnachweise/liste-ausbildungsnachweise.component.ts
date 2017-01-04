@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Ausbildungsnachweis} from "../ausbildungsnachweis";
 
 @Component({
   selector: 'app-liste-ausbildungsnachweise',
@@ -7,6 +8,12 @@ import { Component, OnInit } from '@angular/core';
   inputs: ['ausbildungsnachweise']
 })
 export class ListeAusbildungsnachweiseComponent implements OnInit {
+
+  selectedNachweis: Ausbildungsnachweis;
+
+  onSelect(nachweis: Ausbildungsnachweis): void {
+    this.selectedNachweis = nachweis;
+  }
 
   constructor() { }
 

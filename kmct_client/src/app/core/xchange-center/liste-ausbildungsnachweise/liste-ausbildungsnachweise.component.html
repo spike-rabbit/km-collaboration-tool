@@ -1,14 +1,14 @@
-<h2>Ausbildungsnachweise: Übersicht</h2>
+<h3>Ausbildungsnachweise: Übersicht</h3>
 <div class="table-responsive">
-  <table class="table">
+  <table class="table table-striped">
     <thead>
     <tr>
-      <td>KW</td>
-      <td>Datum</td>
+      <th>KW</th>
+      <th>Datum</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let n of ausbildungsnachweise">
+    <tr *ngFor="let n of ausbildungsnachweise" (click)="onSelect(n)">
       <td>{{n.kw}}</td>
       <td>{{n.datum}}</td>
     </tr>
