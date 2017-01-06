@@ -38,7 +38,7 @@
           <td>{{item.name}}</td>
           <td>{{item.firstname}}</td>
           <td>{{item.email}}</td>
-          <td>
+          <td class="invitation-link-column">
             <label>{{item.link}}</label>
           </td>
           <td>
@@ -53,8 +53,8 @@
           <td><input type="text" name="firstname" [(ngModel)]="focussedInvitation.firstname" class="form-control"></td>
           <td><input type="text" name="email" [(ngModel)]="focussedInvitation.email" class="form-control"></td>
           <td></td>
-          <td>
-            <div class="text-center">
+          <td id="invitation-create-controls">
+            <div class="text-center btn-group">
               <button class="btn btn-success glyphicon glyphicon-ok" (click)="onAdd()"></button>
               <button class="btn btn-danger glyphicon glyphicon-remove" (click)="editMode = false"></button>
             </div>

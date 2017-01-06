@@ -10,6 +10,8 @@ import {AusbildungsnachweisComponent} from "./xchange-center/ausbildungsnachweis
 import {AusbildungsnachweisEditorComponent} from "./xchange-center/ausbildungsnachweis-editor/ausbildungsnachweis-editor.component";
 import {ManageClassComponent} from "./user-administration/manage-class/manage-class.component";
 import {EditProfileComponent} from "./user-administration/edit-profile/edit-profile.component";
+import {ClassLeaderGuardService} from "../global-services/guards/class-leader.service";
+import {UserGuardService} from "../global-services/guards/user-guard.service";
 /**
  * Created by Maxi- PC on 17.12.2016.
  */
@@ -24,21 +26,27 @@ const coreRoutes: Routes = [{
     }, {
       path: 'xcc',
       component: XchangeCenterComponent,
+      canActivate: [UserGuardService]
     }, {
       path: 'xcc/ausbildungsnachweis/:ausbildungsnachweis',
-      component: AusbildungsnachweisComponent
+      component: AusbildungsnachweisComponent,
+      canActivate: [UserGuardService]
     }, {
       path: 'xcc/ausbildungsnachweis-bearbeiten',
-      component : AusbildungsnachweisEditorComponent
+      component : AusbildungsnachweisEditorComponent,
+      canActivate: [UserGuardService]
     }, {
       path: 'xcm',
-      component: XchangeMarketComponent
+      component: XchangeMarketComponent,
+      canActivate: [UserGuardService]
     }, {
       path: 'knc',
-      component: KnowledgeCenterComponent
+      component: KnowledgeCenterComponent,
+      canActivate: [UserGuardService]
     }, {
       path: 'uas/manage-class',
-      component: ManageClassComponent
+      component: ManageClassComponent,
+      canActivate: [ClassLeaderGuardService]
     }, {
       path: 'uas/edit-profile',
       component: EditProfileComponent
