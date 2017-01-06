@@ -2,6 +2,7 @@
  * Created by Paula on 03.01.2017.
  */
 export class Ausbildungsnachweis {
+  id: number;
   kw: number;
   datum: string;
   montag: string;
@@ -10,7 +11,8 @@ export class Ausbildungsnachweis {
   donnerstag: string;
   freitag: string;
 
-  constructor(kw:number, dat:string){
+  constructor(id:number, kw:number, dat:string){
+    this.id = id;
     this.kw = kw;
     this.datum = dat;
     this.montag = null;

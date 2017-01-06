@@ -24,7 +24,7 @@ const coreRoutes: Routes = [{
       path: 'xcc',
       component: XchangeCenterComponent,
     }, {
-      path: 'xcc/ausbildungsnachweis',
+      path: 'xcc/ausbildungsnachweis/:ausbildungsnachweis',
       component: AusbildungsnachweisComponent
     }, {
       path: 'xcc/ausbildungsnachweis-bearbeiten',
