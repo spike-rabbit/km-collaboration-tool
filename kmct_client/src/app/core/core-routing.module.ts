@@ -9,6 +9,7 @@ import {SigninStateService} from "../global-services/signin-state.service";
 import {AusbildungsnachweisComponent} from "./xchange-center/ausbildungsnachweis/ausbildungsnachweis.component";
 import {AusbildungsnachweisEditorComponent} from "./xchange-center/ausbildungsnachweis-editor/ausbildungsnachweis-editor.component";
 import {ManageClassComponent} from "./user-administration/manage-class/manage-class.component";
+import {EditProfileComponent} from "./user-administration/edit-profile/edit-profile.component";
 /**
  * Created by Maxi- PC on 17.12.2016.
  */
@@ -38,6 +39,9 @@ const coreRoutes: Routes = [{
     }, {
       path: 'uas/manage-class',
       component: ManageClassComponent
+    }, {
+      path: 'uas/edit-profile',
+      component: EditProfileComponent
     }]
 }];
 

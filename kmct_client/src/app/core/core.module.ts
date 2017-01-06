@@ -6,8 +6,9 @@ import {XchangeCenterModule} from "./xchange-center/xchange-center.module";
 import {CoreRoutingModule} from "./core-routing.module";
 import {XchangeMarketModule} from "./xchange-market/xchange-market.module";
 import {KnowledgeCenterModule} from "./knowledge-center/knowledge-center.module";
-import {AlertModule, Ng2BootstrapModule, AlertConfig, TabsModule} from "ng2-bootstrap";
+import {TabsModule} from "ng2-bootstrap";
 import {UserAdministrationModule} from "./user-administration/user-administration.module";
+import {PopupsModule} from "./popups/popups.module";
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import {UserAdministrationModule} from "./user-administration/user-administratio
     XchangeMarketModule,
     KnowledgeCenterModule,
     UserAdministrationModule,
+    PopupsModule,
     TabsModule
   ],
   declarations: [CoreComponent, OverviewComponent],

@@ -21,20 +21,30 @@ export class UserAdministrationService {
     // TODO catch errors
     return this.http.post("/api/uas/invitation", {invitation: invitation}, {sendAuthToken: true}).map(res => {
       let invitation = res.json().invitation;
-      return this.addLink(invitation);
+      return UserAdministrationService.addLink(invitation);
     }).catch((response: Response) => {
         console.log(response);
-        return Observable.throw(
-          "Error"
-        );
+        return Observable.throw("Error");
       }
-    )
-      ;
+    );
+  }
+
+  applyUserChanges(name: string, firstname: string) {
+    return this.http.patch("/api/user", {
+      user: {
+        name: name,
+        firstname: firstname
+      }
+    }, {sendAuthToken: true}).map(res => res.json()).catch((response: Response) => {
+        console.log(response);
+        return Observable.throw("Error");
+      }
+    );
   }
 
   loadInvitations() {
     // TODO catch errors
-    return this.http.get("/api/uas/invitations", {sendAuthToken: true}).map(res => res.json().invitations.map(this.addLink)).catch((response: Response) => {
+    return this.http.get("/api/uas/invitations", {sendAuthToken: true}).map(res => res.json().invitations.map(UserAdministrationService.addLink)).catch((response: Response) => {
       console.log(response);
       return Observable.throw("Error");
     });
@@ -47,7 +57,7 @@ export class UserAdministrationService {
     }));
   }
 
-  private addLink(invitation: any) {
+  private static addLink(invitation: any) {
     invitation.link = window.location.origin + "/login;invitation=" + invitation.uuid;
     return invitation;
   }

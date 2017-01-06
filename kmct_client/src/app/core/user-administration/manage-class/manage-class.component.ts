@@ -1,6 +1,7 @@
 import {Component, OnInit, HostBinding} from "@angular/core";
 import {UserAdministrationService} from "../user-administration.service";
 import {slideInOutAnimation} from "../../router-animations";
+import {PopupsService} from "../../popups/popups.service";
 
 @Component({
   selector: 'app-manage-class',
@@ -10,9 +11,10 @@ import {slideInOutAnimation} from "../../router-animations";
 })
 export class ManageClassComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
-  @HostBinding('style.display')   display = 'block';
-  @HostBinding('style.position')  position = 'absolute';
-  constructor(private userAdminService: UserAdministrationService) {
+  @HostBinding('style.display') display = 'block';
+  @HostBinding('style.position') position = 'absolute';
+
+  constructor(private userAdminService: UserAdministrationService, private popupsService: PopupsService) {
   }
 
   invitationList: any[];
@@ -25,22 +27,26 @@ export class ManageClassComponent implements OnInit {
     this.userAdminService.loadClassMembers().subscribe(memberList => this.memberList = memberList);
   }
 
-  onDelete(popup: any) {
-    if (this.focussedInvitation) {
-      this.userAdminService.deleteInvitation(this.focussedInvitation.uuid).subscribe(res => {
-        this.invitationList.splice(this.invitationList.indexOf(this.focussedInvitation), 1);
+
+  onDelete(invitation: any) {
+    this.popupsService.confirmDeleteInvitation.onDelete = popup => {
+      if (invitation) {
+        this.userAdminService.deleteInvitation(invitation.uuid).subscribe(res => {
+          this.invitationList.splice(this.invitationList.indexOf(invitation), 1);
+          popup.hide();
+        }, error => {
+          //TODO print error
+          popup.hide();
+        });
+      } else {
         popup.hide();
-      }, error => {
-        //TODO print error
-        popup.hide();
-      });
-    } else {
-      popup.hide();
-    }
+      }
+    };
+    this.popupsService.confirmDeleteInvitation.element.show();
   }
 
   onAdd() {
-    if(this.editMode) {
+    if (this.editMode) {
       this.userAdminService.addInvitation(this.focussedInvitation).subscribe(res => {
         this.invitationList.push(res);
         this.editMode = false;
