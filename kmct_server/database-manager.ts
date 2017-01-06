@@ -145,7 +145,7 @@ class DatabaseManager {
         this.templates.belongsToMany(this.users, {through: userHasTemplates});
 
         this.days = this.sequelize.define<AusbildungsdayInstance, AusbildungsDay>(AusbildungnachweisDayTable, {
-            id: Sequelize.INTEGER,
+            id: {type: Sequelize.INTEGER, primaryKey:true},
             weekday: Sequelize.ENUM("Monday","Tuesday","Wednesday","Thursday","Friday") ,
             value: Sequelize.CHAR(255),
             weekId: Sequelize.INTEGER
