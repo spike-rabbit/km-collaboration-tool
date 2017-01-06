@@ -31,6 +31,35 @@ export interface Role {
     id: string;
 }
 
+//TODO rename to more usable name
+export interface AusbildungsnachweisTemplate {
+    id: string;
+    template: string;
+    userId: number;
+}
+
+export interface Ausbildungsnachweis {
+    id?: number;
+    week: string;
+    classId: string;
+}
+
+export interface AusbildungsDay {
+    id?: number
+    weekday: days;
+    value: string;
+    weekId: number;
+}
+
+
+export enum days {
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday
+}
+
 // Instances
 export interface CompanyInstance extends Sequelize.Instance<Company>, Company {
 }
@@ -45,6 +74,14 @@ export interface InvitationInstance extends Sequelize.Instance<Invitation>,Invit
 export interface RoleInstance extends Sequelize.Instance<Role>,Role {
 }
 
+export interface AusbildungsdayInstance extends Sequelize.Instance<AusbildungsDay>, AusbildungsDay {
+}
+
+export interface AusbildungsnachweisInstance extends Sequelize.Instance<Ausbildungsnachweis>, Ausbildungsnachweis {}
+
+export interface AusbildungsnachweisTemplateInstance extends Sequelize.Instance<AusbildungsnachweisTemplate>, AusbildungsnachweisTemplate {}
+
+
 // Models
 export interface CompanyModel extends Sequelize.Model<CompanyInstance,Company> {
 }
@@ -57,12 +94,20 @@ export interface InvitationModel extends Sequelize.Model<InvitationInstance, Inv
 export interface RoleModel extends Sequelize.Model<RoleInstance, Role> {
 }
 
+export interface AusbildungsdayModel extends Sequelize.Model<AusbildungsdayInstance, AusbildungsDay> {}
+
+export interface AusbildungsnachweisModel extends Sequelize.Model<AusbildungsnachweisInstance, Ausbildungsnachweis> {}
+
+export interface  AusbildungsnachweisTemplateModel extends Sequelize.Model<AusbildungsnachweisTemplateInstance, AusbildungsnachweisTemplate> {}
+
 // Tables
 export const CompanyTable = "company";
 export const UsersTable = 'user';
 export const InvitationTable = "invitation";
 export const RoleTable = "role";
 
-
+export const AusbildungsnachweisTable ="ausbildungsnachweis";
+export const AusbildungnachweisDayTable ="ausbildungsnachweisDay";
+export const AusbildungsnachweisTemplateTable ="ausbildungsnachweisTemplate";
 // Other Types
 export const ROLES = {admin: "ADMIN", ksmem: "KSMEM", ksspr: "KSSPR"};

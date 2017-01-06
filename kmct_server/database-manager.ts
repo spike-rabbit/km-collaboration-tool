@@ -18,7 +18,12 @@ import {
     Role,
     RoleInstance,
     RoleTable,
-    RoleModel
+    RoleModel, AusbildungsdayModel,
+    AusbildungsnachweisModel, AusbildungsnachweisTemplateModel,
+    AusbildungsnachweisTable,
+    AusbildungnachweisDayTable,
+    AusbildungsnachweisTemplateTable, AusbildungsnachweisInstance, Ausbildungsnachweis,
+    AusbildungsnachweisTemplateInstance, AusbildungsnachweisTemplate, AusbildungsdayInstance, AusbildungsDay, days
 } from "./models/data-types";
 import DefineOptions = Sequelize.DefineOptions;
 
@@ -28,6 +33,9 @@ class DatabaseManager {
     users: UsersModel;
     invitations: InvitationModel;
     roles: RoleModel;
+    ausbildungsnachweise: AusbildungsnachweisModel;
+    templates: AusbildungsnachweisTemplateModel;
+    days: AusbildungsdayModel;
 
     constructor() {
         this.sequelize = new Sequelize('kmct', 'kmct_admin', 'G2i65%7089@u', {
@@ -80,6 +88,7 @@ class DatabaseManager {
             role_id: Sequelize.CHAR(5)
         }, withDefOpts({freezeTableName: true}));
 
+
         this.users.belongsToMany(this.roles, {through: userHasRolesModel});
         this.roles.belongsToMany(this.users, {through: userHasRolesModel});
 
@@ -100,7 +109,56 @@ class DatabaseManager {
             }
         }));
 
+        this.ausbildungsnachweise = this.sequelize.define<AusbildungsnachweisInstance, Ausbildungsnachweis>(AusbildungsnachweisTable, {
+            id: {type: Sequelize.INTEGER, primaryKey: true},
+            classId: {type: Sequelize.CHAR(5), field: "class_id"},
+            week: Sequelize.CHAR(45)
+        }, withDefOpts({classMethods: {
+                getNachweisById: (id: number) => {
+                    let where: {[key: string]: any} = {};
+                where['id'] = id;
+                return this.ausbildungsnachweise.find({where: where});
+                }
+            }
+        }));
 
+        this.templates = this.sequelize.define<AusbildungsnachweisTemplateInstance, AusbildungsnachweisTemplate>(AusbildungsnachweisTemplateTable, {
+            id: {type : Sequelize.INTEGER, primaryKey:true},
+        template: {type: Sequelize.CHAR(255)},
+        userId: Sequelize.INTEGER
+        }, withDefOpts({
+            classMethods: {
+                getTemplateById: (id: number) => {
+                    let where: {[key: string]: any} = {};
+                    where['id'] = id;
+                    return this.templates.find({where: where});
+                }
+            }
+        }));
+
+        let userHasTemplates = this.sequelize.define("user_has_templates", {
+            user_id: Sequelize.INTEGER,
+            template_id: Sequelize.INTEGER
+        }, withDefOpts({freezeTableName: true}));
+
+        this.users.belongsToMany(this.templates, {through: userHasTemplates});
+        this.templates.belongsToMany(this.users, {through: userHasTemplates});
+
+        this.days = this.sequelize.define<AusbildungsdayInstance, AusbildungsDay>(AusbildungnachweisDayTable, {
+            id: Sequelize.INTEGER,
+            weekday: Sequelize.ENUM("Monday","Tuesday","Wednesday","Thursday","Friday") ,
+            value: Sequelize.CHAR(255),
+            weekId: Sequelize.INTEGER
+        }, withDefOpts({
+            classMethods: {
+                getDayById: (id: number) => {
+                    let where: {[key: string]: any} = {};
+                    where['id'] = id;
+                    return this.days.find({where: where});
+                }
+            }
+        }));
+        this.days.belongsTo(this.ausbildungsnachweise);
     }
 }
 
