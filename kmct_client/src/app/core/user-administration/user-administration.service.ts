@@ -58,7 +58,14 @@ export class UserAdministrationService {
   }
 
   loadClasses() {
-    return this.http.get("/api/uas/classes", {sendAuthToken: true}).map(res => res.json().classes);
+    return this.http.get("/api/uas/classes", {sendAuthToken: true}).map(res => res.json().classes.map(classwi => {
+      if(classwi.uuid) {
+        return UserAdministrationService.addLink(classwi);
+      } else {
+        classwi.link = "TODO Klasse Aktiv";
+        return classwi;
+      }
+    }));
   }
 
   private static addLink(invitation: any) {

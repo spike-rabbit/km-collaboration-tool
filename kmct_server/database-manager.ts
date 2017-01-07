@@ -179,6 +179,7 @@ class DatabaseManager {
             }
         }));
         this.days.belongsTo(this.ausbildungsnachweise);
+
     }
 }
 

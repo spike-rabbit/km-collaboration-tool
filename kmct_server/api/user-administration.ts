@@ -2,7 +2,7 @@ import * as express from "express";
 import {ProtectedRequest, requireRole} from "../authentication-manager";
 import {database} from "../database-manager";
 import * as uuid from "uuid";
-import {ROLES} from "../models/data-types";
+import {ROLES, Invitation} from "../models/data-types";
 let router = express.Router();
 
 /* GET users listing. */
@@ -62,22 +62,17 @@ function getClassMember(req: ProtectedRequest, res: express.Response) {
 }
 
 function getClasses(req: ProtectedRequest, res: express.Response) {
-    database.classes.findAll().then(classes => {
-        // DISTINCT is currently not supported by Sequelize. This is a workaround
-        database.sequelize.query("select * from invitations i where i.class_id not in (select distinct class_id from users);").then(classesWithUsers => {
-            classesWithUsers = classesWithUsers.map(value => value.class);
-
-            res.send({classes: classes});
-        }, reason => {
-            //TODO log better
-            //TODO send error to client
-            console.log(reason);
-        });
-
+    database.sequelize.query("select * from classes_with_initial_invitations").then((classesWithInitialInvitations: ClassWithInitialInvitation) => {
+        res.send({classes: classesWithInitialInvitations[0]});
     }, reason => {
         //TODO log better
         //TODO send error to client
         console.log(reason);
     });
 }
+
+interface ClassWithInitialInvitation extends Invitation {
+    id: string;
+}
+
 export {router as userAdministration};
