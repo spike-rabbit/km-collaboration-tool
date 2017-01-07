@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {KmctHttpService} from "../../global-services/kmct-http.service";
 import {Observable} from "rxjs";
 import {Response} from "@angular/http";
+import {ROLES} from "../../../../../kmct_server/models/data-types";
 
 @Injectable()
 export class UserAdministrationService {
@@ -66,6 +67,12 @@ export class UserAdministrationService {
         return classwi;
       }
     }));
+  }
+
+  addClass(className: string, classLeaderName: string, classLeaderFirstname: string, classLeaderEmail: string) {
+    return this.http.post("/api/uas/class", {class: {id: className}}, {sendAuthToken: true}).switchMap(classResponse => {
+      return this.addInvitation({name: classLeaderName, firstname: classLeaderFirstname, email: classLeaderEmail, targetRole: ROLES.ksspr, classId: className});
+    });
   }
 
   private static addLink(invitation: any) {

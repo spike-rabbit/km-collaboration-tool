@@ -9,11 +9,12 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let item of classes" [class.waiting]="item.uuid">
+      <tr *ngFor="let item of classes" [class.waiting]="item.uuid != null">
         <td>{{item.id}}</td>
         <td>{{item.link}}</td>
       </tr>
       </tbody>
     </table>
   </div>
+  <button type="button" class="btn btn-success glyphicon glyphicon-plus" (click)="onCreate()">Klasse Hinzufügen</button>
 </div>

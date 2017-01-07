@@ -5,13 +5,16 @@ import {UserAdministrationService} from "./user-administration.service";
 import {FormsModule} from "@angular/forms";
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ManageClassesComponent } from './manage-classes/manage-classes.component';
+import {ModalModule} from "ng2-bootstrap";
+import { CreateClassComponent } from './create-class/create-class.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot()
   ],
   providers: [UserAdministrationService],
-  declarations: [ManageClassComponent, EditProfileComponent, ManageClassesComponent]
+  declarations: [ManageClassComponent, EditProfileComponent, ManageClassesComponent, CreateClassComponent]
 })
 export class UserAdministrationModule { }

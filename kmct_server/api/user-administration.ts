@@ -5,12 +5,12 @@ import * as uuid from "uuid";
 import {ROLES, Invitation} from "../models/data-types";
 let router = express.Router();
 
-/* GET users listing. */
 router.get('/invitations', requireRole(ROLES.ksspr), getInvitations);
 router.post('/invitation', requireRole(ROLES.ksspr), postInvitation);
 router.delete('/invitation/:uuid', requireRole(ROLES.ksspr), deleteInvitation);
 router.get('/class-members', requireRole(ROLES.ksspr), getClassMember);
 router.get('/classes', requireRole(ROLES.admin), getClasses);
+router.post('/class', requireRole(ROLES.admin), postClass);
 
 function getInvitations(req: ProtectedRequest, res: express.Response) {
     let where: {[key: string]: any} = {};
@@ -30,7 +30,9 @@ function getInvitations(req: ProtectedRequest, res: express.Response) {
 
 function postInvitation(req: ProtectedRequest, res: express.Response) {
     let invitation = req.body.invitation;
-    invitation.classId = req.user.class.id;
+    if (!invitation.classId) {
+        invitation.classId = req.user.class.id;
+    }
     invitation.uuid = uuid.v4();
     database.invitations.create(invitation).then(invitation => {
         res.send({invitation: invitation.toJSON()});
@@ -64,6 +66,16 @@ function getClassMember(req: ProtectedRequest, res: express.Response) {
 function getClasses(req: ProtectedRequest, res: express.Response) {
     database.sequelize.query("select * from classes_with_initial_invitations").then((classesWithInitialInvitations: ClassWithInitialInvitation) => {
         res.send({classes: classesWithInitialInvitations[0]});
+    }, reason => {
+        //TODO log better
+        //TODO send error to client
+        console.log(reason);
+    });
+}
+
+function postClass(req: ProtectedRequest, res: express.Response) {
+    database.classes.create(req.body.class).then(() => {
+        res.send();
     }, reason => {
         //TODO log better
         //TODO send error to client

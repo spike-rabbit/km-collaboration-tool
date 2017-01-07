@@ -1,0 +1,49 @@
+<h1>Klasse erstellen</h1>
+<form (ngSubmit)="onSubmit()">
+  <div class="container">
+
+    <div class="row form-group">
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <label for="className">Klassenname</label>
+      </div>
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <input id="className" name="className" type="text" class="form-control" [(ngModel)]="className" required>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <label for="classLeaderName">Klassensprecher Name</label>
+      </div>
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <input id="classLeaderName" name="classLeaderName" type="text" class="form-control"
+               [(ngModel)]="classLeaderName" required>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <label for="classLeaderFirstname">Klassensprecher Vorname</label>
+      </div>
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <input id="classLeaderFirstname" name="classLeaderFirstname" type="text" class="form-control"
+               [(ngModel)]="classLeaderFirstname" required>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <label for="classLeaderEmail">Klassensprecher Email</label>
+      </div>
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <input id="classLeaderEmail" name="classLeaderEmail" type="text" class="form-control"
+               [(ngModel)]="classLeaderEmail" required>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 btn-group">
+        <button type="submit" class="btn btn-primary">Speichern</button>
+        <button type="button" class="btn btn-default" (click)="onCancel()">Abbrechen</button>
+      </div>
+
+    </div>
+  </div>
+</form>

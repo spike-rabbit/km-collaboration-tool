@@ -14,6 +14,7 @@ import {ClassLeaderGuardService} from "../global-services/guards/class-leader.se
 import {UserGuardService} from "../global-services/guards/user-guard.service";
 import {AdminGuardService} from "../global-services/guards/admin.service";
 import {ManageClassesComponent} from "./user-administration/manage-classes/manage-classes.component";
+import {CreateClassComponent} from "./user-administration/create-class/create-class.component";
 /**
  * Created by Maxi- PC on 17.12.2016.
  */
@@ -55,6 +56,10 @@ const coreRoutes: Routes = [{
     }, {
       path: 'uas/manage-classes',
       component: ManageClassesComponent,
+      canActivate: [AdminGuardService]
+    }, {
+      path: 'uas/manage-classes/create',
+      component: CreateClassComponent,
       canActivate: [AdminGuardService]
     }]
 }];

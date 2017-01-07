@@ -21,7 +21,7 @@ function postUser(req: express.Request, res: express.Response, next) {
                         where: {gid: userData.getPayload()['sub']},
                         defaults: {
                             gid: userData.getPayload()['sub'],
-                            class: invitation.classId,
+                            class: {id: invitation.classId},
                             company: null,
                             name: invitation.name,
                             firstname: invitation.firstname,
