@@ -10,12 +10,11 @@ router.get('/ausbildungsnachweise', getAusbildungsnachweise);
 
 function getAusbildungsnachweise(req: ProtectedRequest, res: express.Response){
     let where: {[key: string]: any} = {};
-    where['classId'] = req.user.classId;
+    where['classId'] = req.user.class.id;
     database.ausbildungsnachweise.findAll({
         where: where, attributes: []
     }).then(nachweis => res.send({
-        ausbildungsnachweise: nachweis, classId: req.user.classId
-    }), reason => {
+        ausbildungsnachweise: nachweis, classId: req.user.class.id    }), reason => {
         //TODO log better
         //TODO send error to client
         console.log(reason);
