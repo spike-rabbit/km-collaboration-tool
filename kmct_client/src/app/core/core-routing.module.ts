@@ -9,6 +9,12 @@ import {SigninStateService} from "../global-services/signin-state.service";
 import {AusbildungsnachweisComponent} from "./xchange-center/ausbildungsnachweis/ausbildungsnachweis.component";
 import {AusbildungsnachweisEditorComponent} from "./xchange-center/ausbildungsnachweis-editor/ausbildungsnachweis-editor.component";
 import {ManageClassComponent} from "./user-administration/manage-class/manage-class.component";
+import {EditProfileComponent} from "./user-administration/edit-profile/edit-profile.component";
+import {ClassLeaderGuardService} from "../global-services/guards/class-leader.service";
+import {UserGuardService} from "../global-services/guards/user-guard.service";
+import {AdminGuardService} from "../global-services/guards/admin.service";
+import {ManageClassesComponent} from "./user-administration/manage-classes/manage-classes.component";
+import {CreateClassComponent} from "./user-administration/create-class/create-class.component";
 /**
  * Created by Maxi- PC on 17.12.2016.
  */
@@ -23,21 +29,38 @@ const coreRoutes: Routes = [{
     }, {
       path: 'xcc',
       component: XchangeCenterComponent,
+      canActivate: [UserGuardService]
     }, {
       path: 'xcc/ausbildungsnachweis/:ausbildungsnachweis',
-      component: AusbildungsnachweisComponent
+      component: AusbildungsnachweisComponent,
+      canActivate: [UserGuardService]
     }, {
       path: 'xcc/ausbildungsnachweis-bearbeiten',
-      component : AusbildungsnachweisEditorComponent
+      component : AusbildungsnachweisEditorComponent,
+      canActivate: [UserGuardService]
     }, {
       path: 'xcm',
-      component: XchangeMarketComponent
+      component: XchangeMarketComponent,
+      canActivate: [UserGuardService]
     }, {
       path: 'knc',
-      component: KnowledgeCenterComponent
+      component: KnowledgeCenterComponent,
+      canActivate: [UserGuardService]
     }, {
       path: 'uas/manage-class',
-      component: ManageClassComponent
+      component: ManageClassComponent,
+      canActivate: [ClassLeaderGuardService]
+    }, {
+      path: 'uas/edit-profile',
+      component: EditProfileComponent
+    }, {
+      path: 'uas/manage-classes',
+      component: ManageClassesComponent,
+      canActivate: [AdminGuardService]
+    }, {
+      path: 'uas/manage-classes/create',
+      component: CreateClassComponent,
+      canActivate: [AdminGuardService]
     }]
 }];
 

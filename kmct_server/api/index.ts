@@ -3,11 +3,13 @@ import {ProtectedRequest, protect, verifyIdToken, requireRole} from "../authenti
 import {database} from "../database-manager";
 import {ROLES, UsersInstance} from "../models/data-types";
 import {userAdministration} from "./user-administration";
-let router = express.Router();
+import {kmctCache} from "../app";
+export const index = express.Router();
 
-router.use("/uas", protect, requireRole(ROLES.ksspr), userAdministration);
-router.post('/user', postUser);
-router.get('/user', protect, getUser);
+index.use("/uas", protect, userAdministration);
+index.post('/user', postUser);
+index.patch('/user', protect, patchUser);
+index.get('/user', protect, getUser);
 
 
 function postUser(req: express.Request, res: express.Response, next) {
@@ -19,7 +21,7 @@ function postUser(req: express.Request, res: express.Response, next) {
                         where: {gid: userData.getPayload()['sub']},
                         defaults: {
                             gid: userData.getPayload()['sub'],
-                            classId: invitation.classId,
+                            class: {id: invitation.classId},
                             company: null,
                             name: invitation.name,
                             firstname: invitation.firstname,
@@ -63,4 +65,23 @@ function getUser(req: ProtectedRequest, res: express.Response) {
     res.send(req.user);
 }
 
-export = router;
+function patchUser(req: ProtectedRequest, res: express.Response, next: express.NextFunction) {
+    database.users.findById(req.user.id).then(user => {
+        user.name = req.body.user.name;
+        user.firstname = req.body.user.firstname;
+        user.save().then(saved => {
+            req.user.firstname = saved.firstname;
+            req.user.name = saved.name;
+            kmctCache.set(req.get("authentication-token"), req.user);
+            res.send(saved.toJSON());
+        }, err => {
+            // Irgendwas mit der DB stimmt nicht
+            console.log(err);
+            next(err);
+        });
+    }, err => {
+        // Irgendwas mit der DB stimmt nicht
+        console.log(err);
+        next(err);
+    });
+}

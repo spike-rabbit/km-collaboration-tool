@@ -1,10 +1,10 @@
 import * as express from "express";
-import * as index from "./api/index";
 import * as path from "path";
 import * as cors from "cors";
 import * as NodeCache from "node-cache"
 import bodyParser = require("body-parser");
 import morgan = require("morgan");
+import {index} from "./api/index";
 
 
 // let index = require('./coreRoutes/index');

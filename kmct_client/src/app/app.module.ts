@@ -10,6 +10,9 @@ import {CoreModule} from "./core/core.module";
 import {RouterModule, Routes} from "@angular/router";
 import {UrlStoreService} from "./global-services/url-store.service";
 import {SigninStateService} from "./global-services/signin-state.service";
+import {ClassLeaderGuardService} from "./global-services/guards/class-leader.service";
+import {AdminGuardService} from "./global-services/guards/admin.service";
+import {UserGuardService} from "./global-services/guards/user-guard.service";
 
 const routes: Routes = [{path: "login", component: LoginComponent}, {path: "", redirectTo: "home", pathMatch: "full"}];
 
@@ -25,7 +28,7 @@ const routes: Routes = [{path: "login", component: LoginComponent}, {path: "", r
     CoreModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [LoginService, KmctHttpService, UrlStoreService, SigninStateService],
+  providers: [LoginService, KmctHttpService, UrlStoreService, SigninStateService, ClassLeaderGuardService, AdminGuardService, UserGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

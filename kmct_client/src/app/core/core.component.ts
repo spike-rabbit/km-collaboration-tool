@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Component, OnInit} from "@angular/core";
 import {User} from "../../data-definitions";
 import {SigninStateService} from "../global-services/signin-state.service";
 
@@ -10,9 +9,11 @@ import {SigninStateService} from "../global-services/signin-state.service";
 })
 export class CoreComponent implements OnInit {
 
-  constructor(private signInService : SigninStateService) { }
+  constructor(private signInService: SigninStateService) {
+  }
 
-  user : User;
+  user: User;
+
 
   ngOnInit() {
     this.user = this.signInService.user;

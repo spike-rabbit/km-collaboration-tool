@@ -1,4 +1,4 @@
-import {Injectable, ApplicationRef} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {UrlStoreService} from "./url-store.service";
@@ -29,7 +29,7 @@ export class SigninStateService implements CanActivate {
         return Observable.throw(`${error.status} - ${error.statusText || ''}`);
       }
     }).subscribe(user => {
-      this.user = new User(user.firstname,user.name, user.roles.map(role => role.id));
+      this.user = new User(user.firstname, user.name, user.roles.map(role => role.id));
       this.isSignedIn = true;
       let url = this.urlStore.storedUrl;
       if (!url || url && url.match(".*login.*")) {

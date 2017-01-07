@@ -11,27 +11,30 @@
 
     <div class="collapse navbar-collapse" id="mainNav">
       <ul class="nav navbar-nav">
-        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/home']">Home</a></li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+          [routerLink]="['/home']">Home</a></li>
         <!--                <li><a href="#" id="menu-toggle">My Profile</a></li> -->
-        <li [routerLinkActive]="['active']"><a [routerLink]="['xcc']">XChange Center</a></li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['xcm']">XChange Market</a></li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['knc']">Knowledge Center</a></li>
-        <li class="dropdown">
+        <li *ngIf="user.isUserInRole('KSMEM')" [routerLinkActive]="['active']"><a [routerLink]="['xcc']">XChange Center</a></li>
+        <li *ngIf="user.isUserInRole('KSMEM')" [routerLinkActive]="['active']"><a [routerLink]="['xcm']">XChange Market</a></li>
+        <li *ngIf="user.isUserInRole('KSMEM')" [routerLinkActive]="['active']"><a [routerLink]="['knc']">Knowledge Center</a></li>
+        <li class="dropdown" *ngIf="user.isUserInRole('KSSPR')">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Klasse verwalten<span
             class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-class']">Klassenmitglieder einladen</a></li>
+            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-class']">Klassenmitglieder einladen</a>
+            </li>
             <li><a href="#">Rechte verwalten</a></li>
           </ul>
         </li>
-        <li><a href="#">Administration</a></li>
+        <li *ngIf="user.isUserInRole('ADMIN')" [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-classes']">Administration</a></li>
 
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
         <li>
           <a href="#">
-            <img src="../assets/images/km_notification.png" height="25px" class="d-inline-block align-top" alt=""> <!--ToDo: schöner machen und anpassen-->
+            <img src="../assets/images/km_notification.png" height="25px" class="d-inline-block align-top" alt="">
+            <!--ToDo: schöner machen und anpassen-->
             <span class="badge">1</span>
           </a>
         </li>
@@ -39,7 +42,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.firstname + " " + user.name}}<span
             class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Daten ändern</a></li>
+            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/edit-profile']">Daten ändern</a></li>
             <li><a href="#">Log out</a></li>
           </ul>
         </li>
@@ -50,7 +53,8 @@
 
 <div class="container">
 
-<!--Submodules will be inserted here-->
-<router-outlet></router-outlet>
+  <!--Submodules will be inserted here-->
+  <router-outlet></router-outlet>
 
+<app-confirm-delete-invitation></app-confirm-delete-invitation>
 </div>

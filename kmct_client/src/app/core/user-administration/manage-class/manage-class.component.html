@@ -1,5 +1,4 @@
-<div>
-
+<div class="container">
   <div id="member-table" class="table-responsive">
     <label for="member-table">Mitglieder</label>
     <table class="table table-striped">
@@ -15,7 +14,7 @@
         <td>{{item.firstname}}</td>
         <td>
           <div class="text-right">
-            <button class="btn btn-danger glyphicon glyphicon-trash"></button>
+            <button class="btn btn-danger glyphicon glyphicon-trash" (click)="smModal.show()"></button>
           </div>
         </td>
       </tr>
@@ -39,25 +38,26 @@
           <td>{{item.name}}</td>
           <td>{{item.firstname}}</td>
           <td>{{item.email}}</td>
-          <td>
+          <td class="invitation-link-column">
             <label>{{item.link}}</label>
           </td>
           <td>
             <div class="text-right">
               <button class="btn btn-danger glyphicon glyphicon-trash"
-                      (click)="lgModal.show(); focussedInvitation = item"></button>
+                      (click)="onDelete(item)"></button>
             </div>
           </td>
         </tr>
         <tr [hidden]="!editMode">
-          <td><input type="text" name="name" [(ngModel)]="focussedInvitation.name" class="form-control"></td>
-          <td><input type="text" name="firstname" [(ngModel)]="focussedInvitation.firstname" class="form-control"></td>
-          <td><input type="text" name="email" [(ngModel)]="focussedInvitation.email" class="form-control"></td>
+          <td><input type="text" name="name" [(ngModel)]="focusedInvitation.name" class="form-control"></td>
+          <td><input type="text" name="firstname" [(ngModel)]="focusedInvitation.firstname" class="form-control"></td>
+          <td><input type="text" name="email" [(ngModel)]="focusedInvitation.email" class="form-control"></td>
           <td></td>
-          <td>
-            <div class="text-center">
+          <td id="invitation-create-controls">
+            <div class="text-center btn-group">
               <button class="btn btn-success glyphicon glyphicon-ok" (click)="onAdd()"></button>
-              <button class="btn btn-danger glyphicon glyphicon-remove" (click)="editMode = false"></button>
+              <button class="btn btn-danger glyphicon glyphicon-remove"
+                      (click)="editMode = false; focusedInvitation = {}"></button>
             </div>
           </td>
         </tr>
@@ -66,27 +66,8 @@
     </form>
   </div>
   <div [hidden]="editMode">
-    <button class="btn btn-success glyphicon glyphicon-plus" (click)="editMode = true; focussedInvitation = {}"></button>
-  </div>
-  <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-       aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" (click)="lgModal.hide()" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title">Invitation Löschen?</h4>
-        </div>
-        <div class="modal-body">
-          <p>Sind sie sich sicher?</p>
-        </div>
-        <div class="modal-footer text-center">
-          <button class="btn btn-primary glyphicon glyphicon-ok" (click)="onDelete(lgModal)"></button>
-          <button class="btn btn-danger glyphicon glyphicon-remove"
-                  (click)="focussedInvitation = {}; lgModal.hide()"></button>
-        </div>
-      </div>
-    </div>
+    <button class="btn btn-success glyphicon glyphicon-plus"
+            (click)="editMode = true; focussedInvitation = {}"></button>
   </div>
 </div>
+
