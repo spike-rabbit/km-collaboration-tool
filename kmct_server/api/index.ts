@@ -6,7 +6,7 @@ import {userAdministration} from "./user-administration";
 import {kmctCache} from "../app";
 export const index = express.Router();
 
-index.use("/uas", protect, requireRole(ROLES.ksspr), userAdministration);
+index.use("/uas", protect, userAdministration);
 index.post('/user', postUser);
 index.patch('/user', protect, patchUser);
 index.get('/user', protect, getUser);
@@ -21,7 +21,7 @@ function postUser(req: express.Request, res: express.Response, next) {
                         where: {gid: userData.getPayload()['sub']},
                         defaults: {
                             gid: userData.getPayload()['sub'],
-                            classId: invitation.classId,
+                            class: invitation.classId,
                             company: null,
                             name: invitation.name,
                             firstname: invitation.firstname,

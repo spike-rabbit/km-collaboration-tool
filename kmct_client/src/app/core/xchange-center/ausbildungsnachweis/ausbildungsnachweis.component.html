@@ -1,40 +1,41 @@
 <h3>Ausbildungsnachweis KW {{nachweis.kw}}</h3>
-<form class="form-horizontal">
+<form class="form-horizontal container">
   <div class="form-group">
-    <label class="col-sm-2 control-label">Datum</label>
+    <label class="col-sm-2 control-label" for="datum">Datum</label>
     <div class="col-sm-10">
-      <input class="form-control" type="text" name="datum" [(ngModel)]="nachweis.datum" disabled>
+      <input class="form-control" type="text" name="datum" id="datum" [(ngModel)]="nachweis.datum" disabled>
     </div>
   </div>
   <br>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Montag</label>
+    <label class="col-sm-2 control-label" for="montag">Montag</label>
     <div class="col-sm-10">
-      <input class="form-control" type="text" name="montag" [(ngModel)]="nachweis.montag" disabled>
+      <input class="form-control" type="text" name="montag" id="montag" [(ngModel)]="nachweis.montag" disabled>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Dienstag</label>
+    <label class="col-sm-2 control-label" for="dienstag">Dienstag</label>
     <div class="col-sm-10">
-      <input class="form-control" type="text" name="dienstag" [(ngModel)]="nachweis.dienstag" disabled>
+      <input class="form-control" type="text" name="dienstag" id="dienstag" [(ngModel)]="nachweis.dienstag" disabled>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Mittwoch</label>
+    <label class="col-sm-2 control-label" for="mittwoch">Mittwoch</label>
     <div class="col-sm-10">
-      <input class="form-control" type="text" name="mittwoch" [(ngModel)]="nachweis.mittwoch" disabled>
+      <input class="form-control" type="text" name="mittwoch" id="mittwoch" [(ngModel)]="nachweis.mittwoch" disabled>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Donnerstag</label>
+    <label class="col-sm-2 control-label" for="donnerstag">Donnerstag</label>
     <div class="col-sm-10">
-      <input class="form-control" type="text" name="donnerstag" [(ngModel)]="nachweis.donnerstag" disabled>
+      <input class="form-control" type="text" name="donnerstag" id="donnerstag" [(ngModel)]="nachweis.donnerstag"
+             disabled>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Freitag</label>
+    <label class="col-sm-2 control-label" for="freitag">Freitag</label>
     <div class="col-sm-10">
-      <input class="form-control" type="text" name="freitag" [(ngModel)]="nachweis.freitag" disabled>
+      <input class="form-control" type="text" name="freitag" id="freitag" [(ngModel)]="nachweis.freitag" disabled>
     </div>
   </div>
   <div class="form-group">
@@ -58,7 +59,7 @@
   <div class="form-group">
     <label class="col-sm-2 control-label"></label>
     <div class="col-sm-10">
-      <button class="btn  btn-default"  type="submit">Herunterladen</button>
+      <button class="btn  btn-default" type="submit">Herunterladen</button>
     </div>
   </div>
 

@@ -26,7 +26,7 @@
             <li><a href="#">Rechte verwalten</a></li>
           </ul>
         </li>
-        <li *ngIf="user.isUserInRole('ADMIN')"><a href="#">Administration</a></li>
+        <li *ngIf="user.isUserInRole('ADMIN')" [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-classes']">Administration</a></li>
 
       </ul>
 

@@ -12,6 +12,8 @@ import {ManageClassComponent} from "./user-administration/manage-class/manage-cl
 import {EditProfileComponent} from "./user-administration/edit-profile/edit-profile.component";
 import {ClassLeaderGuardService} from "../global-services/guards/class-leader.service";
 import {UserGuardService} from "../global-services/guards/user-guard.service";
+import {AdminGuardService} from "../global-services/guards/admin.service";
+import {ManageClassesComponent} from "./user-administration/manage-classes/manage-classes.component";
 /**
  * Created by Maxi- PC on 17.12.2016.
  */
@@ -50,6 +52,10 @@ const coreRoutes: Routes = [{
     }, {
       path: 'uas/edit-profile',
       component: EditProfileComponent
+    }, {
+      path: 'uas/manage-classes',
+      component: ManageClassesComponent,
+      canActivate: [AdminGuardService]
     }]
 }];
 

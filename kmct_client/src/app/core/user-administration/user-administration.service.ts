@@ -57,6 +57,10 @@ export class UserAdministrationService {
     }));
   }
 
+  loadClasses() {
+    return this.http.get("/api/uas/classes", {sendAuthToken: true}).map(res => res.json().classes);
+  }
+
   private static addLink(invitation: any) {
     invitation.link = window.location.origin + "/login;invitation=" + invitation.uuid;
     return invitation;

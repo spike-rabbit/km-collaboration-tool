@@ -4,6 +4,7 @@ import { ManageClassComponent } from './manage-class/manage-class.component';
 import {UserAdministrationService} from "./user-administration.service";
 import {FormsModule} from "@angular/forms";
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ManageClassesComponent } from './manage-classes/manage-classes.component';
 
 @NgModule({
   imports: [
@@ -11,6 +12,6 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     FormsModule
   ],
   providers: [UserAdministrationService],
-  declarations: [ManageClassComponent, EditProfileComponent]
+  declarations: [ManageClassComponent, EditProfileComponent, ManageClassesComponent]
 })
 export class UserAdministrationModule { }

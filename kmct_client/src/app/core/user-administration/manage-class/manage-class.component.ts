@@ -2,6 +2,7 @@ import {Component, OnInit, HostBinding} from "@angular/core";
 import {UserAdministrationService} from "../user-administration.service";
 import {slideInOutAnimation} from "../../router-animations";
 import {PopupsService} from "../../popups/popups.service";
+import {ROLES} from "../../../../../../kmct_server/models/data-types";
 
 @Component({
   selector: 'app-manage-class',
@@ -19,7 +20,7 @@ export class ManageClassComponent implements OnInit {
 
   invitationList: any[];
   memberList: any[];
-  focussedInvitation: any = {};
+  focusedInvitation: any = {};
   editMode = false;
 
   ngOnInit() {
@@ -46,12 +47,13 @@ export class ManageClassComponent implements OnInit {
   }
 
   onAdd() {
+    this.focusedInvitation.targetRole = ROLES.ksmem;
     if (this.editMode) {
-      this.userAdminService.addInvitation(this.focussedInvitation).subscribe(res => {
+      this.userAdminService.addInvitation(this.focusedInvitation).subscribe(res => {
         this.invitationList.push(res);
         this.editMode = false;
+        this.focusedInvitation = {};
       });
     }
   }
-
 }
