@@ -5,8 +5,9 @@ import {slideInOutAnimation} from "../router-animations";
   selector: 'app-overview',
   template: `
 <p>
-  overview works!
+  Herzlich Wilkommen
 </p>
+
 <a routerLink="xcc" routerLinkActive="active">XChange Center</a>
 <a routerLink="xcm" routerLinkActive="active">XChange Market</a>
 <a routerLink="knc" routerLinkActive="active">Knowledge Center</a>

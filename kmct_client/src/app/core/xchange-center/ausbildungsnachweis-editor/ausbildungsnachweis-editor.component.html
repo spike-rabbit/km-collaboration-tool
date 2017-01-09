@@ -2,29 +2,14 @@
   <!--ausbildungsnachweis-editor works!-->
 <!--</p>-->
 <h3>Ausbildungsnachweis erstellen</h3>
-<head>
-  <script type="text/javascript">
-    function updateTime() {
-      var date = new Date();
-      var tag = date.getDate();
-      var monat = date.getMonth();
-      var jahr = date.getFullYear();
-      var datum = "Datum " + tag + "-" + monat + "-" + jahr;
-
-      document.getElementById('time').innerHTML = datum;
-      setTimeout(updateTime, 60000);
-    }
-
-    window.addEventListener("load", updateTime);
-
-  </script>
-</head>
 
 <form class="form-horizontal">
 
   <div class="form-group">
     <label class="col-sm-2 control-label">Datum</label>
-    <label id="time"></label>
+    <div class="col-sm-2">
+      <input class="form-control" type="text" name="date">
+    </div>
   </div>
 
   <div class="form-group">
@@ -58,35 +43,35 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">Montag</label>
     <div class="col-sm-10">
-      <textarea rows="4" cols="100" name="montag"> </textarea>
+      <textarea class="form-control" rows="4" cols="100" name="montag"> </textarea>
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-sm-2 control-label">Dienstag</label>
     <div class="col-sm-10">
-      <textarea rows="4" cols="100" name="dienstag"> </textarea>
+      <textarea class="form-control" rows="4" cols="100" name="dienstag"> </textarea>
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-sm-2 control-label">Mittwoch</label>
     <div class="col-sm-10">
-      <textarea rows="4" cols="100" name="mittwoch"> </textarea>
+      <textarea class="form-control" rows="4" cols="100" name="mittwoch"> </textarea>
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-sm-2 control-label">Donnerstag</label>
     <div class="col-sm-10">
-      <textarea rows="4" cols="100" name="donnerstag"> </textarea>
+      <textarea class="form-control" rows="4" cols="100" name="donnerstag"> </textarea>
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-sm-2 control-label">Freitag</label>
     <div class="col-sm-10">
-      <textarea rows="4" cols="100" name="freitag"> </textarea>
+      <textarea class="form-control" rows="4" cols="100" name="freitag"> </textarea>
     </div>
   </div>
 
