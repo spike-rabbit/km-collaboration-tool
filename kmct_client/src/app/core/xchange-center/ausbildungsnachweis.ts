@@ -3,8 +3,7 @@
  */
 export class Ausbildungsnachweis {
 
-
-  constructor(public id:number, public kw:number, public datum:string, public montag:string, public dienstag: string,
-              public mittwoch: string, public donnerstag: string, public freitag: string, public spe: boolean){
-  };
+  constructor(public ausbildungswoche:number, public kw:number, public datum: Date, public montag:string,
+              public dienstag: string, public mittwoch: string, public donnerstag: string,
+              public freitag: string, public spe: boolean) { };
 }
