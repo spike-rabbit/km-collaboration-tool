@@ -14,7 +14,7 @@ export class ListeAusbildungsnachweiseComponent implements OnInit {
 
   onSelect(nachweis: Ausbildungsnachweis): void {
 
-    this.router.navigate(['/home/xcc/ausbildungsnachweis', nachweis.id]);
+    this.router.navigate(['/home/xcc/ausbildungsnachweis', nachweis.ausbildungswoche]);
 
   }
 
@@ -23,7 +23,8 @@ export class ListeAusbildungsnachweiseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ausbildungsnachweise = this.xccService.ausbildungsnachweise;
+    this.xccService.loadJournals().subscribe(nachweise => this.ausbildungsnachweise = nachweise);
+
   }
 
 }
