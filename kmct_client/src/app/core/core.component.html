@@ -15,7 +15,7 @@
         <li *ngIf="user.isUserInRole('KSMEM')" [routerLinkActive]="['active']"><a [routerLink]="['xcm']">XChange Market</a></li>
         <li *ngIf="user.isUserInRole('KSMEM')" [routerLinkActive]="['active']"><a [routerLink]="['knc']">Knowledge Center</a></li>
         <li class="dropdown" *ngIf="user.isUserInRole('KSSPR')">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Klasse verwalten<span
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" i18n="Manage Class Module Header">Klasse verwalten<span
             class="caret"></span></a>
           <ul class="dropdown-menu">
             <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-class']">Klassenmitglieder einladen</a>

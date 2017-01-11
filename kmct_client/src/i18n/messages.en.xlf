@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="2ede76845bd657d19343812c812c42d75377b278" datatype="html">
+        <source>Klasse verwalten<x id="START_TAG_SPAN" ctype="x-span"/><x id="CLOSE_TAG_SPAN" ctype="x-span"/></source>
+        <target>Manage class</target>
+        <note priority="1" from="description">Manage Class Module Header</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
