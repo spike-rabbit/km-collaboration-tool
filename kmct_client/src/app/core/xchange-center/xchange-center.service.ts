@@ -10,7 +10,7 @@ export class XchangeCenterService {
   constructor(private http: KmctHttpService) { }
 
   loadJournals() {
-    return this.http.get("api/xcc/journals", {sendAuthToken: true})
+    return this.http.get("/api/xcc/journals", {sendAuthToken: true})
       .map(res => res.json().ausbildungsnachweise)
       .catch((response: Response) => {
         console.log(response);

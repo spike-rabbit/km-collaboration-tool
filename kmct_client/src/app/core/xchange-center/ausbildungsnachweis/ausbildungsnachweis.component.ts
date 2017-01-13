@@ -20,7 +20,7 @@ export class AusbildungsnachweisComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private xccService: XchangeCenterService) {
     this.id = route.snapshot.params['ausbildungsnachweis'];
-    this.nachweis = this.xccService.ausbildungsnachweise[this.id - 1];
+    // this.nachweis = this.xccService.ausbildungsnachweise[this.id - 1];
   }
 
   ngOnInit() {
