@@ -15,6 +15,8 @@ import {UserGuardService} from "../global-services/guards/user-guard.service";
 import {AdminGuardService} from "../global-services/guards/admin.service";
 import {ManageClassesComponent} from "./user-administration/manage-classes/manage-classes.component";
 import {CreateClassComponent} from "./user-administration/create-class/create-class.component";
+import {ManageCompaniesComponent} from "./user-administration/manage-companies/manage-companies.component";
+import {EditCompanyComponent} from "./user-administration/edit-company/edit-company.component";
 /**
  * Created by Maxi- PC on 17.12.2016.
  */
@@ -60,6 +62,14 @@ const coreRoutes: Routes = [{
     }, {
       path: 'uas/manage-classes/create',
       component: CreateClassComponent,
+      canActivate: [AdminGuardService]
+    }, {
+      path: 'uas/manage-companies',
+      component: ManageCompaniesComponent,
+      canActivate: [AdminGuardService]
+    }, {
+      path: 'uas/manage-companies/edit',
+      component: EditCompanyComponent,
       canActivate: [AdminGuardService]
     }]
 }];
