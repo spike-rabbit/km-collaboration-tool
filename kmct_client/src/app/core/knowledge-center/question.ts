@@ -3,5 +3,5 @@
  */
 export class Question{
 
-  constructor(public title: string) {};
+  constructor(public title: string, public text: string, public category: string) {};
 }

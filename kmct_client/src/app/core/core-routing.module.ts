@@ -17,6 +17,7 @@ import {ManageClassesComponent} from "./user-administration/manage-classes/manag
 import {CreateClassComponent} from "./user-administration/create-class/create-class.component";
 import {ManageCompaniesComponent} from "./user-administration/manage-companies/manage-companies.component";
 import {EditCompanyComponent} from "./user-administration/edit-company/edit-company.component";
+import {QuestionCreateComponent} from "./knowledge-center/question-create/question-create.component";
 /**
  * Created by Maxi- PC on 17.12.2016.
  */
@@ -47,6 +48,10 @@ const coreRoutes: Routes = [{
     }, {
       path: 'knc',
       component: KnowledgeCenterComponent,
+      canActivate: [UserGuardService]
+    }, {
+      path: 'knc/create-question',
+      component: QuestionCreateComponent,
       canActivate: [UserGuardService]
     }, {
       path: 'uas/manage-class',

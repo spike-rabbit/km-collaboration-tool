@@ -1,17 +1,11 @@
-import {Component, OnInit, HostBinding} from '@angular/core';
-import {slideInOutAnimation} from "../router-animations";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-knowledge-center',
   templateUrl: './knowledge-center.component.html',
-  styleUrls: ['./knowledge-center.component.css'],
-  animations: [slideInOutAnimation]
+  styleUrls: ['./knowledge-center.component.css']
 })
 export class KnowledgeCenterComponent implements OnInit {
-  @HostBinding('@routeAnimation') routeAnimation = true;
-  @HostBinding('style.display')   display = 'block';
-  @HostBinding('style.position')  position = 'absolute';
-
 
   constructor() { }
 
