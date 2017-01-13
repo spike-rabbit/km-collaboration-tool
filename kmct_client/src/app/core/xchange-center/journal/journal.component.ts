@@ -1,26 +1,26 @@
 import {Component, OnInit, HostBinding} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Ausbildungsnachweis } from '../ausbildungsnachweis';
+import { Journal } from '../journal';
 import {XchangeCenterService} from "../xchange-center.service";
 import {slideInOutAnimation} from "../../router-animations";
 
 @Component({
-  selector: 'app-ausbildungsnachweis',
-  templateUrl: './ausbildungsnachweis.component.html',
-  styleUrls: ['./ausbildungsnachweis.component.css'],
+  selector: 'app-journal',
+  templateUrl: './journal.component.html',
+  styleUrls: ['./journal.component.css'],
   animations: [slideInOutAnimation]
 })
-export class AusbildungsnachweisComponent implements OnInit {
+export class JournalComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display')   display = 'block';
   @HostBinding('style.position')  position = 'absolute';
 
-  nachweis: Ausbildungsnachweis;
+  journal: Journal;
   id: number;
 
   constructor(private route: ActivatedRoute, private xccService: XchangeCenterService) {
-    this.id = route.snapshot.params['ausbildungsnachweis'];
-    // this.nachweis = this.xccService.ausbildungsnachweise[this.id - 1];
+    this.id = route.snapshot.params['journal'];
+    this.journal = this.xccService.journals[this.id - 1];
   }
 
   ngOnInit() {

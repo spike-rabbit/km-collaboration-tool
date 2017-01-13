@@ -6,7 +6,7 @@ import {ProtectedRequest} from "../authentication-manager";
 import {database} from "../database-manager";
 import * as uuid from "uuid";
 let router = express.Router();
-router.get('/ausbildungsnachweise', getAusbildungsnachweise);
+router.get('/journals', getAusbildungsnachweise);
 
 function getAusbildungsnachweise(req: ProtectedRequest, res: express.Response){
     let where: {[key: string]: any} = {};

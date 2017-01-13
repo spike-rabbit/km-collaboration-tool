@@ -1,5 +1,5 @@
 import {Component, OnInit, HostBinding} from '@angular/core';
-import {Ausbildungsnachweis} from './ausbildungsnachweis';
+import {Journal} from './journal';
 import {slideInOutAnimation} from "../router-animations";
 
 @Component({

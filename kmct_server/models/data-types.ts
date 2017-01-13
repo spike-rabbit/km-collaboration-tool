@@ -121,7 +121,7 @@ export const ClassTable = 'class';
 export const InvitationTable = "invitation";
 export const RoleTable = "role";
 
-export const AusbildungsnachweisTable = "ausbildungsnachweis";
+export const AusbildungsnachweisTable = "journal";
 export const AusbildungnachweisDayTable = "ausbildungsnachweisDay";
 export const AusbildungsnachweisTemplateTable = "ausbildungsnachweisTemplate";
 // Other Types

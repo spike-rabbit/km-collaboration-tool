@@ -6,8 +6,8 @@ import {CoreComponent} from "./core.component";
 import {XchangeMarketComponent} from "./xchange-market/xchange-market.component";
 import {KnowledgeCenterComponent} from "./knowledge-center/knowledge-center.component";
 import {SigninStateService} from "../global-services/signin-state.service";
-import {AusbildungsnachweisComponent} from "./xchange-center/ausbildungsnachweis/ausbildungsnachweis.component";
-import {AusbildungsnachweisEditorComponent} from "./xchange-center/ausbildungsnachweis-editor/ausbildungsnachweis-editor.component";
+import {JournalComponent} from "./xchange-center/journal/journal.component";
+import {JournalEditorComponent} from "./xchange-center/journal-editor/journal-editor.component";
 import {ManageClassComponent} from "./user-administration/manage-class/manage-class.component";
 import {EditProfileComponent} from "./user-administration/edit-profile/edit-profile.component";
 import {ClassLeaderGuardService} from "../global-services/guards/class-leader.service";
@@ -31,12 +31,12 @@ const coreRoutes: Routes = [{
       component: XchangeCenterComponent,
       canActivate: [UserGuardService]
     }, {
-      path: 'xcc/ausbildungsnachweis/:ausbildungsnachweis',
-      component: AusbildungsnachweisComponent,
+      path: 'xcc/journal/:journal',
+      component: JournalComponent,
       canActivate: [UserGuardService]
     }, {
-      path: 'xcc/ausbildungsnachweis-bearbeiten',
-      component : AusbildungsnachweisEditorComponent,
+      path: 'xcc/edit-journal',
+      component : JournalEditorComponent,
       canActivate: [UserGuardService]
     }, {
       path: 'xcm',
