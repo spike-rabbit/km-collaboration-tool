@@ -1,0 +1,16 @@
+<div class="container">
+    <p>Geschafft</p>
+  <h3>{{question.title}}</h3>
+  <p>Frage</p>
+  <hr style="height: 1px; background-color:black;">
+  <p>{{question.question}}</p>
+  <br>
+  <div *ngFor="let a of question.answers">
+    ... Antwort
+    <hr style="height: 1px; background-color:black;">
+    <p>
+      {{a.votes}} fanden das hilfreich
+      <button>Hilfreich</button>
+    </p>
+  </div>
+</div>

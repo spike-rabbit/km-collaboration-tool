@@ -2,5 +2,23 @@
   <h3>
     Forum
   </h3>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Titel</th>
+          <th>Fragender</th>
+          <th>Kategorie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let q of questions" (click)="onSelect(q)">
+          <td>{{q.title}}</td>
+          <td>{{q.owner}}</td>
+          <td>{{q.category}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <a routerLink="create-question" class="btn btn-default">Frage stellen</a>
 </div>

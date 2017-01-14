@@ -3,12 +3,15 @@ import { CommonModule } from '@angular/common';
 import { KnowledgeCenterComponent } from './knowledge-center.component';
 import { QuestionCreateComponent } from './question-create/question-create.component';
 import { RouterModule } from "@angular/router";
+import { QuestionShowComponent } from './question-show/question-show.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
-  declarations: [KnowledgeCenterComponent, QuestionCreateComponent]
+  declarations: [KnowledgeCenterComponent, QuestionCreateComponent, QuestionShowComponent]
 })
 export class KnowledgeCenterModule { }

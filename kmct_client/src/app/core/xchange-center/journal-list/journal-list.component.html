@@ -3,16 +3,16 @@
   <table class="table table-striped table-hover">
     <thead>
     <tr>
-      <th>Nummer</th>
+      <th>Ausbildungswoche</th>
       <th>KW</th>
       <th>Datum</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let n of journals" (click)="onSelect(n)">
-      <td>{{n.id}}</td>
+      <td>{{n.workingweek}}</td>
       <td>{{n.kw}}</td>
-      <td>{{n.datum}}</td>
+      <td>{{n.date}}</td>
       <td></td>
     </tr>
     </tbody>

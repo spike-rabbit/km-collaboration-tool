@@ -18,6 +18,7 @@ import {CreateClassComponent} from "./user-administration/create-class/create-cl
 import {ManageCompaniesComponent} from "./user-administration/manage-companies/manage-companies.component";
 import {EditCompanyComponent} from "./user-administration/edit-company/edit-company.component";
 import {QuestionCreateComponent} from "./knowledge-center/question-create/question-create.component";
+import {QuestionShowComponent} from "./knowledge-center/question-show/question-show.component";
 /**
  * Created by Maxi- PC on 17.12.2016.
  */
@@ -48,6 +49,10 @@ const coreRoutes: Routes = [{
     }, {
       path: 'knc',
       component: KnowledgeCenterComponent,
+      canActivate: [UserGuardService]
+    },  {
+      path: 'knc/show-question/:question',
+      component: QuestionShowComponent,
       canActivate: [UserGuardService]
     }, {
       path: 'knc/create-question',
