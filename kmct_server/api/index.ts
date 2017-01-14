@@ -3,9 +3,11 @@ import {ProtectedRequest, protect, verifyIdToken, requireRole} from "../authenti
 import {database} from "../database-manager";
 import {ROLES, UsersInstance} from "../models/data-types";
 import {userAdministration} from "./user-administration";
+import {xccUsage} from "./xcc-usage";
 import {kmctCache} from "../app";
 export const index = express.Router();
 
+index.use("/xcc", protect, xccUsage);
 index.use("/uas", protect, userAdministration);
 index.post('/user', postUser);
 index.patch('/user', protect, patchUser);
@@ -21,7 +23,7 @@ function postUser(req: express.Request, res: express.Response, next) {
                         where: {gid: userData.getPayload()['sub']},
                         defaults: {
                             gid: userData.getPayload()['sub'],
-                            class: {id: invitation.classId},
+                            class: {id: invitation.classId, profession: "AddProfession"},
                             company: null,
                             name: invitation.name,
                             firstname: invitation.firstname,

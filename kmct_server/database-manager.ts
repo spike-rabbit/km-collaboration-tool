@@ -19,18 +19,14 @@ import {
     RoleInstance,
     RoleTable,
     RoleModel,
-    AusbildungsdayModel,
-    AusbildungsnachweisModel,
-    AusbildungsnachweisTemplateModel,
-    AusbildungsnachweisTable,
-    AusbildungnachweisDayTable,
-    AusbildungsnachweisTemplateTable,
-    AusbildungsnachweisInstance,
-    Ausbildungsnachweis,
-    AusbildungsnachweisTemplateInstance,
-    AusbildungsnachweisTemplate,
-    AusbildungsdayInstance,
-    AusbildungsDay,
+    JournalModel,
+    JournalTemplateModel,
+    JournalTable,
+    JournalTemplateTable,
+    JournalInstance,
+    Journal,
+    JournalTemplateInstance,
+    JournalTemplate,
     ClassModel,
     ClassInstance,
     Class,
@@ -45,9 +41,8 @@ class DatabaseManager {
     classes: ClassModel;
     invitations: InvitationModel;
     roles: RoleModel;
-    ausbildungsnachweise: AusbildungsnachweisModel;
-    templates: AusbildungsnachweisTemplateModel;
-    days: AusbildungsdayModel;
+    journals: JournalModel;
+    journalTemplates: JournalTemplateModel;
 
     constructor() {
         this.sequelize = new Sequelize('kmct', 'kmct_admin', 'G2i65%7089@u', {
@@ -68,7 +63,8 @@ class DatabaseManager {
         }, withDefOpts());
 
         this.classes = this.sequelize.define<ClassInstance, Class>(ClassTable, {
-            id: {type: Sequelize.CHAR(5), primaryKey: true}
+            id: {type: Sequelize.CHAR(5), primaryKey: true},
+            profession: Sequelize.CHAR(24)
         }, withDefOpts({name: {plural: "classes"}}));
 
         this.roles = this.sequelize.define<RoleInstance, Role>(RoleTable, {
@@ -128,21 +124,30 @@ class DatabaseManager {
         }));
         this.invitations.belongsTo(this.classes);
 
-        this.ausbildungsnachweise = this.sequelize.define<AusbildungsnachweisInstance, Ausbildungsnachweis>(AusbildungsnachweisTable, {
+        this.journals = this.sequelize.define<JournalInstance, Journal>(JournalTable, {
             id: {type: Sequelize.INTEGER, primaryKey: true},
             classId: {type: Sequelize.CHAR(5), field: "class_id"},
-            week: Sequelize.CHAR(45)
+            monday: Sequelize.CHAR(255),
+            tuesday: Sequelize.CHAR(255),
+            wednesday: Sequelize.CHAR(255),
+            thursday: Sequelize.CHAR(255),
+            friday: Sequelize.CHAR(255),
+            week: Sequelize.CHAR(45),
+            owner: Sequelize.INTEGER,
+            startDate: Sequelize.DATE,
+            spe: Sequelize.BOOLEAN
+
         }, withDefOpts({
             classMethods: {
                 getNachweisById: (id: number) => {
                     let where: {[key: string]: any} = {};
                     where['id'] = id;
-                    return this.ausbildungsnachweise.find({where: where});
+                    return this.journals.find({where: where});
                 }
             }
         }));
 
-        this.templates = this.sequelize.define<AusbildungsnachweisTemplateInstance, AusbildungsnachweisTemplate>(AusbildungsnachweisTemplateTable, {
+        this.journalTemplates = this.sequelize.define<JournalTemplateInstance, JournalTemplate>(JournalTemplateTable, {
             id: {type: Sequelize.INTEGER, primaryKey: true},
             template: {type: Sequelize.CHAR(255)},
             userId: Sequelize.INTEGER
@@ -151,7 +156,7 @@ class DatabaseManager {
                 getTemplateById: (id: number) => {
                     let where: {[key: string]: any} = {};
                     where['id'] = id;
-                    return this.templates.find({where: where});
+                    return this.journalTemplates.find({where: where});
                 }
             }
         }));
@@ -161,24 +166,9 @@ class DatabaseManager {
             template_id: Sequelize.INTEGER
         }, withDefOpts({freezeTableName: true}));
 
-        this.users.belongsToMany(this.templates, {through: userHasTemplates});
-        this.templates.belongsToMany(this.users, {through: userHasTemplates});
+        this.users.belongsToMany(this.journalTemplates, {through: userHasTemplates});
+        this.journalTemplates.belongsToMany(this.users, {through: userHasTemplates});
 
-        this.days = this.sequelize.define<AusbildungsdayInstance, AusbildungsDay>(AusbildungnachweisDayTable, {
-            id: {type: Sequelize.INTEGER, primaryKey: true},
-            weekday: Sequelize.ENUM("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"),
-            value: Sequelize.CHAR(255),
-            weekId: Sequelize.INTEGER
-        }, withDefOpts({
-            classMethods: {
-                getDayById: (id: number) => {
-                    let where: {[key: string]: any} = {};
-                    where['id'] = id;
-                    return this.days.find({where: where});
-                }
-            }
-        }));
-        this.days.belongsTo(this.ausbildungsnachweise);
 
     }
 }
