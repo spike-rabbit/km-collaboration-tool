@@ -21,6 +21,7 @@ export interface User {
 
 export interface Class {
     id: string;
+    profession: string;
 }
 
 export interface Invitation {
@@ -37,33 +38,29 @@ export interface Role {
 }
 
 //TODO rename to more usable name
-export interface AusbildungsnachweisTemplate {
+export interface JournalTemplate {
     id: string;
     template: string;
     userId: number;
 }
 
-export interface Ausbildungsnachweis {
+export interface Journal {
     id?: number;
     week: string;
     classId: string;
+    monday: string;
+    tuesday: string;
+    wednesday: string;
+    thursday: string;
+    friday: string;
+    owner: number;
+    startDate: Date;
+    spe: boolean;
+
 }
 
-export interface AusbildungsDay {
-    id?: number
-    weekday: days;
-    value: string;
-    weekId: number;
-}
 
 
-export enum days {
-    Monday,
-    Tuesday,
-    Wednesday,
-    Thursday,
-    Friday
-}
 
 // Instances
 export interface CompanyInstance extends Sequelize.Instance<Company>, Company {
@@ -81,13 +78,11 @@ export interface InvitationInstance extends Sequelize.Instance<Invitation>,Invit
 export interface RoleInstance extends Sequelize.Instance<Role>,Role {
 }
 
-export interface AusbildungsdayInstance extends Sequelize.Instance<AusbildungsDay>, AusbildungsDay {
+
+export interface JournalInstance extends Sequelize.Instance<Journal>, Journal {
 }
 
-export interface AusbildungsnachweisInstance extends Sequelize.Instance<Ausbildungsnachweis>, Ausbildungsnachweis {
-}
-
-export interface AusbildungsnachweisTemplateInstance extends Sequelize.Instance<AusbildungsnachweisTemplate>, AusbildungsnachweisTemplate {
+export interface JournalTemplateInstance extends Sequelize.Instance<JournalTemplate>, JournalTemplate {
 }
 
 
@@ -105,13 +100,12 @@ export interface InvitationModel extends Sequelize.Model<InvitationInstance, Inv
 export interface RoleModel extends Sequelize.Model<RoleInstance, Role> {
 }
 
-export interface AusbildungsdayModel extends Sequelize.Model<AusbildungsdayInstance, AusbildungsDay> {
+
+export interface JournalModel extends Sequelize.Model<JournalInstance, Journal> {
+    getNachweisById?: (id: number) => Promise<JournalInstance>;
 }
 
-export interface AusbildungsnachweisModel extends Sequelize.Model<AusbildungsnachweisInstance, Ausbildungsnachweis> {
-}
-
-export interface  AusbildungsnachweisTemplateModel extends Sequelize.Model<AusbildungsnachweisTemplateInstance, AusbildungsnachweisTemplate> {
+export interface  JournalTemplateModel extends Sequelize.Model<JournalTemplateInstance, JournalTemplate> {
 }
 
 // Tables
@@ -121,8 +115,7 @@ export const ClassTable = 'class';
 export const InvitationTable = "invitation";
 export const RoleTable = "role";
 
-export const AusbildungsnachweisTable = "ausbildungsnachweis";
-export const AusbildungnachweisDayTable = "ausbildungsnachweisDay";
-export const AusbildungsnachweisTemplateTable = "ausbildungsnachweisTemplate";
+export const JournalTable = "journal";
+export const JournalTemplateTable = "journalTemplate";
 // Other Types
 export const ROLES = {admin: "ADMIN", ksmem: "KSMEM", ksspr: "KSSPR"};
