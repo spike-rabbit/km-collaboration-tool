@@ -51,7 +51,7 @@ const coreRoutes: Routes = [{
       component: KnowledgeCenterComponent,
       canActivate: [UserGuardService]
     },  {
-      path: 'knc/show-question/:question',
+      path: 'knc/show-question',
       component: QuestionShowComponent,
       canActivate: [UserGuardService]
     }, {

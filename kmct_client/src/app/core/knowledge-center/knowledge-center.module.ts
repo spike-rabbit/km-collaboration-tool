@@ -5,6 +5,7 @@ import { QuestionCreateComponent } from './question-create/question-create.compo
 import { RouterModule } from "@angular/router";
 import { QuestionShowComponent } from './question-show/question-show.component';
 import {FormsModule} from "@angular/forms";
+import {KnowledgeCenterService} from "./knowledge-center.service";
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import {FormsModule} from "@angular/forms";
     RouterModule,
     FormsModule
   ],
-  declarations: [KnowledgeCenterComponent, QuestionCreateComponent, QuestionShowComponent]
+  declarations: [KnowledgeCenterComponent, QuestionCreateComponent, QuestionShowComponent],
+  providers: [KnowledgeCenterService]
 })
 export class KnowledgeCenterModule { }

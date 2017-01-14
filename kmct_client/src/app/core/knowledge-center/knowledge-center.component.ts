@@ -1,8 +1,9 @@
 import {Component, OnInit, HostBinding} from '@angular/core';
 import {Question} from "./question";
 import {Router} from "@angular/router";
-import {slideInOutAnimation} from "../router-animations";
 import {Answer} from "./answer";
+import {slideInOutAnimation} from "../router-animations";
+import {KnowledgeCenterService} from "./knowledge-center.service";
 
 @Component({
   selector: 'app-knowledge-center',
@@ -15,18 +16,16 @@ export class KnowledgeCenterComponent implements OnInit {
   @HostBinding('style.display')   display = 'block';
   @HostBinding('style.position')  position = 'absolute';
 
-
-  questions: Question[] = [new Question(1,'Frage1', 'Das ist meine Frage...', 'ITM', 'Paula', [new Answer(1, 'Antwort', 2)]),
-    new Question(2,'Frage2', 'Das ist meine zweite Frage...', 'Organisatorisches: Studium', 'Leon', []) ];
-
+  questions: Question[];
 
   onSelect(question: Question): void {
-    //this.router.navigate(['/home/knc/show-question', question.id]);
+    //this.router.navigate(['/home/knc/show-question']);
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private service: KnowledgeCenterService) { }
 
   ngOnInit() {
+    this.questions = this.service.questions;
   }
 
 }

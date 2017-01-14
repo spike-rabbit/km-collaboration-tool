@@ -16,11 +16,11 @@ export class QuestionShowComponent implements OnInit {
   @HostBinding('style.position')  position = 'absolute';
 
   question: Question;
-  id: number;
+  //id: number;
 
   constructor(private route: ActivatedRoute, private knowledgeCenterComponent: KnowledgeCenterComponent) {
     //this.id = route.snapshot.params['question'];
-    //this.question = this.knowledgeCenterComponent.questions[this.id - 1];
+    //this.question = this.knowledgeCenterComponent.questions[0];
   }
 
   ngOnInit() {

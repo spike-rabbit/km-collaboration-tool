@@ -1,6 +1,7 @@
 import {Component, OnInit, HostBinding} from '@angular/core';
 import {Category} from "../category";
 import {slideInOutAnimation} from "../../router-animations";
+import {KnowledgeCenterService} from "../knowledge-center.service";
 
 @Component({
   selector: 'app-question-create',
@@ -13,11 +14,12 @@ export class QuestionCreateComponent implements OnInit {
   @HostBinding('style.display')   display = 'block';
   @HostBinding('style.position')  position = 'absolute';
 
-  categories: Category[] = [new Category(1,'ITM'), new Category(2,'Kostenrechnung'), new Category(3,'Organisatorisches: Studium')];
+  categories: Category[];
 
-  constructor() { }
+  constructor(private service: KnowledgeCenterService) { }
 
   ngOnInit() {
+    this.categories = this.service.categories;
   }
 
 }
