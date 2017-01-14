@@ -6,6 +6,7 @@ import {ROLES, Invitation} from "../models/data-types";
 let router = express.Router();
 
 router.get('/invitations', requireRole(ROLES.ksspr), getInvitations);
+//TODO auch admin Rolle geht
 router.post('/invitation', requireRole(ROLES.ksspr), postInvitation);
 router.delete('/invitation/:uuid', requireRole(ROLES.ksspr), deleteInvitation);
 router.get('/class-members', requireRole(ROLES.ksspr), getClassMember);

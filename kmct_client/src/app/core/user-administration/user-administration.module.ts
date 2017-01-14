@@ -7,6 +7,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ManageClassesComponent } from './manage-classes/manage-classes.component';
 import {ModalModule} from "ng2-bootstrap";
 import { CreateClassComponent } from './create-class/create-class.component';
+import { ManageCompaniesComponent } from './manage-companies/manage-companies.component';
+import { EditCompanyComponent } from './edit-company/edit-company.component';
 
 @NgModule({
   imports: [
@@ -15,6 +17,6 @@ import { CreateClassComponent } from './create-class/create-class.component';
     ModalModule.forRoot()
   ],
   providers: [UserAdministrationService],
-  declarations: [ManageClassComponent, EditProfileComponent, ManageClassesComponent, CreateClassComponent]
+  declarations: [ManageClassComponent, EditProfileComponent, ManageClassesComponent, CreateClassComponent, ManageCompaniesComponent, EditCompanyComponent]
 })
 export class UserAdministrationModule { }

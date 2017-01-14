@@ -2,9 +2,9 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {XchangeCenterComponent} from "./xchange-center.component";
 import {RouterModule} from "@angular/router";
-import { AusbildungsnachweisComponent } from './ausbildungsnachweis/ausbildungsnachweis.component';
-import { AusbildungsnachweisEditorComponent } from './ausbildungsnachweis-editor/ausbildungsnachweis-editor.component';
-import { ListeAusbildungsnachweiseComponent } from './liste-ausbildungsnachweise/liste-ausbildungsnachweise.component';
+import { JournalComponent } from './journal/journal.component';
+import { JournalEditorComponent } from './journal-editor/journal-editor.component';
+import { JournalListComponent } from './journal-list/journal-list.component';
 import {XchangeCenterService} from "./xchange-center.service";
 import {FormsModule} from "@angular/forms";
 
@@ -14,7 +14,7 @@ import {FormsModule} from "@angular/forms";
     RouterModule,
     FormsModule
   ],
-  declarations: [XchangeCenterComponent, AusbildungsnachweisComponent, AusbildungsnachweisEditorComponent, ListeAusbildungsnachweiseComponent],
+  declarations: [XchangeCenterComponent, JournalComponent, JournalEditorComponent, JournalListComponent],
   providers: [XchangeCenterService]
 })
 export class XchangeCenterModule {

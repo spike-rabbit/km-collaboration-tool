@@ -57,6 +57,11 @@ export interface Journal {
     startDate: Date;
     spe: boolean;
 
+export interface AusbildungsDay {
+    id?: number
+    weekday: days;
+    value: string;
+    weekId: number;
 }
 
 

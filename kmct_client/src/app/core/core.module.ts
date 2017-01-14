@@ -9,6 +9,7 @@ import {KnowledgeCenterModule} from "./knowledge-center/knowledge-center.module"
 import {TabsModule} from "ng2-bootstrap";
 import {UserAdministrationModule} from "./user-administration/user-administration.module";
 import {PopupsModule} from "./popups/popups.module";
+import {CalendarComponent} from "angular2-fullcalendar/src/calendar/calendar";
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import {PopupsModule} from "./popups/popups.module";
     PopupsModule,
     TabsModule
   ],
-  declarations: [CoreComponent, OverviewComponent],
+  declarations: [CoreComponent, OverviewComponent, CalendarComponent],
 })
 export class CoreModule {
 }

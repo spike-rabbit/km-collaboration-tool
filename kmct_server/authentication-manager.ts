@@ -52,7 +52,7 @@ export function requireRole(roles: string[] | string) {
         }
 
         let roleMap = req.user.roles.map(r => r.id);
-        if (req.user && roles.every(role => roleMap.indexOf(role) >= 0)) {
+        if (req.user && roles.some(role => roleMap.indexOf(role) >= 0)) {
             next();
         } else {
             let error: any = new Error("Insufficient Rights");

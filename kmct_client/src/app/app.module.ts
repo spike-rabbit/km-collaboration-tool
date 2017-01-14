@@ -5,14 +5,12 @@ import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {LoginComponent} from "./login/login.component";
 import {LoginService} from "./login.service";
-import {KmctHttpService} from "./global-services/kmct-http.service";
 import {CoreModule} from "./core/core.module";
 import {RouterModule, Routes} from "@angular/router";
-import {UrlStoreService} from "./global-services/url-store.service";
-import {SigninStateService} from "./global-services/signin-state.service";
 import {ClassLeaderGuardService} from "./global-services/guards/class-leader.service";
 import {AdminGuardService} from "./global-services/guards/admin.service";
 import {UserGuardService} from "./global-services/guards/user-guard.service";
+import {GlobalServicesModule} from "./global-services/global-services.module";
 
 const routes: Routes = [{path: "login", component: LoginComponent}, {path: "", redirectTo: "home", pathMatch: "full"}];
 
@@ -26,9 +24,10 @@ const routes: Routes = [{path: "login", component: LoginComponent}, {path: "", r
     FormsModule,
     HttpModule,
     CoreModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    GlobalServicesModule
   ],
-  providers: [LoginService, KmctHttpService, UrlStoreService, SigninStateService, ClassLeaderGuardService, AdminGuardService, UserGuardService],
+  providers: [LoginService, ClassLeaderGuardService, AdminGuardService, UserGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
