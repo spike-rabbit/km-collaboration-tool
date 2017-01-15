@@ -30,6 +30,7 @@ export function protect(req: ProtectedRequest, res: express.Response, next: expr
                             });
                         }).catch(reason => {
                             res.status(404).send({error: "user not found"});
+                            console.log(reason);
                         });
                     }
                 });
