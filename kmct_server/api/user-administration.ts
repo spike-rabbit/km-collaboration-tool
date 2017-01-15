@@ -12,6 +12,10 @@ router.delete('/invitation/:uuid', requireRole(ROLES.ksspr), deleteInvitation);
 router.get('/class-members', requireRole(ROLES.ksspr), getClassMember);
 router.get('/classes', requireRole(ROLES.admin), getClasses);
 router.post('/class', requireRole(ROLES.admin), postClass);
+router.get('/uas/companies', requireRole(ROLES.admin), getCompanies);
+router.post('/uas/company', requireRole(ROLES.admin), postCompany);
+router.put('/uas/company', requireRole(ROLES.admin), putCompany);
+
 
 function getInvitations(req: ProtectedRequest, res: express.Response) {
     let where: {[key: string]: any} = {};
@@ -87,5 +91,39 @@ function postClass(req: ProtectedRequest, res: express.Response) {
 interface ClassWithInitialInvitation extends Invitation {
     id: string;
 }
+
+function getCompanies(req: ProtectedRequest, res: express.Response) {
+    database.companies.findAll().then(comps => res.send({
+        companies: comps
+    }), reason => {
+        //TODO log better
+        //TODO send error to client
+        console.log(reason);
+    });
+}
+function postCompany(req: ProtectedRequest, res: express.Response) {
+    database.companies.create(req.body.name).then(() => {
+        res.send();
+    }, reason => {
+        //TODO log better
+        //TODO send error to client
+        console.log(reason);
+    });
+}
+function putCompany(req: ProtectedRequest, res: express.Response) {
+    database.companies.findById(req.body.company.id).then(comp => {
+        comp.name = req.body.company.name;
+        comp.save().then(saved => {
+            res.send(saved.toJSON());
+        }, err => {
+            // Irgendwas mit der DB stimmt nicht
+            console.log(err);
+        });
+    }, err => {
+        // Irgendwas mit der DB stimmt nicht
+        console.log(err);
+    });
+}
+
 
 export {router as userAdministration};

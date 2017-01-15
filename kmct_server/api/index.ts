@@ -1,7 +1,7 @@
 import * as express from "express";
 import {ProtectedRequest, protect, verifyIdToken, requireRole} from "../authentication-manager";
 import {database} from "../database-manager";
-import {ROLES, UsersInstance} from "../models/data-types";
+import {ROLES, UsersInstance, Company} from "../models/data-types";
 import {userAdministration} from "./user-administration";
 import {xccUsage} from "./xcc-usage";
 import {kmctCache} from "../app";
@@ -12,6 +12,7 @@ index.use("/uas", protect, userAdministration);
 index.post('/user', postUser);
 index.patch('/user', protect, patchUser);
 index.get('/user', protect, getUser);
+index.get('/user/company', protect, getCompany);
 
 
 function postUser(req: express.Request, res: express.Response, next) {
@@ -86,4 +87,8 @@ function patchUser(req: ProtectedRequest, res: express.Response, next: express.N
         console.log(err);
         next(err);
     });
+}
+
+function getCompany(req: ProtectedRequest, res: express.Response) {
+    res.send(req.user.company);
 }
