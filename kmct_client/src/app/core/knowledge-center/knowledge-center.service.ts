@@ -11,7 +11,7 @@ export class KnowledgeCenterService {
     id: 234,
     category: this.categories[0],
     title: "asdfasdf",
-    owner: "",
+    owner: "owner",
     answers: [],
     question: ""
   }];
