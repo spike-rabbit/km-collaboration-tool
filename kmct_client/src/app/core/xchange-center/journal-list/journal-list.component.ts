@@ -23,7 +23,7 @@ export class JournalListComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.xccService.loadJournals().subscribe(journals => this.journals = journals);
-    this.journals = this.xccService.journals;
+    this.xccService.loadJournals().subscribe(journals => this.journals = journals);
+    //this.journals = this.xccService.journals;
   }
 }

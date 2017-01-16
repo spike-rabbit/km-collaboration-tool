@@ -1,9 +1,15 @@
 /**
  * Created by Paula on 03.01.2017.
  */
-export class Journal {
+export interface Journal {
 
-  constructor(public workingweek:number, public kw:number, public date: Date, public monday:string,
-              public tuesday: string, public wednesday: string, public thursday: string,
-              public friday: string, public spe: boolean) { };
+  workingweek:number;
+  kw:number;
+  date: Date;
+  monday:string;
+  tuesday: string;
+  wednesday: string;
+  thursday: string;
+  friday: string;
+  spe: boolean;
 }

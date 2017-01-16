@@ -1,7 +1,28 @@
-<h3>Geschafft</h3>
-  <!--<h3>{{question.title}}</h3>
-  <p>Frage</p>
+<div class="container">
+  <h3>{{question.title}}</h3>
+  <b>Frage</b>
   <hr style="height: 1px; background-color:black;">
   <p>{{question.question}}</p>
-  <br> -->
+  <br>
+  <br>
+  <div *ngFor="let a of question.answers">
+    <b>ANZAHL! Antwort</b>
+    <hr style="height: 1px; background-color:black;">
 
+    <div class="form-group">
+      <label class="col-sm-2" style="color: blue">{{a.votes}} fand(en) das hilfreich</label>
+      <button class="btn btn-default">Hilfreich</button>
+    </div>
+
+    <label class="col-sm-1 control-label"></label>
+    <p class="col-sm-11">
+      {{a.answer}}
+    </p>
+  </div>
+  <b>Antworten</b>
+  <hr style="height: 1px; background-color:black;">
+  <textarea class="form-control" rows="4" cols="100" name="answerNew"></textarea>
+  <br>
+  <button class="btn btn-default col-sm-2">Antworten</button>
+
+</div>

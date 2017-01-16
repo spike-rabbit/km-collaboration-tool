@@ -6,12 +6,14 @@ import { RouterModule } from "@angular/router";
 import { QuestionShowComponent } from './question-show/question-show.component';
 import {FormsModule} from "@angular/forms";
 import {KnowledgeCenterService} from "./knowledge-center.service";
+import {DropdownModule} from "ng2-bootstrap";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    DropdownModule.forRoot()
   ],
   declarations: [KnowledgeCenterComponent, QuestionCreateComponent, QuestionShowComponent],
   providers: [KnowledgeCenterService]
