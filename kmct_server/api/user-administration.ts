@@ -12,9 +12,9 @@ router.delete('/invitation/:uuid', requireRole(ROLES.ksspr), deleteInvitation);
 router.get('/class-members', requireRole(ROLES.ksspr), getClassMember);
 router.get('/classes', requireRole(ROLES.admin), getClasses);
 router.post('/class', requireRole(ROLES.admin), postClass);
-router.get('/uas/companies', requireRole(ROLES.admin), getCompanies);
-router.post('/uas/company', requireRole(ROLES.admin), postCompany);
-router.put('/uas/company', requireRole(ROLES.admin), putCompany);
+router.get('/companies', requireRole(ROLES.admin), getCompanies);
+router.post('/company', requireRole(ROLES.admin), postCompany);
+router.put('/company', requireRole(ROLES.admin), putCompany);
 
 
 function getInvitations(req: ProtectedRequest, res: express.Response) {

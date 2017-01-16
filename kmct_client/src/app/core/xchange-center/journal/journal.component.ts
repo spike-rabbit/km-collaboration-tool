@@ -1,6 +1,6 @@
-import {Component, OnInit, HostBinding} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Journal } from '../journal';
+import {Component, OnInit, HostBinding} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import {Journal} from "../journal";
 import {XchangeCenterService} from "../xchange-center.service";
 import {slideInOutAnimation} from "../../router-animations";
 
@@ -12,15 +12,25 @@ import {slideInOutAnimation} from "../../router-animations";
 })
 export class JournalComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
-  @HostBinding('style.display')   display = 'block';
-  @HostBinding('style.position')  position = 'absolute';
+  @HostBinding('style.display') display = 'block';
+  @HostBinding('style.position') position = 'absolute';
 
   journal: Journal;
   id: number;
 
   constructor(private route: ActivatedRoute, private xccService: XchangeCenterService) {
     this.id = route.snapshot.params['journal'];
-    this.journal = this.xccService.journals[this.id - 1];
+    this.journal = {
+      id: this.id,
+      friday: "",
+      kw: 2,
+      monday: "",
+      spe: true,
+      thursday: "",
+      tuesday: "",
+      wednesday: "",
+      date: new Date()
+    };
   }
 
   ngOnInit() {

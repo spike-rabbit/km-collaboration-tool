@@ -30,7 +30,7 @@ import {
     ClassModel,
     ClassInstance,
     Class,
-    ClassTable
+    ClassTable, AppointmentModel, Appointment, AppointmentInstance, AppointmentTable
 } from "./models/data-types";
 import DefineOptions = Sequelize.DefineOptions;
 
@@ -43,6 +43,7 @@ class DatabaseManager {
     roles: RoleModel;
     journals: JournalModel;
     journalTemplates: JournalTemplateModel;
+    appointments: AppointmentModel;
 
     constructor() {
         this.sequelize = new Sequelize('kmct', 'kmct_admin', 'G2i65%7089@u', {
@@ -99,7 +100,7 @@ class DatabaseManager {
         let userHasRolesModel = this.sequelize.define("user_has_roles", {
             user_id: Sequelize.INTEGER,
             role_id: Sequelize.CHAR(5)
-        }, withDefOpts({freezeTableName: true}));
+        }, withDefOpts());
 
 
         this.users.belongsToMany(this.roles, {through: userHasRolesModel});
@@ -126,7 +127,7 @@ class DatabaseManager {
 
         this.journals = this.sequelize.define<JournalInstance, Journal>(JournalTable, {
             id: {type: Sequelize.INTEGER, primaryKey: true},
-            classId: {type: Sequelize.CHAR(5), field: "class_id"},
+            // classId: {type: Sequelize.CHAR(5), field: "class_id"},
             monday: Sequelize.CHAR(255),
             tuesday: Sequelize.CHAR(255),
             wednesday: Sequelize.CHAR(255),
@@ -146,6 +147,7 @@ class DatabaseManager {
                 }
             }
         }));
+        this.classes.hasMany(this.journals);
 
         this.journalTemplates = this.sequelize.define<JournalTemplateInstance, JournalTemplate>(JournalTemplateTable, {
             id: {type: Sequelize.INTEGER, primaryKey: true},
@@ -169,6 +171,16 @@ class DatabaseManager {
         this.users.belongsToMany(this.journalTemplates, {through: userHasTemplates});
         this.journalTemplates.belongsToMany(this.users, {through: userHasTemplates});
 
+        this.appointments = this.sequelize.define<AppointmentInstance, Appointment>(AppointmentTable, {
+            id: {type: Sequelize.INTEGER, primaryKey: true},
+            name: Sequelize.CHAR(15),
+            description: Sequelize.CHAR(200),
+            start: Sequelize.DATE,
+            end: Sequelize.DATE
+        }, withDefOpts());
+
+        this.classes.hasMany(this.appointments);
+        this.appointments.belongsTo(this.users);
 
     }
 }

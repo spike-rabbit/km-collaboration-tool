@@ -1,14 +1,16 @@
 import * as express from "express";
 import {ProtectedRequest, protect, verifyIdToken, requireRole} from "../authentication-manager";
 import {database} from "../database-manager";
-import {ROLES, UsersInstance, Company} from "../models/data-types";
+import {ROLES, UsersInstance} from "../models/data-types";
 import {userAdministration} from "./user-administration";
 import {xccUsage} from "./xcc-usage";
 import {kmctCache} from "../app";
+import {sem} from "./shared-event-management";
 export const index = express.Router();
 
 index.use("/xcc", protect, xccUsage);
 index.use("/uas", protect, userAdministration);
+index.use("/sem", protect, requireRole(ROLES.ksmem), sem);
 index.post('/user', postUser);
 index.patch('/user', protect, patchUser);
 index.get('/user', protect, getUser);
@@ -90,5 +92,7 @@ function patchUser(req: ProtectedRequest, res: express.Response, next: express.N
 }
 
 function getCompany(req: ProtectedRequest, res: express.Response) {
-    res.send(req.user.company);
+    database.users.findById(req.user.id, {include: [database.companies], attributes: []}).then(userwc => {
+        res.send(userwc.company);
+    });
 }

@@ -13,8 +13,7 @@ export class JournalListComponent implements OnInit {
   journals: Journal[];
 
   onSelect(journal: Journal): void {
-
-    this.router.navigate(['/home/xcc/journal', journal.workingweek]);
+    this.router.navigate(['/home/xcc/journal', journal.id]);
 
   }
 

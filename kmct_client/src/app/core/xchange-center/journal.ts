@@ -3,7 +3,7 @@
  */
 export interface Journal {
 
-  workingweek:number;
+  id:number;
   kw:number;
   date: Date;
   monday:string;

@@ -58,7 +58,15 @@ export interface Journal {
     spe: boolean;
 }
 
-
+export interface Appointment {
+    id?: number;
+    name: string;
+    class: Class;
+    description: string;
+    start: Date;
+    end: Date;
+    user: User;
+}
 
 
 // Instances
@@ -71,17 +79,21 @@ export interface UsersInstance extends Sequelize.Instance<User>, User {
     addRoles?: (roles: any) => any;
 }
 export interface ClassInstance extends Sequelize.Instance<Class>, Class {
+    getAppointments?: (options?: Sequelize.FindOptions) => Promise<AppointmentInstance[]>;
+    getJournals?: (options?: Sequelize.FindOptions) => Promise<JournalInstance[]>;
 }
 export interface InvitationInstance extends Sequelize.Instance<Invitation>,Invitation {
 }
 export interface RoleInstance extends Sequelize.Instance<Role>,Role {
 }
 
-
 export interface JournalInstance extends Sequelize.Instance<Journal>, Journal {
 }
 
 export interface JournalTemplateInstance extends Sequelize.Instance<JournalTemplate>, JournalTemplate {
+}
+
+export interface AppointmentInstance extends Sequelize.Instance<Appointment>, Appointment {
 }
 
 
@@ -107,6 +119,9 @@ export interface JournalModel extends Sequelize.Model<JournalInstance, Journal> 
 export interface  JournalTemplateModel extends Sequelize.Model<JournalTemplateInstance, JournalTemplate> {
 }
 
+export interface AppointmentModel extends Sequelize.Model<AppointmentInstance, Appointment> {
+}
+
 // Tables
 export const CompanyTable = "company";
 export const UsersTable = 'user';
@@ -115,6 +130,7 @@ export const InvitationTable = "invitation";
 export const RoleTable = "role";
 
 export const JournalTable = "journal";
-export const JournalTemplateTable = "journalTemplate";
+export const JournalTemplateTable = "journal_template";
+export const AppointmentTable = "appointment";
 // Other Types
 export const ROLES = {admin: "ADMIN", ksmem: "KSMEM", ksspr: "KSSPR"};

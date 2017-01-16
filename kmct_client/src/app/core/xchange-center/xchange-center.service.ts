@@ -7,8 +7,6 @@ import {Observable} from "rxjs";
 @Injectable()
 export class XchangeCenterService {
 
-  journals: Journal[];
-
   constructor(private http: KmctHttpService) { }
 
   loadJournals() {

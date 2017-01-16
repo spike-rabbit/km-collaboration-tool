@@ -10,6 +10,7 @@ import {TabsModule} from "ng2-bootstrap";
 import {UserAdministrationModule} from "./user-administration/user-administration.module";
 import {PopupsModule} from "./popups/popups.module";
 import {CalendarComponent} from "angular2-fullcalendar/src/calendar/calendar";
+import {CoreService} from "./core.service";
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import {CalendarComponent} from "angular2-fullcalendar/src/calendar/calendar";
     TabsModule
   ],
   declarations: [CoreComponent, OverviewComponent, CalendarComponent],
+  providers: [CoreService]
 })
 export class CoreModule {
 }

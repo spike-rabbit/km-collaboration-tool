@@ -10,9 +10,9 @@
     </thead>
     <tbody>
     <tr *ngFor="let n of journals" (click)="onSelect(n)">
-      <td>{{n.workingweek}}</td>
-      <td>{{n.kw}}</td>
-      <td>{{n.date}}</td>
+      <td>{{n.id}}</td>
+      <td>{{n.week}}</td>
+      <td>{{n.startDate}}</td>
       <td></td>
     </tr>
     </tbody>
