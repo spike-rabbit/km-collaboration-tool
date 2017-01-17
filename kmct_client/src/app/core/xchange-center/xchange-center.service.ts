@@ -19,4 +19,14 @@ export class XchangeCenterService {
     );
   }
 
+  loadJournal(id: number) {
+    return this.http.get("/api/xcc/journal/" + id, {sendAuthToken: true})
+      .map(res => res.json().journals)
+      .catch((response: Response) => {
+          console.log(response);
+          return Observable.throw("Error");
+        }
+      );
+  }
+
 }

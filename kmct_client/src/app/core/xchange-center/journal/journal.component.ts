@@ -20,6 +20,9 @@ export class JournalComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private xccService: XchangeCenterService) {
     this.id = route.snapshot.params['journal'];
+
+    //this.xccService.loadJournal(this.id).subscribe(journal => this.journal = journal);
+
     this.journal = {
       id: this.id,
       friday: "",
