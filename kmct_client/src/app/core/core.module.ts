@@ -11,6 +11,7 @@ import {UserAdministrationModule} from "./user-administration/user-administratio
 import {PopupsModule} from "./popups/popups.module";
 import {CalendarComponent} from "angular2-fullcalendar/src/calendar/calendar";
 import {CoreService} from "./core.service";
+import {SharedEventManagementModule} from "./shared-event-management/shared-event-management.module";
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import {CoreService} from "./core.service";
     KnowledgeCenterModule,
     UserAdministrationModule,
     PopupsModule,
-    TabsModule
+    TabsModule,
+    SharedEventManagementModule
   ],
   declarations: [CoreComponent, OverviewComponent, CalendarComponent],
   providers: [CoreService]

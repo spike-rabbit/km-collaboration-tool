@@ -1,28 +1,31 @@
 <div class="container">
-  <h3>{{question.title}}</h3>
-  <b>Frage</b>
-  <hr style="height: 1px; background-color:black;">
-  <p>{{question.question}}</p>
-  <br>
-  <br>
-  <div *ngFor="let a of question.answers">
-    <b>ANZAHL! Antwort</b>
+  <form class="form-horizontal">
+    <h3>{{question.title}}</h3>
+    <b>Frage</b>
     <hr style="height: 1px; background-color:black;">
+    <p>{{question.question}}</p>
+    <br>
+    <br>
+    <div *ngFor="let a of question.answers; let i = index">
+      <b>{{i + 1}}. Antwort</b>
+      <hr style="height: 1px; background-color:black;">
 
-    <div class="form-group">
-      <label class="col-sm-2" style="color: blue">{{a.votes}} fand(en) das hilfreich</label>
-      <button class="btn btn-default">Hilfreich</button>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" style="color: blue">{{a.votes}} fand(en) das hilfreich</label>
+        <div class="col-sm-2">
+          <button class="btn btn-default form-control">Hilfreich</button>
+        </div>
+      </div>
+
+      <label class="col-sm-1 control-label"></label>
+      <p class="col-sm-11">
+        {{a.answer}}
+      </p>
     </div>
-
-    <label class="col-sm-1 control-label"></label>
-    <p class="col-sm-11">
-      {{a.answer}}
-    </p>
-  </div>
-  <b>Antworten</b>
-  <hr style="height: 1px; background-color:black;">
-  <textarea class="form-control" rows="4" cols="100" name="answerNew"></textarea>
-  <br>
-  <button class="btn btn-default col-sm-2">Antworten</button>
-
+    <b>Antworten</b>
+    <hr style="height: 1px; background-color:black;">
+    <textarea class="form-control" rows="4" cols="100" name="answerNew"></textarea>
+    <br>
+    <button class="btn btn-default col-sm-2">Antworten</button>
+  </form>
 </div>
