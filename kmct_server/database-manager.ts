@@ -30,7 +30,8 @@ import {
     ClassModel,
     ClassInstance,
     Class,
-    ClassTable, AppointmentModel, Appointment, AppointmentInstance, AppointmentTable
+    ClassTable, AppointmentModel, Appointment, AppointmentInstance, AppointmentTable, ThreadModel, AnswerModel,
+    LikeModel, ThreadInstance, ThreadTable, Thread, AnswerInstance, Answer, AnswerTable, LikeInstance, Like, LikeTable
 } from "./models/data-types";
 import DefineOptions = Sequelize.DefineOptions;
 
@@ -44,6 +45,9 @@ class DatabaseManager {
     journals: JournalModel;
     journalTemplates: JournalTemplateModel;
     appointments: AppointmentModel;
+    threads: ThreadModel;
+    answers: AnswerModel;
+    likes: LikeModel;
 
     constructor() {
         this.sequelize = new Sequelize('kmct', 'kmct_admin', 'G2i65%7089@u', {
@@ -181,6 +185,34 @@ class DatabaseManager {
 
         this.classes.hasMany(this.appointments);
         this.appointments.belongsTo(this.users);
+
+
+        this.threads = this.sequelize.define<ThreadInstance, Thread>(ThreadTable, {
+            id: { type: Sequelize.INTEGER, primaryKey: true},
+            question: Sequelize.CHAR(255),
+            owner: Sequelize.INTEGER,
+            category: Sequelize.INTEGER
+        }, withDefOpts());
+
+
+        this.answers = this.sequelize.define<AnswerInstance, Answer>(AnswerTable, {
+            id: { type: Sequelize.INTEGER, primaryKey: true},
+            answer: Sequelize.CHAR(255),
+            position: Sequelize.INTEGER,
+            thread: Sequelize.INTEGER
+        }, withDefOpts());
+
+        this.threads.hasMany(this.answers);
+        this.answers.belongsTo(this.threads);
+
+        this.likes = this.sequelize.define<LikeInstance, Like>(LikeTable, {
+            id: {type: Sequelize.INTEGER, primaryKey: true}
+        }, withDefOpts());
+
+        this.answers.hasMany(this.likes);
+        this.likes.belongsTo(this.answers);
+
+
 
     }
 }

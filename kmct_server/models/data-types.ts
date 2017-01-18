@@ -2,6 +2,8 @@
  * Created by Maxi- PC on 18.12.2016.
  */
 import * as Sequelize from "sequelize";
+import Instance = Sequelize.Instance;
+import {Category} from "../../kmct_client/src/app/core/knowledge-center/category";
 
 // POJOs
 export interface Company {
@@ -37,7 +39,6 @@ export interface Role {
     id: string;
 }
 
-//TODO rename to more usable name
 export interface JournalTemplate {
     id: string;
     template: string;
@@ -57,6 +58,31 @@ export interface Journal {
     startDate: Date;
     spe: boolean;
 }
+
+export interface Thread {
+    id?: number;
+    question: string;
+    owner: number;
+    category: number;
+}
+
+export interface Answer {
+    id?: number;
+    thread: number;
+    answer: string;
+    position: number;
+}
+
+
+export interface Like {
+
+}
+
+export interface category{
+    id?: number;
+    category: string;
+}
+
 
 export interface Appointment {
     id?: number;
@@ -96,6 +122,18 @@ export interface JournalTemplateInstance extends Sequelize.Instance<JournalTempl
 export interface AppointmentInstance extends Sequelize.Instance<Appointment>, Appointment {
 }
 
+export interface ThreadInstance extends Sequelize.Instance<Thread> , Thread {
+}
+
+export interface AnswerInstance extends Sequelize.Instance<Answer>, Answer{
+}
+
+export interface  LikeInstance extends Sequelize.Instance<Like>, Like {
+}
+
+export interface  CategoryInstance extends  Sequelize.Instance<Category>, Category {
+}
+
 
 // Models
 export interface CompanyModel extends Sequelize.Model<CompanyInstance,Company> {
@@ -122,6 +160,18 @@ export interface  JournalTemplateModel extends Sequelize.Model<JournalTemplateIn
 export interface AppointmentModel extends Sequelize.Model<AppointmentInstance, Appointment> {
 }
 
+export interface ThreadModel extends  Sequelize.Model<ThreadInstance, Thread> {
+}
+
+export interface AnswerModel extends Sequelize.Model<AnswerInstance, Answer> {
+}
+
+export interface LikeModel extends Sequelize.Model<LikeInstance, Like> {
+}
+
+export interface CategoryModel extends Sequelize.Model<CategoryInstance, Category> {
+}
+
 // Tables
 export const CompanyTable = "company";
 export const UsersTable = 'user';
@@ -132,5 +182,10 @@ export const RoleTable = "role";
 export const JournalTable = "journal";
 export const JournalTemplateTable = "journal_template";
 export const AppointmentTable = "appointment";
+
+export const ThreadTable ="thread";
+export const AnswerTable ="answer";
+export const LikeTable ="like";
+export const CategoryTable ="category";
 // Other Types
 export const ROLES = {admin: "ADMIN", ksmem: "KSMEM", ksspr: "KSSPR"};
