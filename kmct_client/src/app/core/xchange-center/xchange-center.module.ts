@@ -15,6 +15,7 @@ import {FormsModule} from "@angular/forms";
     FormsModule
   ],
   declarations: [XchangeCenterComponent, JournalComponent, JournalEditorComponent, JournalListComponent],
+  exports: [JournalListComponent],
   providers: [XchangeCenterService]
 })
 export class XchangeCenterModule {

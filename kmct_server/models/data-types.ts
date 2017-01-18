@@ -56,7 +56,7 @@ export interface Journal {
     friday: string;
     owner: number;
     startDate: Date;
-    spe: boolean;
+    location: string;
 }
 
 export interface Thread {

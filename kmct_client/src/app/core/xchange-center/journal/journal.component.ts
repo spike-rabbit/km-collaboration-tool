@@ -15,25 +15,24 @@ export class JournalComponent implements OnInit {
   @HostBinding('style.display') display = 'block';
   @HostBinding('style.position') position = 'absolute';
 
-  journal: Journal;
+  journal: Journal = (<Journal>{});
   id: number;
 
   constructor(private route: ActivatedRoute, private xccService: XchangeCenterService) {
-    this.id = route.snapshot.params['journal'];
-    this.journal = {
-      id: this.id,
-      friday: "",
-      kw: 2,
-      monday: "",
-      spe: true,
-      thursday: "",
-      tuesday: "",
-      wednesday: "",
-      date: new Date()
-    };
+
   }
 
   ngOnInit() {
+    this.id = this.route.snapshot.params['journal'];
+    this.xccService.loadJournal(this.id).subscribe(journal => this.journal = journal);
+  }
+
+  onSubmit() {
+    //TODO
+  }
+
+  download() {
+    //TODO
   }
 
 }

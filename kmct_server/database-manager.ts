@@ -140,7 +140,7 @@ class DatabaseManager {
             week: Sequelize.CHAR(45),
             owner: Sequelize.INTEGER,
             startDate: Sequelize.DATE,
-            spe: Sequelize.BOOLEAN
+            location: Sequelize.CHAR(4)
 
         }, withDefOpts({
             classMethods: {
@@ -198,8 +198,9 @@ class DatabaseManager {
         this.answers = this.sequelize.define<AnswerInstance, Answer>(AnswerTable, {
             id: { type: Sequelize.INTEGER, primaryKey: true},
             answer: Sequelize.CHAR(255),
-            position: Sequelize.INTEGER,
-            thread: Sequelize.INTEGER
+            position: Sequelize.INTEGER
+            // ,
+            // thread: Sequelize.INTEGER
         }, withDefOpts());
 
         this.threads.hasMany(this.answers);

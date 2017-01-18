@@ -8,7 +8,7 @@ let router = express.Router();
 router.get('/journals', getJournals);
 router.get('/journal/:id', getJournal);
 router.post('/journal', postJournal);
-router.patch('/journal', editNachweis);
+router.patch('/journal', patchJournal);
 //TODO journalTemplates moved to later state
 
 function getJournals(req: ProtectedRequest, res: express.Response) {
@@ -47,7 +47,7 @@ function postJournal(req: ProtectedRequest, res: express.Response) {
     });
 }
 
-function editNachweis(req: ProtectedRequest, res: express.Response) {
+function patchJournal(req: ProtectedRequest, res: express.Response) {
 
 
     database.journals.findById(req.params['id]']).then(journal =>
