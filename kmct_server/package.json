@@ -6,7 +6,7 @@
     "start" : "npm run build:tslive",
     "debug": "npm run build:live",
     "build:live": "nodemon --debug bin/www.js",
-    "build:tslive": "nodemon --exec node_modules\\.bin\\ts-node -- bin\\www.js"
+    "build:tslive": "nodemon --exec node_modules\\.bin\\ts-node -- bin\\www.ts"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
