@@ -79,7 +79,7 @@ const coreRoutes: Routes = [{
       component: ManageCompaniesComponent,
       canActivate: [AdminGuardService]
     }, {
-      path: 'uas/manage-companies/edit',
+      path: 'uas/manage-companies/edit/:company',
       component: EditCompanyComponent,
       canActivate: [AdminGuardService]
     }, {

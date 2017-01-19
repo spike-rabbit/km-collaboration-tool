@@ -3,7 +3,7 @@
   <h3>Firmen</h3>
 
   <div class="col-sm-12">
-  <select name="top5" size="10">
+  <select name="allCompanies" id="allCompanies" size="10">
   <option>Siemens</option>
   <option>Atos</option>
   <option>S&N</option>
@@ -12,7 +12,8 @@
   </select>
   </div>
 
+
   <div class="col-sm-12">
-    <a routerLink="edit" class="btn btn-primary">Firma bearbeiten</a>
+    <a class="btn btn-primary" (click)="onClick(allCompanies)">Firma bearbeiten</a>
   </div>
   </div>
