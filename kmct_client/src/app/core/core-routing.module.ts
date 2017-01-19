@@ -19,6 +19,7 @@ import {ManageCompaniesComponent} from "./user-administration/manage-companies/m
 import {EditCompanyComponent} from "./user-administration/edit-company/edit-company.component";
 import {QuestionCreateComponent} from "./knowledge-center/question-create/question-create.component";
 import {QuestionShowComponent} from "./knowledge-center/question-show/question-show.component";
+import {EditEventComponent} from "./shared-event-management/edit-event/edit-event.component";
 /**
  * Created by Maxi- PC on 17.12.2016.
  */
@@ -81,6 +82,14 @@ const coreRoutes: Routes = [{
       path: 'uas/manage-companies/edit',
       component: EditCompanyComponent,
       canActivate: [AdminGuardService]
+    }, {
+      path: 'sem/create-event',
+      component: EditEventComponent,
+      canActivate: [UserGuardService]
+    }, {
+      path: 'sem/events/:id',
+      component: EditEventComponent,
+      canActivate: [UserGuardService]
     }]
 }];
 

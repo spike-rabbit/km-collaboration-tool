@@ -1,31 +1,32 @@
-<div class="container">
+<div>
   <form class="form-horizontal">
-    <h3>{{question.title}}</h3>
-    <b>Frage</b>
+    <h2>{{question.title}}</h2>
+    <p style="font-weight: bold">Frage</p>
     <hr style="height: 1px; background-color:black;">
     <p>{{question.question}}</p>
-    <br>
-    <br>
-    <div *ngFor="let a of question.answers; let i = index">
-      <b>{{i + 1}}. Antwort</b>
+
+    <div *ngFor="let a of question.answers; let i = index" class="intend50">
+      <p style="font-weight: bold">{{i + 1}}. Antwort</p>
       <hr style="height: 1px; background-color:black;">
 
-      <div class="form-group">
-        <label class="col-sm-2 control-label" style="color: blue">{{a.votes}} fand(en) das hilfreich</label>
-        <div class="col-sm-2">
-          <button class="btn btn-default form-control">Hilfreich</button>
+      <div>
+        <div>
+          <label class="glyphicon glyphicon-thumbs-up" style="font-size: x-large"></label>
+          <label style="color: blue">{{a.votes}} fand(en) das hilfreich</label>
         </div>
-      </div>
 
-      <label class="col-sm-1 control-label"></label>
-      <p class="col-sm-11">
-        {{a.answer}}
-      </p>
+        <p style="margin-left: 40px">
+          {{a.answer}}
+        </p>
+      </div>
     </div>
-    <b>Antworten</b>
-    <hr style="height: 1px; background-color:black;">
-    <textarea class="form-control" rows="4" cols="100" name="answerNew"></textarea>
-    <br>
-    <button class="btn btn-default col-sm-2">Antworten</button>
+
+    <div class="intend50">
+      <p style="font-weight: bold">Antworten</p>
+      <hr style="height: 1px; background-color:black;">
+      <textarea class="form-control" rows="4" cols="100" name="answerNew"></textarea>
+      <br>
+      <button class="btn btn-default col-sm-2">Antworten</button>
+    </div>
   </form>
 </div>

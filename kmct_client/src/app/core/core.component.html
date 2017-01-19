@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNav">
@@ -30,7 +30,15 @@
             <li><a href="#">Rechte verwalten</a></li>
           </ul>
         </li>
-        <li *ngIf="user.isUserInRole('ADMIN')" [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-classes']">Administration</a>
+
+        <li class="dropdown" *ngIf="user.isUserInRole('ADMIN')">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" i18n="Manage Class Module Header">Administration<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-classes']">Klassen hinzufügen</a>
+            </li>
+            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-companies']">Firmen verwalten</a>
+            </li>
+          </ul>
         </li>
 
       </ul>
@@ -57,12 +65,12 @@
     </div>
   </div>
 </nav>
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 75px">
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
       <router-outlet></router-outlet>
     </div>
-    <div class="hidden-xs hidden-sm col-md-4 col-lg-4" style="float: right">
+    <div class="hidden-xs hidden-sm col-md-4 col-lg-4">
       <app-small-calender></app-small-calender>
     </div>
   </div>
