@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "start" : "npm run build:tslive",
     "debug": "npm run build:live",
-    "build:live": "nodemon --debug bin/www.js"
+    "build:live": "nodemon --debug bin/www.js",
+    "build:tslive": "nodemon --exec node_modules\\.bin\\ts-node -- bin\\www.js"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
