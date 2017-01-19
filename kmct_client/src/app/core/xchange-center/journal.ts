@@ -4,12 +4,13 @@
 export interface Journal {
 
   id:number;
-  kw:number;
-  date: Date;
+  week:number;
+  startDate: Date;
   monday:string;
   tuesday: string;
   wednesday: string;
   thursday: string;
   friday: string;
-  spe: boolean;
+  location: string;
+  editable: boolean;
 }

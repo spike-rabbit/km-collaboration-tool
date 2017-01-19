@@ -1,0 +1,21 @@
+<h3>Forum</h3>
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4">Titel</th>
+      <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4">Fragender</th>
+      <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4">Kategorie</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let q of questions" (click)="onSelect(q)">
+      <td>{{q.title}}</td>
+      <td>{{q.owner}}</td>
+      <td>{{q.category.category}}</td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

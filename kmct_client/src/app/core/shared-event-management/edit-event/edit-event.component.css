@@ -1,0 +1,5 @@
+.datepicker {
+  display: inline;
+  position: absolute;
+  z-index: 100;
+}

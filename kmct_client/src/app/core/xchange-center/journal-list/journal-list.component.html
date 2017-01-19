@@ -3,16 +3,17 @@
   <table class="table table-striped table-hover">
     <thead>
     <tr>
-      <th>Ausbildungswoche</th>
-      <th>KW</th>
-      <th>Datum</th>
+      <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4">Ausbildungswoche</th>
+      <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4">KW</th>
+      <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4">Startdatum</th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let n of journals" (click)="onSelect(n)">
       <td>{{n.id}}</td>
       <td>{{n.week}}</td>
-      <td>{{n.startDate}}</td>
+      <td>{{n.startDate | date:"dd.MM.yyyy"}}</td>
       <td></td>
     </tr>
     </tbody>
