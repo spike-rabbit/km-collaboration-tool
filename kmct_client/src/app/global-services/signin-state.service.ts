@@ -18,7 +18,8 @@ export class SigninStateService implements CanActivate {
   constructor(private urlStore: UrlStoreService, private router: Router, private http: KmctHttpService) {
   }
 
-  processSignIn(idToken: string, uuid: string) {
+
+  processSignIn(idToken: string, uuid?: string) {
     this.idToken = idToken;
     this.http.get("/api/user", {sendAuthToken: true}).map(val => {
       return val.json();
@@ -45,9 +46,26 @@ export class SigninStateService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
     if (!this.isSignedIn) {
-      this.urlStore.storedUrl = state.url;
-      this.router.navigate(['/login']);
+      return this.http.get("/api/user", {sendAuthToken: true}).map(val => {
+        return val.json();
+      }).map(user => {
+        this.user = new User(user.firstname, user.name, user.roles.map(role => role.id));
+        this.isSignedIn = true;
+        if(state.url.match(".*login.*")) {
+          this.router.navigate(["/home"]);
+        }
+        return true;
+      }).catch((error: Response) => {
+        if (error.status = 404) {
+          this.urlStore.storedUrl = state.url;
+          this.router.navigate(["/login"]);
+          return Observable.of(false);
+        } else {
+          return Observable.throw(`${error.status} - ${error.statusText || ''}`);
+        }
+      });
+    } else {
+      return this.isSignedIn;
     }
-    return this.isSignedIn;
   }
 }

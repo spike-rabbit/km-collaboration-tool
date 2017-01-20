@@ -11,8 +11,9 @@ import {ClassLeaderGuardService} from "./global-services/guards/class-leader.ser
 import {AdminGuardService} from "./global-services/guards/admin.service";
 import {UserGuardService} from "./global-services/guards/user-guard.service";
 import {GlobalServicesModule} from "./global-services/global-services.module";
+import {LoginGuardService} from "./global-services/guards/login-guard.service";
 
-const routes: Routes = [{path: "login", component: LoginComponent}, {path: "", redirectTo: "home", pathMatch: "full"}];
+const routes: Routes = [{path: "login", component: LoginComponent, canActivate: [LoginGuardService]}, {path: "", redirectTo: "home", pathMatch: "full"}];
 
 @NgModule({
   declarations: [

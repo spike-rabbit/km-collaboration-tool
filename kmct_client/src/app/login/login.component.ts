@@ -1,6 +1,7 @@
 import {Component, AfterViewInit, NgZone} from "@angular/core";
 import {SigninStateService} from "../global-services/signin-state.service";
 import {ActivatedRoute} from "@angular/router";
+import GoogleUser = gapi.auth2.GoogleUser;
 
 @Component({
   selector: 'app-login',
@@ -9,17 +10,17 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class LoginComponent implements AfterViewInit {
 
-  constructor(private signinStateService: SigninStateService, private route: ActivatedRoute, private zone: NgZone) {
+  constructor(private signInService: SigninStateService, private route: ActivatedRoute, private zone: NgZone) {
   }
 
   ngAfterViewInit(): void {
     this.initGoogleSignIn();
   }
 
-  public onSignIn(googleUser) {
+  public onSignIn(googleUser : GoogleUser) {
     this.route.params.subscribe(params => {
       this.zone.run(() => {
-        this.signinStateService.processSignIn(googleUser.getAuthResponse().id_token, params['invitation']);
+        this.signInService.processSignIn(googleUser.getAuthResponse().id_token, params['invitation']);
       });
     });
   }
