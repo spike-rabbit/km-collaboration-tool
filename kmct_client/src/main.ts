@@ -8,10 +8,4 @@ if (environment.production) {
   enableProdMode();
 }
 
-gapi.load("auth2", function () {
-  gapi.auth2.init({}).then(() => {
-    platformBrowserDynamic().bootstrapModule(AppModule);
-  }, (error) => {
-    console.log(error);
-  });
-});
+platformBrowserDynamic().bootstrapModule(AppModule);

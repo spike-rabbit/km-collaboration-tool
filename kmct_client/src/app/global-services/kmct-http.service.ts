@@ -3,11 +3,12 @@ import {Http, Headers, RequestOptionsArgs, Response} from "@angular/http";
 import {KmctRequestOptions} from "../../data-definitions";
 import {base_url} from "../../environments/environment";
 import {Observable} from "rxjs";
+import {SigninStateService} from "./signin-state.service";
 
 @Injectable()
 export class KmctHttpService {
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private signInService: SigninStateService) {
   }
 
   get(url: string, requestOptions?: KmctRequestOptions): Observable<Response> {
@@ -37,8 +38,8 @@ export class KmctHttpService {
       let headers: Headers;
       if (requestOptions.sendAuthToken) {
         headers = new Headers();
-        //TODO refresh auth-token if required
-        headers.set("authentication-token", gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token);
+
+        headers.set("authentication-token", this.signInService.user.idToken);
         if (requestOptions.headers) {
           requestOptions.headers.forEach((values, name) => headers.set(name, values));
         }

@@ -10,7 +10,7 @@ export interface KmctRequestOptions {
 
 export class User {
 
-  constructor(public firstname: string, public name: string, private roles: string[]) {
+  constructor(public firstname: string, public name: string, private roles: string[], public idToken: string) {
   }
 
   isUserInRole(role: string) {
