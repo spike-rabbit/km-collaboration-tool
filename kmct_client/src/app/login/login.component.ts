@@ -20,7 +20,7 @@ export class LoginComponent implements AfterViewInit {
   public onSignIn(googleUser : GoogleUser) {
     this.route.params.subscribe(params => {
       this.zone.run(() => {
-        this.signInService.processSignIn(googleUser.getAuthResponse().id_token, params['invitation']);
+        this.signInService.processRegister(googleUser.getAuthResponse().id_token, params['invitation']);
       });
     });
   }

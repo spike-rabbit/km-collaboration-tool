@@ -16,7 +16,7 @@ export class JournalEditorComponent implements OnInit {
   constructor(private signInService: SigninStateService) { }
 
   ngOnInit() {
-    this.signInService.user.isUserInRole(ROLES.ksspr);
+    // this.signInService.unsafeUser.isUserInRole(ROLES.ksspr);
   }
 
 }

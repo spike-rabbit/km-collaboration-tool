@@ -27,6 +27,7 @@ const coreRoutes: Routes = [{
   path: 'home',
   component: CoreComponent,
   canActivate: [SigninStateService],
+  canActivateChild: [SigninStateService],
   children: [
     {
       path: '',

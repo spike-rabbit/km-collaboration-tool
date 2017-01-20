@@ -39,7 +39,7 @@ export class KmctHttpService {
       if (requestOptions.sendAuthToken) {
         headers = new Headers();
 
-        headers.set("authentication-token", this.signInService.user.idToken);
+        headers.set("authentication-token", this.signInService.unsafeUser.idToken);
         if (requestOptions.headers) {
           requestOptions.headers.forEach((values, name) => headers.set(name, values));
         }

@@ -21,20 +21,24 @@ export class EditProfileComponent implements OnInit {
   private firstname: string;
 
   ngOnInit() {
-    this.name = this.signInService.user.name;
-    this.firstname = this.signInService.user.firstname;
+    this.signInService.user.subscribe(user => {
+      this.name = user.name;
+      this.firstname = user.firstname;
+    });
   }
 
   onSubmit() {
     this.uasService.applyUserChanges(this.name, this.firstname).subscribe(user => {
-      this.signInService.user.name = user.name;
-      this.signInService.user.firstname = user.firstname;
+      //TODO
+      // this.signInService.user.name = user.name;
+      // this.signInService.user.firstname = user.firstname;
     });
   }
 
   onReset() {
-    this.name = this.signInService.user.name;
-    this.firstname = this.signInService.user.firstname;
+    //TODO
+    // this.name = this.signInService.user.name;
+    // this.firstname = this.signInService.user.firstname;
   }
 
 }
