@@ -4,7 +4,7 @@
 import * as express from "express";
 import {ProtectedRequest} from "../authentication-manager";
 import {database} from "../database-manager";
-import {AppointmentInstance, Appointment} from "../models/data-types";
+import {AppointmentInstance} from "../models/data-types";
 export const sem = express.Router();
 
 sem.get("/appointments", getAppointments);
@@ -23,18 +23,19 @@ function getAppointments(req: ProtectedRequest, res: express.Response) {
 }
 
 function postAppointment(req: ProtectedRequest, res: express.Response) {
-    database.appointments.create(req.body.appointment).then(() => {
-        res.send();
+    let appointment = req.body.appointment;
+    database.classes.findById(req.user.class.id).then(classI => {
+        classI.createAppointment(appointment).then(appointment => appointment.update({user_id: req.user.id}).then(user => res.send()));
     }, reason => {
-        //TODO log better
-        //TODO send error to client
+        // TODO        log better
+        // TODO send error to client
         console.log(reason);
     });
 }
 
 function getAppointment(req: ProtectedRequest, res: express.Response) {
     database.appointments.findById(req.params['id']).then(app => {
-        res.send(app);
+        res.send(app.toJSON());
     }, reason => {
         //TODO log better
         //TODO send error to client
@@ -44,11 +45,12 @@ function getAppointment(req: ProtectedRequest, res: express.Response) {
 }
 
 function putAppointment(req: ProtectedRequest, res: express.Response) {
+    let appointment = req.body.appointment;
     database.appointments.findById(req.params['id']).then(app => {
-        app.name = req.body.appointment.name;
-        app.description = req.body.appointment.description;
-        app.start = req.body.appointment.start;
-        app.end = req.body.appointment.end;
+        app.name = appointment.name;
+        app.description = appointment.description;
+        app.start = appointment.start;
+        app.end = appointment.end;
         app.save().then(saved => {
             res.send(saved.toJSON());
         }, err => {

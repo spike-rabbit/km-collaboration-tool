@@ -27,6 +27,10 @@ export class KmctHttpService {
     return this.http.patch(KmctHttpService.appendURL(url), body, this.createRequestOptionsArgs(requestOptions));
   }
 
+  put(url: string, body :any, requestOptions?: KmctRequestOptions): Observable<Response> {
+    return this.http.put(KmctHttpService.appendURL(url), body, this.createRequestOptionsArgs(requestOptions));
+  }
+
   // Implement all http-methods similar to get
 
   private static appendURL(url: string) {

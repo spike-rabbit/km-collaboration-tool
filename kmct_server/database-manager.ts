@@ -30,8 +30,23 @@ import {
     ClassModel,
     ClassInstance,
     Class,
-    ClassTable, AppointmentModel, Appointment, AppointmentInstance, AppointmentTable, ThreadModel, AnswerModel,
-    LikeModel, ThreadInstance, ThreadTable, Thread, AnswerInstance, Answer, AnswerTable, LikeInstance, Like, LikeTable
+    ClassTable,
+    AppointmentModel,
+    Appointment,
+    AppointmentInstance,
+    AppointmentTable,
+    ThreadModel,
+    AnswerModel,
+    LikeModel,
+    ThreadInstance,
+    ThreadTable,
+    Thread,
+    AnswerInstance,
+    Answer,
+    AnswerTable,
+    LikeInstance,
+    Like,
+    LikeTable
 } from "./models/data-types";
 import DefineOptions = Sequelize.DefineOptions;
 
@@ -188,7 +203,7 @@ class DatabaseManager {
 
 
         this.threads = this.sequelize.define<ThreadInstance, Thread>(ThreadTable, {
-            id: { type: Sequelize.INTEGER, primaryKey: true},
+            id: {type: Sequelize.INTEGER, primaryKey: true},
             question: Sequelize.CHAR(255),
             owner: Sequelize.INTEGER,
             category: Sequelize.INTEGER
@@ -196,7 +211,7 @@ class DatabaseManager {
 
 
         this.answers = this.sequelize.define<AnswerInstance, Answer>(AnswerTable, {
-            id: { type: Sequelize.INTEGER, primaryKey: true},
+            id: {type: Sequelize.INTEGER, primaryKey: true},
             answer: Sequelize.CHAR(255),
             position: Sequelize.INTEGER
             // ,
@@ -212,7 +227,6 @@ class DatabaseManager {
 
         this.answers.hasMany(this.likes);
         this.likes.belongsTo(this.answers);
-
 
 
     }

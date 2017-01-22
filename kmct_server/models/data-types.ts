@@ -106,6 +106,8 @@ export interface UsersInstance extends Sequelize.Instance<User>, User {
 }
 export interface ClassInstance extends Sequelize.Instance<Class>, Class {
     getAppointments?: (options?: Sequelize.FindOptions) => Promise<AppointmentInstance[]>;
+    addAppointment?: (appointment: Appointment) => Promise<AppointmentInstance>;
+    createAppointment?: (appointmen: Appointment) => Promise<AppointmentInstance>;
     getJournals?: (options?: Sequelize.FindOptions) => Promise<JournalInstance[]>;
 }
 export interface InvitationInstance extends Sequelize.Instance<Invitation>,Invitation {

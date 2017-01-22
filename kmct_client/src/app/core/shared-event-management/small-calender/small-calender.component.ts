@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {Options} from "fullcalendar";
-import {CoreService} from "../../core.service";
+import {SharedEventManagementService} from "../shared-event-management.service";
+import * as moment from "moment";
+import {UrlStoreService} from "../../../global-services/url-store.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-small-calender',
@@ -10,32 +13,46 @@ import {CoreService} from "../../core.service";
 export class SmallCalenderComponent implements OnInit {
 
   calendarOptions: Options = {
-    defaultDate: '2016-02-12',
+    defaultDate: moment(new Date()).format("YYYY-MM-DD"),
     weekNumbers: true,
     editable: false,
     defaultView: "listWeek",
     eventLimit: true, // allow "more" link when too many events
-    events: [],
-    header: {left: "title", center: "", right: "today prev,next, prevYear,nextYear"}
+    events: (start, end, timezone, callback) => {
+      this.loadAppointments(callback)
+    },
+    header: {left: "title", center: "", right: "today prev,next, prevYear,nextYear"},
+    eventClick: (calEvent) => {
+      this.urlStore.storedUrl = "/home";
+      this.router.navigate(["/home/sem/events", calEvent.id]);
+    }
   };
 
 
-  constructor(private coreService: CoreService) {
+  constructor(private semService: SharedEventManagementService, private urlStore: UrlStoreService, private router: Router) {
   }
 
   ngOnInit() {
-    this.coreService.loadAppointments().subscribe(appointments => {
+
+    let co = this.calendarOptions;
+    $("#small-calender").fullCalendar(co);
+    this.semService.reloadAppointments.subscribe(event => {
+      $("#small-calender").fullCalendar('refetchEvents');
+    });
+
+  }
+
+  private loadAppointments(callback: any) {
+    this.semService.loadAppointments().subscribe(appointments => {
       if (appointments)
-        this.calendarOptions.events = appointments.map(app => {
+        callback(appointments.map(app => {
           return {
             id: app.id,
             title: app.name,
             start: app.start.toString(),
             end: app.end.toString()
           };
-        });
-      let co = this.calendarOptions;
-      $("#small-calender").fullCalendar(co);
+        }));
     });
   }
 
