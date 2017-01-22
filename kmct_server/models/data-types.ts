@@ -96,6 +96,14 @@ export interface Appointment {
     repetitionCount: number;
 }
 
+export interface KarmaTransaction {
+    id?: number;
+    toUser: number;
+    fromUser?: number;
+    productId?: number;
+    appointmentId?:number
+}
+
 
 // Instances
 export interface CompanyInstance extends Sequelize.Instance<Company>, Company {
@@ -138,6 +146,8 @@ export interface  LikeInstance extends Sequelize.Instance<Like>, Like {
 export interface  CategoryInstance extends  Sequelize.Instance<Category>, Category {
 }
 
+export interface KarmaTransactionInstance extends Sequelize.Instance<KarmaTransaction>, KarmaTransaction{}
+
 
 // Models
 export interface CompanyModel extends Sequelize.Model<CompanyInstance,Company> {
@@ -176,6 +186,8 @@ export interface LikeModel extends Sequelize.Model<LikeInstance, Like> {
 export interface CategoryModel extends Sequelize.Model<CategoryInstance, Category> {
 }
 
+export interface KarmaTransactionModel extends Sequelize.Model<KarmaTransactionInstance, KarmaTransaction>{}
+
 // Tables
 export const CompanyTable = "company";
 export const UsersTable = 'user';
@@ -191,5 +203,6 @@ export const ThreadTable ="thread";
 export const AnswerTable ="answer";
 export const LikeTable ="like";
 export const CategoryTable ="category";
+export const KarmaTransactionTable = "karma_transaction";
 // Other Types
 export const ROLES = {admin: "ADMIN", ksmem: "KSMEM", ksspr: "KSSPR"};

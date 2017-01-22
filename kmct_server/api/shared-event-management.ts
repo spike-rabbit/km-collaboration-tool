@@ -6,6 +6,7 @@ import * as moment from "moment";
 import {ProtectedRequest} from "../authentication-manager";
 import {database} from "../database-manager";
 import {AppointmentInstance} from "../models/data-types";
+import {transferAppointmentKarma} from "../karma-manager";
 export const sem = express.Router();
 
 sem.get("/appointments", getAppointments);
@@ -34,7 +35,11 @@ function getAppointments(req: ProtectedRequest, res: express.Response) {
                     }
                 }
             }
-           mappointments = mappointments.concat(toAdd);
+            mappointments = mappointments.concat(toAdd);
+            mappointments.forEach(appointment => {
+                delete appointment.repetitionType;
+                delete appointment.repetitionCount;
+            });
             res.send({appointments: mappointments});
         });
     });
@@ -43,7 +48,9 @@ function getAppointments(req: ProtectedRequest, res: express.Response) {
 function postAppointment(req: ProtectedRequest, res: express.Response) {
     let appointment = req.body.appointment;
     database.classes.findById(req.user.class.id).then(classI => {
-        classI.createAppointment(appointment).then(appointment => appointment.update({user_id: req.user.id}).then(user => res.send()));
+        classI.createAppointment(appointment)
+            .then(appointment => appointment.update({user_id: req.user.id})
+                .then(user => transferAppointmentKarma(req.user.id, appointment.id).then(() => res.send())));
     }, reason => {
         // TODO        log better
         // TODO send error to client

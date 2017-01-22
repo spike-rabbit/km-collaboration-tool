@@ -46,7 +46,11 @@ import {
     AnswerTable,
     LikeInstance,
     Like,
-    LikeTable
+    LikeTable,
+    KarmaTransactionModel,
+    KarmaTransaction,
+    KarmaTransactionInstance,
+    KarmaTransactionTable
 } from "./models/data-types";
 import DefineOptions = Sequelize.DefineOptions;
 
@@ -63,6 +67,7 @@ class DatabaseManager {
     threads: ThreadModel;
     answers: AnswerModel;
     likes: LikeModel;
+    karmaTransactions: KarmaTransactionModel;
 
     constructor() {
         this.sequelize = new Sequelize('kmct', 'kmct_admin', 'G2i65%7089@u', {
@@ -191,7 +196,7 @@ class DatabaseManager {
         this.journalTemplates.belongsToMany(this.users, {through: userHasTemplates});
 
         this.appointments = this.sequelize.define<AppointmentInstance, Appointment>(AppointmentTable, {
-            id: {type: Sequelize.INTEGER, primaryKey: true},
+            id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
             name: Sequelize.CHAR(15),
             description: Sequelize.CHAR(200),
             start: Sequelize.DATE,
@@ -229,6 +234,14 @@ class DatabaseManager {
 
         this.answers.hasMany(this.likes);
         this.likes.belongsTo(this.answers);
+
+        this.karmaTransactions = this.sequelize.define<KarmaTransactionInstance, KarmaTransaction>(KarmaTransactionTable, {
+            id: {type: Sequelize.INTEGER, primaryKey: true},
+            toUser: {type: Sequelize.INTEGER, field: "to_user"},
+            fromUser: {type: Sequelize.INTEGER, field: "from_user"},
+            appointmentId: {type: Sequelize.INTEGER, field: "appointment_id"},
+            productId: {type: Sequelize.INTEGER, field: "product_id"}
+        }, withDefOpts());
 
 
     }
