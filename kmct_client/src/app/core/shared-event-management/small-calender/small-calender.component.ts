@@ -36,7 +36,7 @@ export class SmallCalenderComponent implements OnInit {
 
     let co = this.calendarOptions;
     $("#small-calender").fullCalendar(co);
-    this.semService.reloadAppointments.subscribe(event => {
+    this.semService.reloadAppointments.subscribe(() => {
       $("#small-calender").fullCalendar('refetchEvents');
     });
 

@@ -32,7 +32,7 @@
 
     <div class="form-group" *ngIf="repetitionType && repetitionType != 'none'">
       <label class="control-label" for="repetitionNumber">Anzahl Wiederholungen</label>
-      <input id="repetitionNumber" class="form-control" type="number" required>
+      <input id="repetitionNumber" name="repetitionCount" class="form-control" type="number" [(ngModel)]="repetitionCount" required>
     </div>
 
     <div class="form-group">

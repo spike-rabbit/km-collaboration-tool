@@ -28,7 +28,7 @@ export class SharedEventManagementService {
     );
   }
 
-  addAppointment(name: string, description: string, startDate: string, startTime: string, endDate: string, endTime: string) {
+  addAppointment(name: string, description: string, startDate: string, startTime: string, endDate: string, endTime: string, repetitionType: string, repetitionCount: number) {
     let start = moment(startDate + "-" + startTime, "YYYY-MM-DD-HH:mm").toISOString();
     let end = moment(endDate + "-" + endTime, "YYYY-MM-DD-HH:mm").toISOString();
     return this.http.post("/api/sem/appointment", {
@@ -36,7 +36,9 @@ export class SharedEventManagementService {
         name: name,
         description: description,
         start: start,
-        end: end
+        end: end,
+        repetitionType: repetitionType,
+        repetitionCount: repetitionCount
       }
     }, {sendAuthToken: true}).map(appointment => {
       this.reloadAppointments.emit();
@@ -48,7 +50,7 @@ export class SharedEventManagementService {
     );
   }
 
-  updateAppointment(id: number, name: string, description: string, startDate: string, startTime: string, endDate: string, endTime: string) {
+  updateAppointment(id: number, name: string, description: string, startDate: string, startTime: string, endDate: string, endTime: string, repetitionType: string, repetitionCount: number) {
     let start = moment(startDate + "-" + startTime, "YYYY-MM-DD-HH:mm").toISOString();
     let end = moment(endDate + "-" + endTime, "YYYY-MM-DD-HH:mm").toISOString();
     return this.http.put("/api/sem/appointment/" + id, {
@@ -56,7 +58,9 @@ export class SharedEventManagementService {
         name: name,
         description: description,
         start: start,
-        end: end
+        end: end,
+        repetitionType: repetitionType,
+        repetitionCount: repetitionCount
       }
     }, {sendAuthToken: true}).map(empty => {
       this.reloadAppointments.emit();

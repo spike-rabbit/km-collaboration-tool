@@ -2,6 +2,7 @@
  * Created by Maxi- PC on 16.01.2017.
  */
 import * as express from "express";
+import * as moment from "moment";
 import {ProtectedRequest} from "../authentication-manager";
 import {database} from "../database-manager";
 import {AppointmentInstance} from "../models/data-types";
@@ -16,8 +17,25 @@ sem.delete("/appointment/:id", deleteAppointment);
 
 function getAppointments(req: ProtectedRequest, res: express.Response) {
     database.classes.findById(req.user.class.id).then(cl => {
-        cl.getAppointments({attributes: ["id", "name", "start", "end"]}).then((appointments: AppointmentInstance[]) => {
-            res.send({appointments: appointments.map(appointment => appointment.toJSON())});
+        cl.getAppointments({attributes: ["id", "name", "start", "end", "repetitionType", "repetitionCount"]}).then((appointments: AppointmentInstance[]) => {
+            let mappointments = appointments.map(appointment => appointment.toJSON());
+            let toAdd = [];
+            for (let appointment of mappointments) {
+                if (appointment.repetitionType != "none") {
+                    let start = moment(appointment.start);
+                    let end = moment(appointment.end);
+                    for (let i = 0; i < appointment.repetitionCount; i++) {
+                        start.add(1, appointment.repetitionType == "daily" ? "d" : "w");
+                        end.add(1, appointment.repetitionType == "daily" ? "d" : "w");
+                        let newAppointment = JSON.parse(JSON.stringify(appointment));
+                        newAppointment.start = start.toISOString();
+                        newAppointment.end = end.toISOString();
+                        toAdd.push(newAppointment);
+                    }
+                }
+            }
+           mappointments = mappointments.concat(toAdd);
+            res.send({appointments: mappointments});
         });
     });
 }
@@ -51,6 +69,8 @@ function putAppointment(req: ProtectedRequest, res: express.Response) {
         app.description = appointment.description;
         app.start = appointment.start;
         app.end = appointment.end;
+        app.repetitionType = appointment.repetitionType;
+        app.repetitionCount = appointment.repetitionCount;
         app.save().then(saved => {
             res.send(saved.toJSON());
         }, err => {

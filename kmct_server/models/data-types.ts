@@ -92,6 +92,8 @@ export interface Appointment {
     start: Date;
     end: Date;
     user: User;
+    repetitionType: string;
+    repetitionCount: number;
 }
 
 

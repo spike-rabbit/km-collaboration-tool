@@ -195,7 +195,9 @@ class DatabaseManager {
             name: Sequelize.CHAR(15),
             description: Sequelize.CHAR(200),
             start: Sequelize.DATE,
-            end: Sequelize.DATE
+            end: Sequelize.DATE,
+            repetitionType: {type: Sequelize.CHAR(6), field: "repetition_type"},
+            repetitionCount: {type: Sequelize.INTEGER, field: "repetition_count"}
         }, withDefOpts());
 
         this.classes.hasMany(this.appointments);
