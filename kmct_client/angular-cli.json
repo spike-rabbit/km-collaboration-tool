@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "../kmct_server/public",
       "assets": [
         "assets",
         "favicon.ico"

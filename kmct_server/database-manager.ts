@@ -240,7 +240,8 @@ class DatabaseManager {
             toUser: {type: Sequelize.INTEGER, field: "to_user"},
             fromUser: {type: Sequelize.INTEGER, field: "from_user"},
             appointmentId: {type: Sequelize.INTEGER, field: "appointment_id"},
-            productId: {type: Sequelize.INTEGER, field: "product_id"}
+            productId: {type: Sequelize.INTEGER, field: "product_id"},
+            value: Sequelize.INTEGER
         }, withDefOpts());
 
 

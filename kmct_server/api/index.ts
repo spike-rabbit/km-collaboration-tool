@@ -6,6 +6,7 @@ import {userAdministration} from "./user-administration";
 import {xccUsage} from "./xcc-usage";
 import {kmctCache} from "../app";
 import {sem} from "./shared-event-management";
+import {karmaPoints} from "../karma-manager";
 export const index = express.Router();
 
 index.use("/xcc", protect, xccUsage);
@@ -15,6 +16,7 @@ index.post('/user', postUser);
 index.patch('/user', protect, patchUser);
 index.get('/user', protect, getUser);
 index.get('/user/company', protect, getCompany);
+// index.get("/user/karmapoints", protect, requireRole(ROLES.ksmem), getKarmapoints);
 
 
 function postUser(req: express.Request, res: express.Response, next) {
@@ -96,3 +98,7 @@ function getCompany(req: ProtectedRequest, res: express.Response) {
         res.send(userwc.company);
     });
 }
+
+// function getKarmapoints(req: ProtectedRequest, res: express.Response) {
+//     karmaPoints(req.user.id).then(points => res.send({points: points}));
+// }

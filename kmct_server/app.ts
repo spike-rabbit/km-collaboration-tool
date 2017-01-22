@@ -1,14 +1,11 @@
 import * as express from "express";
 import * as path from "path";
 import * as cors from "cors";
-import * as NodeCache from "node-cache"
+import * as NodeCache from "node-cache";
+import {index} from "./api/index";
 import bodyParser = require("body-parser");
 import morgan = require("morgan");
-import {index} from "./api/index";
-
-
-// let index = require('./coreRoutes/index');
-// let users = require('./coreRoutes/users');
+import cookieParser = require("cookie-parser");
 
 export const kmctCache = new NodeCache({stdTTL: 5 * 60});
 export const app = express();
@@ -20,6 +17,27 @@ app.use(cors({origin: "http://localhost:4200"}));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
+app.use(function (req, res, next) {
+    if (!req.url.startsWith("/api")) {
+        let lang = req.cookies["locale"];
+        if (!lang) {
+            for (let l of req.acceptsLanguages()) {
+                if (lang == "de" || lang == "en") {
+                    lang = l;
+                    break;
+                }
+            }
+        }
+        if (!lang) {
+            lang = "en";
+        }
+        req.url = "/" + lang + req.url;
+
+    }
+    console.log(req.url);
+    next();
+});
 app.use(express.static(path.join(__dirname, 'public')));
 
 

@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {SigninStateService} from "./global-services/signin-state.service";
+import {CookieService} from "angular2-cookie/services/cookies.service";
 
 @Component({
   selector: 'app-root',
@@ -8,11 +8,27 @@ import {SigninStateService} from "./global-services/signin-state.service";
 })
 export class AppComponent implements OnInit {
 
-  constructor(private signInService: SigninStateService) {
+  constructor(private cookieService: CookieService) {
   }
 
 
   ngOnInit(): void {
   }
+
+  onLocaleSwitch() {
+    let clocale = this.cookieService.get("locale");
+    if (!clocale) {
+      clocale = navigator.language
+    }
+    switch (clocale) {
+      case "de":
+        this.cookieService.put("locale", "en");
+        break;
+      case "en":
+        this.cookieService.put("locale", "de");
+    }
+    location.reload(true);
+  }
+
 
 }

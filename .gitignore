@@ -52,3 +52,4 @@ jspm_packages
 /kmct_server/database-manager.js.map
 /kmct_server/karma-manager.js
 /kmct_server/karma-manager.js.map
+/kmct_server/public/

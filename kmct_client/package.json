@@ -9,7 +9,10 @@
     "test": "ng test",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
-    "extract-i18n": "cd src && ng-xi18n"
+    "extract-i18n": "cd src && ng-xi18n",
+    "build": "npm run build:de && npm run build:en",
+    "build:de": "ng build -prod --locale de --o \"../kmct_server/public/de\"",
+    "build:en": "ng build -prod --locale en --o \"../kmct_server/public/en\""
   },
   "private": true,
   "dependencies": {
@@ -24,9 +27,11 @@
     "@angular/platform-server": "2.4.2",
     "@angular/router": "3.4.2",
     "@types/node": "6.0.60",
+    "angular2-cookie": "1.2.6",
     "angular2-fullcalendar": "1.1.1",
     "bootstrap-datepicker": "1.6.4",
     "codelyzer": "2.0.0-beta.4",
+    "cookie-parser": "1.4.3",
     "core-js": "^2.4.1",
     "karma-remap-istanbul": "0.2.2",
     "loadash": "0.0.1",

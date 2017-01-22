@@ -98,6 +98,7 @@ export interface Appointment {
 
 export interface KarmaTransaction {
     id?: number;
+    value: number;
     toUser: number;
     fromUser?: number;
     productId?: number;
