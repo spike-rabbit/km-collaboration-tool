@@ -1,40 +1,42 @@
 <h3>Klasse erstellen</h3>
 <form class="form-horizontal" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label class="col-sm-2 control-label" for="className">Klasse</label>
-      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+      <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="className">Klasse</label>
+      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
         <input id="className" name="className" type="text" class="form-control" [(ngModel)]="className" required>
       </div>
     </div>
 
   <h4 align="left">Daten des Klassensprechers</h4>
     <div class="form-group">
-      <label class="col-sm-2 control-label" for="classLeaderName">Name</label>
-      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+      <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="classLeaderName">Name</label>
+      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
         <input id="classLeaderName" name="classLeaderName" type="text" class="form-control"
                [(ngModel)]="classLeaderName" required>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label" for="classLeaderFirstname">Vorname</label>
-      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+      <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="classLeaderFirstname">Vorname</label>
+      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
         <input id="classLeaderFirstname" name="classLeaderFirstname" type="text" class="form-control"
                [(ngModel)]="classLeaderFirstname" required>
       </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="classLeaderEmail">Email</label>
-      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+      <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="classLeaderEmail">Email</label>
+      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
         <input id="classLeaderEmail" name="classLeaderEmail" type="text" class="form-control"
                [(ngModel)]="classLeaderEmail" required>
       </div>
     </div>
     <br>
+
     <div class="form-group">
-      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 btn-group">
+      <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label"></label>
+      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 btn-group">
         <button type="submit" class="btn btn-primary">Speichern</button>
         <button type="button" class="btn btn-default" (click)="onCancel()">Abbrechen</button>
       </div>
-
     </div>
+
 </form>

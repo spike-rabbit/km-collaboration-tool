@@ -8,6 +8,8 @@ import {FormsModule} from "@angular/forms";
 import {KnowledgeCenterService} from "./knowledge-center.service";
 import {XchangeCenterModule} from "../xchange-center/xchange-center.module";
 import { QuestionListComponent } from './question-list/question-list.component';
+import { CategoryListComponent } from './category-list/category-list.component';
+import { CategoryCreateComponent } from './category-create/category-create.component';
 
 @NgModule({
   imports: [
@@ -16,7 +18,7 @@ import { QuestionListComponent } from './question-list/question-list.component';
     FormsModule,
     XchangeCenterModule
   ],
-  declarations: [KnowledgeCenterComponent, QuestionCreateComponent, QuestionShowComponent, QuestionListComponent],
+  declarations: [KnowledgeCenterComponent, QuestionCreateComponent, QuestionShowComponent, QuestionListComponent, CategoryListComponent, CategoryCreateComponent],
   providers: [KnowledgeCenterService]
 })
 export class KnowledgeCenterModule { }
