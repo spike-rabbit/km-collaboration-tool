@@ -1,12 +1,18 @@
 
 <div class="form-horizontal">
   <h3>Firma bearbeiten</h3>
-
-  <div class="col-sm-12">
-    <input type="text" value="{{company.name}}">
+  <div class="form-group">
+  <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Name</label>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <input class="form-control" type="text" value="{{company.name}}">
+  </div>
   </div>
 
-  <div class="col-sm-12">
-    <a routerLink="edit" class="btn btn-primary">Firma speichern</a>
+  <div class="form-group">
+
+  <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label"></label>
+  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    <button class="btn btn-primary">Firma speichern</button>
+  </div>
   </div>
 </div>
