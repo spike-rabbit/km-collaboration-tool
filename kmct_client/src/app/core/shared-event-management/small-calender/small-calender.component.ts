@@ -4,6 +4,7 @@ import {SharedEventManagementService} from "../shared-event-management.service";
 import * as moment from "moment";
 import {UrlStoreService} from "../../../global-services/url-store.service";
 import {Router} from "@angular/router";
+import {LocalizerService} from "../../../global-services/localizer.service";
 
 @Component({
   selector: 'app-small-calender',
@@ -12,9 +13,10 @@ import {Router} from "@angular/router";
 })
 export class SmallCalenderComponent implements OnInit {
 
-  calendarOptions: Options = {
+  calendarOptions = {
     defaultDate: moment(new Date()).format("YYYY-MM-DD"),
     weekNumbers: true,
+    locale: this.localizer.getLocale(),
     editable: false,
     defaultView: "listWeek",
     eventLimit: true, // allow "more" link when too many events
@@ -29,7 +31,7 @@ export class SmallCalenderComponent implements OnInit {
   };
 
 
-  constructor(private semService: SharedEventManagementService, private urlStore: UrlStoreService, private router: Router) {
+  constructor(private semService: SharedEventManagementService, private urlStore: UrlStoreService, private router: Router, private localizer: LocalizerService) {
   }
 
   ngOnInit() {

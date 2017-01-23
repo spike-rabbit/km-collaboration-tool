@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {CookieService} from "angular2-cookie/services/cookies.service";
+import {LocalizerService} from "./global-services/localizer.service";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import {CookieService} from "angular2-cookie/services/cookies.service";
 })
 export class AppComponent implements OnInit {
 
-  constructor(private cookieService: CookieService) {
+  constructor(private localizer: LocalizerService) {
   }
 
 
@@ -16,18 +16,7 @@ export class AppComponent implements OnInit {
   }
 
   onLocaleSwitch() {
-    let clocale = this.cookieService.get("locale");
-    if (!clocale) {
-      clocale = navigator.language
-    }
-    switch (clocale) {
-      case "de":
-        this.cookieService.put("locale", "en");
-        break;
-      case "en":
-        this.cookieService.put("locale", "de");
-    }
-    location.reload(true);
+    this.localizer.switchLocale();
   }
 
 

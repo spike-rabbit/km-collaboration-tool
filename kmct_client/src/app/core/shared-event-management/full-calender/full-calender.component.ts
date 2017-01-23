@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {SharedEventManagementService} from "../shared-event-management.service";
 import {UrlStoreService} from "../../../global-services/url-store.service";
 import * as moment from "moment";
+import {LocalizerService} from "../../../global-services/localizer.service";
 
 @Component({
   selector: 'app-full-calender',
@@ -12,8 +13,9 @@ import * as moment from "moment";
 })
 export class FullCalenderComponent implements OnInit {
 
-  calendarOptions: Options = {
+  calendarOptions = {
     defaultDate: moment(new Date()).format("YYYY-MM-DD"),
+    locale: this.localizer.getLocale(),
     weekNumbers: true,
     editable: false,
     eventLimit: true, // allow "more" link when too many events
@@ -37,7 +39,7 @@ export class FullCalenderComponent implements OnInit {
   };
 
 
-  constructor(private semService: SharedEventManagementService, private router: Router, private urlStore: UrlStoreService) {
+  constructor(private semService: SharedEventManagementService, private router: Router, private urlStore: UrlStoreService, private localizer: LocalizerService) {
   }
 
   ngOnInit() {
