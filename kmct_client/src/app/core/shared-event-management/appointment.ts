@@ -7,4 +7,6 @@ export interface Appointment {
   description: string;
   start: string;
   end: string;
+  color: string;
+  type: string;
 }

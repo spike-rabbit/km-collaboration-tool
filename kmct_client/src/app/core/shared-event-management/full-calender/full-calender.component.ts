@@ -17,7 +17,9 @@ export class FullCalenderComponent implements OnInit {
     weekNumbers: true,
     editable: false,
     eventLimit: true, // allow "more" link when too many events
-    events: [],
+    events: (start, end, timezone, callback) => {
+      this.semService.loadAppointmentsWithCallback(callback)
+    },
     header: {left: "title", center: "addBtn", right: "today prev,next, prevYear,nextYear"},
     eventClick: (calEvent) => {
       this.urlStore.storedUrl = "/home";
@@ -39,19 +41,8 @@ export class FullCalenderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.semService.loadAppointments().subscribe(appointments => {
-      if (appointments)
-        this.calendarOptions.events = appointments.map(app => {
-          return {
-            id: app.id,
-            title: app.name,
-            start: app.start.toString(),
-            end: app.end.toString()
-          };
-        });
-      let co = this.calendarOptions;
-      $("#full-calender").fullCalendar(co);
-    });
+    let co = this.calendarOptions;
+    $("#full-calender").fullCalendar(co);
   }
 
 }

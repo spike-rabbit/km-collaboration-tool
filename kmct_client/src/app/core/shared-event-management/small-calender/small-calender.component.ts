@@ -19,7 +19,7 @@ export class SmallCalenderComponent implements OnInit {
     defaultView: "listWeek",
     eventLimit: true, // allow "more" link when too many events
     events: (start, end, timezone, callback) => {
-      this.loadAppointments(callback)
+      this.semService.loadAppointmentsWithCallback(callback)
     },
     header: {left: "title", center: "", right: "today prev,next, prevYear,nextYear"},
     eventClick: (calEvent) => {
@@ -33,27 +33,10 @@ export class SmallCalenderComponent implements OnInit {
   }
 
   ngOnInit() {
-
     let co = this.calendarOptions;
     $("#small-calender").fullCalendar(co);
     this.semService.reloadAppointments.subscribe(() => {
       $("#small-calender").fullCalendar('refetchEvents');
     });
-
   }
-
-  private loadAppointments(callback: any) {
-    this.semService.loadAppointments().subscribe(appointments => {
-      if (appointments)
-        callback(appointments.map(app => {
-          return {
-            id: app.id,
-            title: app.name,
-            start: app.start.toString(),
-            end: app.end.toString()
-          };
-        }));
-    });
-  }
-
 }

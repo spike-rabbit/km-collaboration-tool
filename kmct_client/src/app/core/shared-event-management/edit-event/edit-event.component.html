@@ -8,6 +8,16 @@
       <input id="name" class="form-control" name="name" [(ngModel)]="name" required>
     </div>
     <div class="form-group">
+      <label class="control-label" for="type">Typ</label>
+      <select id="type" name="typ" class="form-control" [(ngModel)]="type" required>
+        <option value="STANDARD">Standart</option>
+        <option value="ATIW">Atiw</option>
+        <option value="SPE">SPE</option>
+        <option value="EXAM">Klausur</option>
+        <option value="LECTURE">Vorlesung</option>
+      </select>
+    </div>
+    <div class="form-group">
       <label class="control-label" for="description">Beschreibung</label>
       <textarea id="description" class="form-control" name="description" [(ngModel)]="description" required></textarea>
     </div>
@@ -32,7 +42,8 @@
 
     <div class="form-group" *ngIf="repetitionType && repetitionType != 'none'">
       <label class="control-label" for="repetitionNumber">Anzahl Wiederholungen</label>
-      <input id="repetitionNumber" name="repetitionCount" class="form-control" type="number" [(ngModel)]="repetitionCount" required>
+      <input id="repetitionNumber" name="repetitionCount" class="form-control" type="number"
+             [(ngModel)]="repetitionCount" required>
     </div>
 
     <div class="form-group">

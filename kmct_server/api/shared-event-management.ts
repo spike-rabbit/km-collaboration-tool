@@ -17,7 +17,7 @@ sem.delete("/appointment/:id", deleteAppointment);
 
 function getAppointments(req: ProtectedRequest, res: express.Response) {
     database.classes.findById(req.user.class.id).then(cl => {
-        cl.getAppointments({attributes: ["id", "name", "start", "end", "repetitionType", "repetitionCount"]}).then((appointments: AppointmentInstance[]) => {
+        cl.getAppointments({attributes: ["id", "name", "start", "end", "repetitionType", "repetitionCount", "type"]}).then((appointments: AppointmentInstance[]) => {
             let mappointments = appointments.map(appointment => appointment.toJSON());
             let toAdd = [];
             for (let appointment of mappointments) {
@@ -78,6 +78,7 @@ function putAppointment(req: ProtectedRequest, res: express.Response) {
         app.end = appointment.end;
         app.repetitionType = appointment.repetitionType;
         app.repetitionCount = appointment.repetitionCount;
+        app.type = appointment.type;
         app.save().then(saved => {
             res.send(saved.toJSON());
         }, err => {

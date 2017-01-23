@@ -50,7 +50,8 @@ import {
     KarmaTransactionModel,
     KarmaTransaction,
     KarmaTransactionInstance,
-    KarmaTransactionTable
+    KarmaTransactionTable,
+    APPOINTEMENT_TYPES
 } from "./models/data-types";
 import DefineOptions = Sequelize.DefineOptions;
 
@@ -202,7 +203,8 @@ class DatabaseManager {
             start: Sequelize.DATE,
             end: Sequelize.DATE,
             repetitionType: {type: Sequelize.CHAR(6), field: "repetition_type"},
-            repetitionCount: {type: Sequelize.INTEGER, field: "repetition_count"}
+            repetitionCount: {type: Sequelize.INTEGER, field: "repetition_count"},
+            type: {type: Sequelize.ENUM({values: [APPOINTEMENT_TYPES.atiw, APPOINTEMENT_TYPES.exam, APPOINTEMENT_TYPES.lecture, APPOINTEMENT_TYPES.standart, APPOINTEMENT_TYPES.spe]})}
         }, withDefOpts());
 
         this.classes.hasMany(this.appointments);

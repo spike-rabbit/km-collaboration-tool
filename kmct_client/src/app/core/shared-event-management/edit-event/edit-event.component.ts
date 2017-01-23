@@ -23,6 +23,7 @@ export class EditEventComponent implements OnInit {
   endTime: string;
   repetitionType: string = "none";
   repetitionCount: number;
+  type: string;
 
   ngOnInit() {
     this.startDate = moment(new Date()).format("YYYY-MM-DD");
@@ -45,6 +46,7 @@ export class EditEventComponent implements OnInit {
             this.endTime = end.format("HH:mm");
             this.repetitionType = event.repetitionType;
             this.repetitionCount = event.repetitionCount;
+            this.type = event.type;
           });
         }
       }
@@ -54,12 +56,12 @@ export class EditEventComponent implements OnInit {
 
   onSubmit() {
     if (this.id) {
-      this.semService.updateAppointment(this.id, this.name, this.description, this.startDate, this.startTime, this.endDate, this.endTime, this.repetitionType, this.repetitionCount).subscribe(res => {
+      this.semService.updateAppointment(this.id, this.name, this.description, this.startDate, this.startTime, this.endDate, this.endTime, this.repetitionType, this.repetitionCount, this.type).subscribe(res => {
         this.onCancel();
       });
     }
     else {
-      this.semService.addAppointment(this.name, this.description, this.startDate, this.startTime, this.endDate, this.endTime, this.repetitionType, this.repetitionCount).subscribe(res => {
+      this.semService.addAppointment(this.name, this.description, this.startDate, this.startTime, this.endDate, this.endTime, this.repetitionType, this.repetitionCount, this.type).subscribe(res => {
         this.onCancel();
       });
     }
