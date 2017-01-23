@@ -2,8 +2,9 @@
  * Created by L on 05.01.2017.
  */
 import * as express from "express";
-import {ProtectedRequest} from "../authentication-manager";
+import {ProtectedRequest, requireRole} from "../authentication-manager";
 import {database} from "../database-manager";
+import {ROLES} from "../models/data-types";
 let router = express.Router();
 router.get('/journals', getJournals);
 router.get('/journal/:id', getJournal);
@@ -14,6 +15,14 @@ router.patch('/journal', patchJournal);
 function getJournals(req: ProtectedRequest, res: express.Response) {
     database.classes.findById(req.user.class.id).then(cs => {
         cs.getJournals().then(journals => {
+            for(let j of journals){
+                if(j.owner == req.user.id ||requireRole(ROLES.ksspr)){
+                    j.editable = true;
+                } else{
+                    j.editable = false;
+                }
+            }
+        }).then(journals => {
             res.send({journals: journals});
         }, reason => {
             //TODO log better
@@ -55,7 +64,7 @@ function patchJournal(req: ProtectedRequest, res: express.Response) {
             {
                 monday: req.params['monday'], tuesday: req.params['tuesday'],
                 wednesday: req.params['wednesday'], thursday: req.params['thursday'],
-                friday: req.params['friday'], spe: req.params['spe']
+                friday: req.params['friday'], spe: req.params['spe'], activated: req.params['activated']
             }).then(journal => res.send({
                 journal: journal,
                 classId: req.user.class.id
