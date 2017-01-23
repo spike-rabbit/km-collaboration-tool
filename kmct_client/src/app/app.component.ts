@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {SigninStateService} from "./global-services/signin-state.service";
+import {LocalizerService} from "./global-services/localizer.service";
 
 @Component({
   selector: 'app-root',
@@ -8,11 +8,16 @@ import {SigninStateService} from "./global-services/signin-state.service";
 })
 export class AppComponent implements OnInit {
 
-  constructor(private signInService: SigninStateService) {
+  constructor(private localizer: LocalizerService) {
   }
 
 
   ngOnInit(): void {
   }
+
+  onLocaleSwitch() {
+    this.localizer.switchLocale();
+  }
+
 
 }

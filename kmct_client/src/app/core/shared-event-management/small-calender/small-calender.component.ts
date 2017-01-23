@@ -4,6 +4,7 @@ import {SharedEventManagementService} from "../shared-event-management.service";
 import * as moment from "moment";
 import {UrlStoreService} from "../../../global-services/url-store.service";
 import {Router} from "@angular/router";
+import {LocalizerService} from "../../../global-services/localizer.service";
 
 @Component({
   selector: 'app-small-calender',
@@ -12,14 +13,15 @@ import {Router} from "@angular/router";
 })
 export class SmallCalenderComponent implements OnInit {
 
-  calendarOptions: Options = {
+  calendarOptions = {
     defaultDate: moment(new Date()).format("YYYY-MM-DD"),
     weekNumbers: true,
+    locale: this.localizer.getLocale(),
     editable: false,
     defaultView: "listWeek",
     eventLimit: true, // allow "more" link when too many events
     events: (start, end, timezone, callback) => {
-      this.loadAppointments(callback)
+      this.semService.loadAppointmentsWithCallback(callback)
     },
     header: {left: "title", center: "", right: "today prev,next, prevYear,nextYear"},
     eventClick: (calEvent) => {
@@ -29,31 +31,14 @@ export class SmallCalenderComponent implements OnInit {
   };
 
 
-  constructor(private semService: SharedEventManagementService, private urlStore: UrlStoreService, private router: Router) {
+  constructor(private semService: SharedEventManagementService, private urlStore: UrlStoreService, private router: Router, private localizer: LocalizerService) {
   }
 
   ngOnInit() {
-
     let co = this.calendarOptions;
     $("#small-calender").fullCalendar(co);
     this.semService.reloadAppointments.subscribe(() => {
       $("#small-calender").fullCalendar('refetchEvents');
     });
-
   }
-
-  private loadAppointments(callback: any) {
-    this.semService.loadAppointments().subscribe(appointments => {
-      if (appointments)
-        callback(appointments.map(app => {
-          return {
-            id: app.id,
-            title: app.name,
-            start: app.start.toString(),
-            end: app.end.toString()
-          };
-        }));
-    });
-  }
-
 }

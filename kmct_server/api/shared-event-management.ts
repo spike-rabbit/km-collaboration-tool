@@ -6,7 +6,6 @@ import * as moment from "moment";
 import {ProtectedRequest} from "../authentication-manager";
 import {database} from "../database-manager";
 import {AppointmentInstance} from "../models/data-types";
-import {transferAppointmentKarma} from "../karma-manager";
 export const sem = express.Router();
 
 sem.get("/appointments", getAppointments);
@@ -18,7 +17,7 @@ sem.delete("/appointment/:id", deleteAppointment);
 
 function getAppointments(req: ProtectedRequest, res: express.Response) {
     database.classes.findById(req.user.class.id).then(cl => {
-        cl.getAppointments({attributes: ["id", "name", "start", "end", "repetitionType", "repetitionCount"]}).then((appointments: AppointmentInstance[]) => {
+        cl.getAppointments({attributes: ["id", "name", "start", "end", "repetitionType", "repetitionCount", "type"]}).then((appointments: AppointmentInstance[]) => {
             let mappointments = appointments.map(appointment => appointment.toJSON());
             let toAdd = [];
             for (let appointment of mappointments) {
@@ -48,9 +47,10 @@ function getAppointments(req: ProtectedRequest, res: express.Response) {
 function postAppointment(req: ProtectedRequest, res: express.Response) {
     let appointment = req.body.appointment;
     database.classes.findById(req.user.class.id).then(classI => {
-        classI.createAppointment(appointment)
-            .then(appointment => appointment.update({user_id: req.user.id})
-                .then(user => transferAppointmentKarma(req.user.id, appointment.id).then(() => res.send())));
+        classI.createAppointment(appointment).then(appointment => appointment.update({user_id: req.user.id})
+            .then(() => res.send()))
+        // transferAppointmentKarma(req.user.id, appointment.id)
+        // .then(() => res.send())));
     }, reason => {
         // TODO        log better
         // TODO send error to client
@@ -78,6 +78,7 @@ function putAppointment(req: ProtectedRequest, res: express.Response) {
         app.end = appointment.end;
         app.repetitionType = appointment.repetitionType;
         app.repetitionCount = appointment.repetitionCount;
+        app.type = appointment.type;
         app.save().then(saved => {
             res.send(saved.toJSON());
         }, err => {

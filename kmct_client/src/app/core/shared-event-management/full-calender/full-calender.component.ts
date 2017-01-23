@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {SharedEventManagementService} from "../shared-event-management.service";
 import {UrlStoreService} from "../../../global-services/url-store.service";
 import * as moment from "moment";
+import {LocalizerService} from "../../../global-services/localizer.service";
 
 @Component({
   selector: 'app-full-calender',
@@ -12,12 +13,15 @@ import * as moment from "moment";
 })
 export class FullCalenderComponent implements OnInit {
 
-  calendarOptions: Options = {
+  calendarOptions = {
     defaultDate: moment(new Date()).format("YYYY-MM-DD"),
+    locale: this.localizer.getLocale(),
     weekNumbers: true,
     editable: false,
     eventLimit: true, // allow "more" link when too many events
-    events: [],
+    events: (start, end, timezone, callback) => {
+      this.semService.loadAppointmentsWithCallback(callback)
+    },
     header: {left: "title", center: "addBtn", right: "today prev,next, prevYear,nextYear"},
     eventClick: (calEvent) => {
       this.urlStore.storedUrl = "/home";
@@ -35,23 +39,12 @@ export class FullCalenderComponent implements OnInit {
   };
 
 
-  constructor(private semService: SharedEventManagementService, private router: Router, private urlStore: UrlStoreService) {
+  constructor(private semService: SharedEventManagementService, private router: Router, private urlStore: UrlStoreService, private localizer: LocalizerService) {
   }
 
   ngOnInit() {
-    this.semService.loadAppointments().subscribe(appointments => {
-      if (appointments)
-        this.calendarOptions.events = appointments.map(app => {
-          return {
-            id: app.id,
-            title: app.name,
-            start: app.start.toString(),
-            end: app.end.toString()
-          };
-        });
-      let co = this.calendarOptions;
-      $("#full-calender").fullCalendar(co);
-    });
+    let co = this.calendarOptions;
+    $("#full-calender").fullCalendar(co);
   }
 
 }

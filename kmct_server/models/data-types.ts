@@ -94,10 +94,12 @@ export interface Appointment {
     user: User;
     repetitionType: string;
     repetitionCount: number;
+    type: string;
 }
 
 export interface KarmaTransaction {
     id?: number;
+    value: number;
     toUser: number;
     fromUser?: number;
     productId?: number;
@@ -206,3 +208,4 @@ export const CategoryTable ="category";
 export const KarmaTransactionTable = "karma_transaction";
 // Other Types
 export const ROLES = {admin: "ADMIN", ksmem: "KSMEM", ksspr: "KSSPR"};
+export const APPOINTEMENT_TYPES = {spe: "SPE", atiw: "ATIW", standart: "STANDARD", exam: "EXAM", lecture: "LECTURE"};
