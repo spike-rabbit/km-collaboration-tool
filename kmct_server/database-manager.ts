@@ -51,7 +51,7 @@ import {
     KarmaTransaction,
     KarmaTransactionInstance,
     KarmaTransactionTable,
-    APPOINTEMENT_TYPES
+    APPOINTEMENT_TYPES, CategoryModel, CategoryTable, CategoryInstance, Category
 } from "./models/data-types";
 import DefineOptions = Sequelize.DefineOptions;
 
@@ -69,6 +69,7 @@ class DatabaseManager {
     answers: AnswerModel;
     likes: LikeModel;
     karmaTransactions: KarmaTransactionModel;
+    categories: CategoryModel;
 
     constructor() {
         this.sequelize = new Sequelize('kmct', 'kmct_admin', 'G2i65%7089@u', {
@@ -161,7 +162,8 @@ class DatabaseManager {
             week: Sequelize.CHAR(45),
             owner: Sequelize.INTEGER,
             startDate: Sequelize.DATE,
-            location: Sequelize.CHAR(4)
+            location: Sequelize.CHAR(4),
+            activated: Sequelize.BOOLEAN
 
         }, withDefOpts({
             classMethods: {
@@ -215,16 +217,16 @@ class DatabaseManager {
             id: {type: Sequelize.INTEGER, primaryKey: true},
             question: Sequelize.CHAR(255),
             owner: Sequelize.INTEGER,
-            category: Sequelize.INTEGER
-        }, withDefOpts());
+            category: Sequelize.INTEGER,
+            created_at: Sequelize.DATE,
+            updated_at: Sequelize.DATE,
+            class: Sequelize.CHAR(5)
+        }, withDate());
 
 
         this.answers = this.sequelize.define<AnswerInstance, Answer>(AnswerTable, {
             id: {type: Sequelize.INTEGER, primaryKey: true},
-            answer: Sequelize.CHAR(255),
-            position: Sequelize.INTEGER
-            // ,
-            // thread: Sequelize.INTEGER
+            answer: Sequelize.CHAR(255)
         }, withDefOpts());
 
         this.threads.hasMany(this.answers);
@@ -236,6 +238,8 @@ class DatabaseManager {
 
         this.answers.hasMany(this.likes);
         this.likes.belongsTo(this.answers);
+        this.users.hasMany(this.likes);
+        this.likes.belongsTo(this.users);
 
         this.karmaTransactions = this.sequelize.define<KarmaTransactionInstance, KarmaTransaction>(KarmaTransactionTable, {
             id: {type: Sequelize.INTEGER, primaryKey: true},
@@ -245,6 +249,16 @@ class DatabaseManager {
             productId: {type: Sequelize.INTEGER, field: "product_id"},
             value: Sequelize.INTEGER
         }, withDefOpts());
+
+
+        this.categories = this.sequelize.define<CategoryInstance, Category>(CategoryTable, {
+            id: {type: Sequelize.INTEGER, primaryKey: true},
+            category: Sequelize.CHAR(30),
+            class_id: Sequelize.CHAR(5)
+        }, withDefOpts());
+
+        this.classes.hasMany(this.categories);
+        this.categories.belongsTo(this.classes);
 
 
     }
@@ -260,6 +274,18 @@ function withDefOpts(defOpts?: Sequelize.DefineOptions<any>) {
     }
     else return {
         timestamps: false,
+        underscored: true
+    };
+}
+
+function withDate(defOpts?: Sequelize.DefineOptions<any>){
+    if (defOpts) {
+        defOpts.timestamps = true;
+        defOpts.underscored = true;
+        return defOpts;
+    }
+    else return {
+        timestamps: true,
         underscored: true
     };
 }

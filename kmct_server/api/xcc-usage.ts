@@ -15,14 +15,6 @@ router.patch('/journal', patchJournal);
 function getJournals(req: ProtectedRequest, res: express.Response) {
     database.classes.findById(req.user.class.id).then(cs => {
         cs.getJournals().then(journals => {
-            for(let j of journals){
-                if(j.owner == req.user.id ||requireRole(ROLES.ksspr)){
-                    j.editable = true;
-                } else{
-                    j.editable = false;
-                }
-            }
-        }).then(journals => {
             res.send({journals: journals});
         }, reason => {
             //TODO log better
@@ -37,15 +29,15 @@ function getJournals(req: ProtectedRequest, res: express.Response) {
 }
 
 function getJournal(req: ProtectedRequest, res: express.Response) {
-    database.journals.findById(req.params['id']).then(journal => res.send({
+    let journal = database.journals.findById(req.params['id']).then(journal =>
+        res.send({
             journal: journal,
-            classId: req.user.class.id
-        }),
-        reason => {
-            //TODO log better
-            //TODO send error to client
-            console.log(reason);
-        });
+            editable: journal.owner == req.user.id || requireRole(ROLES.ksspr) ? true : false
+        }), reason => {
+        //TODO log better
+        //TODO send error to client
+        console.log(reason);
+    });
 }
 
 function postJournal(req: ProtectedRequest, res: express.Response) {

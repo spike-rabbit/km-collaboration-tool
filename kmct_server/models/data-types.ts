@@ -3,7 +3,6 @@
  */
 import * as Sequelize from "sequelize";
 import Instance = Sequelize.Instance;
-import {Category} from "../../kmct_client/src/app/core/knowledge-center/category";
 
 // POJOs
 export interface Company {
@@ -57,6 +56,8 @@ export interface Journal {
     owner: number;
     startDate: Date;
     location: string;
+    activated: boolean;
+    editable: boolean;
 }
 
 export interface Thread {
@@ -64,23 +65,32 @@ export interface Thread {
     question: string;
     owner: number;
     category: number;
+    created_at: Date;
+    updated_at: Date;
+    class: string;
+    answers: Answer[];
 }
 
 export interface Answer {
     id?: number;
-    thread: number;
     answer: string;
-    position: number;
+    creationDate: Date;
+    owner: number;
+    liked: boolean;
+    likes: Like[];
 }
 
 
 export interface Like {
-
+    id?: number;
+    user_id: number;
+    answer: number;
 }
 
-export interface category{
+export interface Category{
     id?: number;
     category: string;
+    class_id: string;
 }
 
 

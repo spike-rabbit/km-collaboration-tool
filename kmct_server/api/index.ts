@@ -4,12 +4,14 @@ import {database} from "../database-manager";
 import {ROLES, UsersInstance} from "../models/data-types";
 import {userAdministration} from "./user-administration";
 import {xccUsage} from "./xcc-usage";
+import {kncUsage} from "./knc-usage";
 import {kmctCache} from "../app";
 import {sem} from "./shared-event-management";
 import {karmaPoints} from "../karma-manager";
 export const index = express.Router();
 
 index.use("/xcc", protect, xccUsage);
+index.use("/knc", protect, kncUsage);
 index.use("/uas", protect, userAdministration);
 index.use("/sem", protect, requireRole(ROLES.ksmem), sem);
 index.post('/user', postUser);

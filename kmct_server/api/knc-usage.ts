@@ -8,33 +8,22 @@ import {ThreadInstance} from "../models/data-types";
 let router = express.Router();
 router.get('/threads', getAllThreads);
 router.get('/thread/:id', getThread);
-router.get('/answer/:answerId', getAnswer);
-router.get('like/:likeId', getLike);
-router.get('likes/:answerId', getLikes);
 router.post('/thread', postThread);
 router.post('/answer', postAnswer);
 router.post('/like', postLike);
+router.get('/categories', getAllCategories);
+router.post('/categories', postCategory);
 //category & sort
 
 
 function getAllThreads(req: ProtectedRequest, res: express.Response){
-    database.threads.findAll({ where: { class: req.user.class.id}, include: [{  all:true,
-
-        include: [{all: true}]}]})
-        .then((threads: ThreadInstance[]) => {
-            let tarray = [];
-            for (let t of threads){
-                 let tJSON = t.toJSON();
-                tarray.push(tJSON);
-                for(let a of tJSON.answers){
-                    for(let l of a.likes){
-                        a.liked = l.user_id == req.user.id;
-                    }
-               }
-            }
+    database.threads.findAll({ where: { class: req.user.class.id}})
+        .then(threads => {
         res.send(
             {
-                threads: tarray
+                threads: threads.sort(function(a,b){
+                    return b.created_at.getDate() - a.created_at.getDate();
+                })
             }
             )
     }, reason => {
@@ -51,11 +40,27 @@ function getThread(req: ProtectedRequest, res: express.Response){
                  all: true,
                  include: [{all: true}]}
         ]}
-        ).then(thread => res.send({thread: thread}), reason => {
-        //TODO log better
-        //TODO send error to client
-        console.log(reason);
-    });
+        ).then((thread: ThreadInstance[]) =>{
+        let tarray = [];
+        for (let t of thread){
+            let tJSON = t.toJSON();
+            tarray.push(tJSON);
+            for(let a of tJSON.answers){
+                for(let l of a.likes){
+                    a.liked = l.user_id == req.user.id;
+                }
+            }
+            t.answers = t.answers.sort(function(a,b){
+                return a.creationDate.getDate() - b.creationDate.getDate() ;
+            });
+        }
+            res.send({thread: thread}), reason => {
+                //TODO log better
+                //TODO send error to client
+                console.log(reason);
+            }
+        }
+    );
 }
 
 function postThread(req: ProtectedRequest, res: express.Response){
@@ -81,21 +86,6 @@ function postAnswer(req: ProtectedRequest, res: express.Response) {
 
 
 
-function getAnswer(req: ProtectedRequest, res: express.Response){
-    database.answers.findById(req.params['id']).then(answer => res.send({answer: answer}), reason => {
-        //TODO log better
-        //TODO send error to client
-        console.log(reason);
-    });
-}
-
-function getLikes(req: ProtectedRequest, res: express.Response){
-
-}
-
-function getLike(req: ProtectedRequest, res: express.Response){
-
-}
 
 function postLike(req: ProtectedRequest, res: express.Response){
     database.likes.create(req.body.like).then(() => res.send(), reason => {
@@ -105,5 +95,27 @@ function postLike(req: ProtectedRequest, res: express.Response){
     });
 }
 
+
+function getAllCategories(req: ProtectedRequest, res: express.Response){
+
+    database.categories.findAll({ where: { class_id: req.user.class.id}}).then(categories => {
+        res.send({categories: categories}), reason => {
+            //TODO log better
+            //TODO send error to client
+            console.log(reason);
+        }
+    });
+}
+
+function postCategory(req: ProtectedRequest, res: express.Response){
+
+    let cat = req.body.category;
+    database.categories.create(cat).then(() => res.send(), reason => {
+        //TODO log better
+        //TODO send error to client
+        console.log(reason);
+    });
+
+}
 
 export {router as kncUsage};
