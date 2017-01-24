@@ -13,4 +13,5 @@ export interface Journal {
   friday: string;
   location: string;
   editable: boolean;
+  activated: boolean;
 }
