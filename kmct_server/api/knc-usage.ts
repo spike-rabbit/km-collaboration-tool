@@ -4,13 +4,13 @@
 import * as express from "express";
 import {ProtectedRequest} from "../authentication-manager";
 import {database} from "../database-manager";
-import {ThreadInstance} from "../models/data-types";
+import {ThreadInstance, LikeInstance} from "../models/data-types";
 let router = express.Router();
 router.get('/threads', getAllThreads);
 router.get('/thread/:id', getThread);
 router.post('/thread', postThread);
 router.post('/answer', postAnswer);
-router.post('/like', postLike);
+router.post('/thread/answer/:id/like', postLike);
 router.get('/categories', getAllCategories);
 router.post('/categories', postCategory);
 //category & sort
@@ -41,7 +41,10 @@ function getAllThreads(req: ProtectedRequest, res: express.Response) {
 
 function getThread(req: ProtectedRequest, res: express.Response) {
     database.threads.findById(req.params['id'], {
-            include: [{model: database.answers, include: [database.likes]}, {
+            include: [{
+                model: database.answers,
+                include: [database.likes, {model: database.users, attributes: ["name", "firstname"]}]
+            }, {
                 model: database.users,
                 attributes: ["name", "firstname"]
             }, {model: database.categories, attributes: ["id", "category"]}]
@@ -50,7 +53,7 @@ function getThread(req: ProtectedRequest, res: express.Response) {
             let tJSON = thread.toJSON();
             for (let a of tJSON.answers) {
                 (<any>a).likeCount = a.likes.length;
-                a.liked = thread.owner == req.user.id;
+                a.liked = a.owner == req.user.id;
                 for (let l of a.likes) {
                     if (l.user_id == req.user.id) {
                         a.liked = true;
@@ -60,8 +63,9 @@ function getThread(req: ProtectedRequest, res: express.Response) {
                 delete a.likes;
             }
             tJSON.answers = tJSON.answers.sort(function (a, b) {
-                return a.creationDate.getDate() - b.creationDate.getDate();
+                return a.created_at.getDate() - b.created_at.getDate();
             });
+            console.log(JSON.stringify(tJSON));
             res.send({thread: tJSON});
         }, reason => {
             //TODO log better
@@ -94,6 +98,7 @@ function postThread(req: ProtectedRequest, res: express.Response) {
 function postAnswer(req: ProtectedRequest, res: express.Response) {
 
     let answer = req.body;
+    answer.owner = req.user.id;
     database.answers.create(answer).then(() => res.send(), reason => {
         //TODO log better
         //TODO send error to client
@@ -103,7 +108,13 @@ function postAnswer(req: ProtectedRequest, res: express.Response) {
 
 
 function postLike(req: ProtectedRequest, res: express.Response) {
-    database.likes.create(req.body.like).then(() => res.send(), reason => {
+    database.likes.create({}).then((like: LikeInstance) => {
+        return like.setAnswer(req.params["id"]).then(() => like.setUser(req.user.id)).then(() => res.send(), reason => {
+            //TODO log better
+            //TODO send error to client
+            console.log(reason);
+        });
+    }, reason => {
         //TODO log better
         //TODO send error to client
         console.log(reason);

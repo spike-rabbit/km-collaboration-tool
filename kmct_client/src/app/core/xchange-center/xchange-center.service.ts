@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {KmctHttpService} from "../../global-services/kmct-http.service";
 import {Response} from "@angular/http";
 import {Observable} from "rxjs";
+import {Journal} from "./journal";
 
 @Injectable()
 export class XchangeCenterService {
@@ -28,12 +29,19 @@ export class XchangeCenterService {
       });
   }
 
-  setActivated(id: number) {
-    return this.http.patch("/api/xcc/journal/" + id, {activated: true}, {sendAuthToken: true})
-      .catch((response: Response) => {
+  patchJournal(journal: Journal) {
+    return this.http.patch("/api/xcc/journal/" + journal.id, journal, {sendAuthToken: true}).catch((response: Response) => {
       console.log(response);
       return Observable.throw("Error");
     });
+  }
+
+  setActivated(id: number) {
+    return this.http.patch("/api/xcc/journal/" + id, {activated: true}, {sendAuthToken: true})
+      .catch((response: Response) => {
+        console.log(response);
+        return Observable.throw("Error");
+      });
   }
 
 }

@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Question} from "../question";
 import {slideInOutAnimation} from "../../router-animations";
 import {KnowledgeCenterService} from "../knowledge-center.service";
+import {Answer} from "../answer";
 
 @Component({
   selector: 'app-question-show',
@@ -27,9 +28,16 @@ export class QuestionShowComponent implements OnInit {
     this.kncService.loadQuestion(this.id).subscribe(question => this.question = question);
   }
 
+  onLike(answer: Answer) {
+    this.kncService.likeAnswer(answer).subscribe(() => {
+      answer.likeCount++;
+      answer.liked = true;
+    });
+  }
+
   submit() {
     this.kncService.addAnswer(this.question.id, this.answer).subscribe(answer => {
-     this.question.answers.push({answer: this.answer, likeCount: 0});
+     this.question.answers.push({answer: this.answer, likeCount: 0, liked: true});
      this.answer = "";
     });
 

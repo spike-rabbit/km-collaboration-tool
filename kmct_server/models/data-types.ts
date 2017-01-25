@@ -75,7 +75,7 @@ export interface Thread {
 export interface Answer {
     id?: number;
     answer: string;
-    creationDate: Date;
+    created_at: Date;
     owner: number;
     liked: boolean;
     likes: Like[];
@@ -84,8 +84,8 @@ export interface Answer {
 
 export interface Like {
     id?: number;
-    user_id: number;
-    answer: number;
+    user_id?: number;
+    answer?: number;
 }
 
 export interface Category{
@@ -155,6 +155,8 @@ export interface AnswerInstance extends Sequelize.Instance<Answer>, Answer{
 }
 
 export interface  LikeInstance extends Sequelize.Instance<Like>, Like {
+    setUser: (id: number) => Promise<UsersInstance>;
+    setAnswer: (id: number) => Promise<AnswerInstance>;
 }
 
 export interface  CategoryInstance extends  Sequelize.Instance<Category>, Category {

@@ -228,14 +228,15 @@ class DatabaseManager {
         this.answers = this.sequelize.define<AnswerInstance, Answer>(AnswerTable, {
             id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
             threadId: {type: Sequelize.INTEGER, field: "thread_id"},
-            answer: Sequelize.CHAR(255)
-        }, withDefOpts());
+            answer: Sequelize.CHAR(255),
+            owner: Sequelize.INTEGER
+        }, {underscored: true});
 
         this.threads.hasMany(this.answers);
         this.answers.belongsTo(this.threads);
 
         this.likes = this.sequelize.define<LikeInstance, Like>(LikeTable, {
-            id: {type: Sequelize.INTEGER, primaryKey: true}
+            id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true}
         }, withDefOpts());
 
         this.answers.hasMany(this.likes);
@@ -261,6 +262,7 @@ class DatabaseManager {
 
         this.classes.hasMany(this.categories);
         this.categories.belongsTo(this.classes);
+        this.answers.belongsTo(this.users, {foreignKey: "owner"});
         this.threads.belongsTo(this.categories);
         this.threads.belongsTo(this.users, {foreignKey: "owner"});
 

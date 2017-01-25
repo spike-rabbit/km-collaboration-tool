@@ -17,6 +17,7 @@ export class JournalComponent implements OnInit {
 
   journal: Journal = (<Journal>{});
   id: number;
+  success = false;
 
   constructor(private route: ActivatedRoute, private xccService: XchangeCenterService, private router: Router) {
 
@@ -28,7 +29,9 @@ export class JournalComponent implements OnInit {
   }
 
   onSubmit() {
-    //TODO
+    this.xccService.patchJournal(this.journal).subscribe(() => {
+      this.success = true;
+    });
   }
 
   download() {

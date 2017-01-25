@@ -6,12 +6,12 @@
     <p>{{question.question}}</p>
 
     <div *ngFor="let a of question.answers; let i = index" class="intend50">
-      <p style="font-weight: bold">{{i + 1}}. Antwort</p>
+      <p style="font-weight: bold">{{i + 1}}. Antwort von {{a.user.firstname + ' ' + a.user.name}}</p>
       <hr style="height: 1px; background-color:black;">
 
       <div>
         <div>
-          <button class="glyphicon glyphicon-thumbs-up" style="font-size: x-large" [disabled]="a.liked"></button>
+          <button type="button" class="btn btn-default glyphicon glyphicon-thumbs-up" style="font-size: x-large" [disabled]="a.liked" (click)="onLike(a)"></button>
           <label style="color: blue">{{a.likeCount}} fand(en) das hilfreich</label>
         </div>
 

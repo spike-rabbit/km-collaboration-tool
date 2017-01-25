@@ -1,6 +1,4 @@
 import {Injectable} from "@angular/core";
-import {Question} from "./question";
-import {Category} from "./category";
 import {Response} from "@angular/http";
 import {Observable} from "rxjs";
 import {KmctHttpService} from "../../global-services/kmct-http.service";
@@ -79,6 +77,14 @@ export class KnowledgeCenterService {
           return Observable.throw("Error");
         }
       );
+  }
+
+  likeAnswer(answer: Answer) {
+    return this.http.post("/api/knc/thread/answer/" + answer.id + "/like", {}, {sendAuthToken: true}).catch((response: Response) => {
+        console.log(response);
+        return Observable.throw("Error");
+      }
+    );
   }
 
 }
