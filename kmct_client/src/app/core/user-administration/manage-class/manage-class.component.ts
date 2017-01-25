@@ -20,7 +20,7 @@ export class ManageClassComponent implements OnInit {
 
   invitationList: any[];
   memberList: any[];
-  focusedInvitation: any = {};
+  focusedInvitation:any = {};
   editMode = false;
 
   ngOnInit() {

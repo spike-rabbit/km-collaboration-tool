@@ -1,23 +1,23 @@
 <div>
 <h3>Frage stellen</h3>
-<form class="form-horizontal">
+<form class="form-horizontal" (submit)="submit()">
   <div class="form-group">
     <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label">Titel</label>
     <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10">
-      <input class="form-control" type="text" name="title">
+      <input class="form-control" type="text" name="title" [(ngModel)]="title" required>
     </div>
   </div>
   <div class="form-group">
     <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2  control-label">Komplette Frage</label>
     <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10">
-      <textarea class="form-control" rows="4" cols="100" name="text"> </textarea>
+      <textarea class="form-control" rows="4" cols="100" name="text" [(ngModel)]="question" required> </textarea>
     </div>
   </div>
   <div class="form-group">
     <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2  control-label">Kategorie</label>
     <div class="col-xs-9 col-sm-5 col-md-5 col-lg-5">
-      <select class="form-control" name="category" >
-        <option *ngFor="let c of categories">{{c.category}}</option>
+      <select class="form-control" name="category" [(ngModel)]="categorySelected" required>
+        <option *ngFor="let c of categories" [value]="c.id">{{c.category}}</option>
       </select>
     </div>
   </div>

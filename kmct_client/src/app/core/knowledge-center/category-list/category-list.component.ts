@@ -14,7 +14,7 @@ export class CategoryListComponent implements OnInit {
   constructor(private kncService: KnowledgeCenterService) { }
 
   ngOnInit() {
-    this.categories = this.kncService.categories;
+    this.kncService.loadCategories().subscribe(categories => this.categories = categories);
   }
 
   onSelect(category: Category) {
