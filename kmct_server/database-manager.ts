@@ -216,6 +216,7 @@ class DatabaseManager {
 
         this.threads = this.sequelize.define<ThreadInstance, Thread>(ThreadTable, {
             id: {type: Sequelize.INTEGER, primaryKey: true},
+            title: Sequelize.CHAR(34),
             question: Sequelize.CHAR(255),
             owner: Sequelize.INTEGER,
             created_at: Sequelize.DATE,
@@ -259,7 +260,8 @@ class DatabaseManager {
 
         this.classes.hasMany(this.categories);
         this.categories.belongsTo(this.classes);
-        this.threads.belongsTo(this.categories)
+        this.threads.belongsTo(this.categories);
+        this.threads.belongsTo(this.users, {foreignKey: "owner"});
 
 
     }
