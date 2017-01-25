@@ -1,18 +1,24 @@
-
-<div class="form-horizontal">
+<form class="form-horizontal">
   <h3>Firma bearbeiten</h3>
-  <div class="form-group">
-  <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Name</label>
-  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-    <input class="form-control" type="text" value="{{company.name}}">
-  </div>
-  </div>
 
-  <div class="form-group">
+  <div>
+    <div class="col-sm-8 col-md-8 col-lg-8">
 
-  <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label"></label>
-  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-    <button class="btn btn-primary">Firma speichern</button>
+
+      <div class="form-group">
+        <label class="control-label" for="name">Name</label>
+        <input id="name" name="name" class="form-control" type="text" value="{{company.name}}">
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="logo">Firmenlogo</label>
+        <input id="logo" name="logo" class="form-control" type="file" [uploader]="logoUploader">
+      </div>
+
+      <div class="form-group">
+        <div class="btn-group">
+          <button class="btn btn-primary">Firma speichern</button>
+        </div>
+      </div>
+    </div>
   </div>
-  </div>
-</div>
+</form>

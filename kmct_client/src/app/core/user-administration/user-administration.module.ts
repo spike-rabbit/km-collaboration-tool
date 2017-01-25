@@ -10,13 +10,15 @@ import { CreateClassComponent } from './create-class/create-class.component';
 import { ManageCompaniesComponent } from './manage-companies/manage-companies.component';
 import { EditCompanyComponent } from './edit-company/edit-company.component';
 import {RouterModule} from "@angular/router";
+import {FileUploadModule} from "ng2-file-upload";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    FileUploadModule
   ],
   providers: [UserAdministrationService],
   declarations: [ManageClassComponent, EditProfileComponent, ManageClassesComponent, CreateClassComponent, ManageCompaniesComponent, EditCompanyComponent]

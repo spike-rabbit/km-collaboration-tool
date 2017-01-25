@@ -17,8 +17,8 @@ export class EditProfileComponent implements OnInit {
   constructor(private signInService: SigninStateService, private uasService: UserAdministrationService) {
   }
 
-  private name: string;
-  private firstname: string;
+  name: string;
+  firstname: string;
 
   ngOnInit() {
     this.signInService.user.subscribe(user => {

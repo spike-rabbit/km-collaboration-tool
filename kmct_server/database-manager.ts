@@ -86,7 +86,8 @@ class DatabaseManager {
             },
             name: {
                 type: Sequelize.STRING
-            }
+            },
+            logo: Sequelize.BLOB
         }, withDefOpts());
 
         this.classes = this.sequelize.define<ClassInstance, Class>(ClassTable, {
@@ -217,7 +218,6 @@ class DatabaseManager {
             id: {type: Sequelize.INTEGER, primaryKey: true},
             question: Sequelize.CHAR(255),
             owner: Sequelize.INTEGER,
-            category: Sequelize.INTEGER,
             created_at: Sequelize.DATE,
             updated_at: Sequelize.DATE,
             class: Sequelize.CHAR(5)
@@ -259,6 +259,7 @@ class DatabaseManager {
 
         this.classes.hasMany(this.categories);
         this.categories.belongsTo(this.classes);
+        this.threads.belongsTo(this.categories)
 
 
     }
