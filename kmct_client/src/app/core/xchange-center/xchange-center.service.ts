@@ -28,5 +28,12 @@ export class XchangeCenterService {
       });
   }
 
+  setActivated(id: number) {
+    return this.http.patch("/api/xcc/journal/" + id, {activated: true}, {sendAuthToken: true})
+      .catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
+    });
+  }
 
 }

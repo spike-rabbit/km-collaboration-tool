@@ -1,5 +1,5 @@
 import {Component, OnInit, HostBinding} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Journal} from "../journal";
 import {XchangeCenterService} from "../xchange-center.service";
 import {slideInOutAnimation} from "../../router-animations";
@@ -18,7 +18,7 @@ export class JournalComponent implements OnInit {
   journal: Journal = (<Journal>{});
   id: number;
 
-  constructor(private route: ActivatedRoute, private xccService: XchangeCenterService) {
+  constructor(private route: ActivatedRoute, private xccService: XchangeCenterService, private router: Router) {
 
   }
 
@@ -33,6 +33,10 @@ export class JournalComponent implements OnInit {
 
   download() {
     //TODO
+  }
+
+  activate() {
+    this.xccService.setActivated(this.id).subscribe(activate => this.router.navigate(['/home/xcc']));
   }
 
 }
