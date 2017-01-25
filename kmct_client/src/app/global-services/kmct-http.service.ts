@@ -50,7 +50,7 @@ export class KmctHttpService {
       } else if (requestOptions.headers) {
         headers = requestOptions.headers;
       }
-      return {search: requestOptions.search, headers: headers};
+      return {search: requestOptions.search, headers: headers, responseType: requestOptions.responseType};
     }
   }
 

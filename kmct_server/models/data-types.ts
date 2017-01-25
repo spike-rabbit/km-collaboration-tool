@@ -8,6 +8,7 @@ import Instance = Sequelize.Instance;
 export interface Company {
     id?: number;
     name: string;
+    logo?: any[];
 }
 
 export interface User {

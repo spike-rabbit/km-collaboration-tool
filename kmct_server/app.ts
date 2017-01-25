@@ -13,7 +13,7 @@ export const app = express();
 app.disable("etag");
 app.set("env", "development");
 
-app.use(cors({origin: "http://localhost:4200"}));
+app.use(cors({origin: "http://localhost:4200", credentials: true}));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));

@@ -1,13 +1,14 @@
 import {Injectable} from "@angular/core";
 import {KmctHttpService} from "../../global-services/kmct-http.service";
 import {Observable} from "rxjs";
-import {Response} from "@angular/http";
+import {Response, ResponseContentType} from "@angular/http";
 import {ROLES} from "../../../../../kmct_server/models/data-types";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Injectable()
 export class UserAdministrationService {
 
-  constructor(private http: KmctHttpService) {
+  constructor(private http: KmctHttpService, private sanatizer: DomSanitizer) {
   }
 
   deleteInvitation(uuid: string) {
@@ -60,7 +61,7 @@ export class UserAdministrationService {
 
   loadClasses() {
     return this.http.get("/api/uas/classes", {sendAuthToken: true}).map(res => res.json().classes.map(classwi => {
-      if(classwi.uuid) {
+      if (classwi.uuid) {
         return UserAdministrationService.addLink(classwi);
       } else {
         classwi.link = "TODO Klasse Aktiv";
@@ -71,8 +72,33 @@ export class UserAdministrationService {
 
   addClass(className: string, classLeaderName: string, classLeaderFirstname: string, classLeaderEmail: string) {
     return this.http.post("/api/uas/class", {class: {id: className}}, {sendAuthToken: true}).switchMap(classResponse => {
-      return this.addInvitation({name: classLeaderName, firstname: classLeaderFirstname, email: classLeaderEmail, targetRole: ROLES.ksspr, classId: className});
+      return this.addInvitation({
+        name: classLeaderName,
+        firstname: classLeaderFirstname,
+        email: classLeaderEmail,
+        targetRole: ROLES.ksspr,
+        classId: className
+      });
     });
+  }
+
+  loadCompanies() {
+    return this.http.get("/api/uas/companies", {sendAuthToken: true}).map(res => res.json().companies);
+  }
+
+  loadCompanyLogo(id: number) {
+    return this.http.get("/api/uas/company/" + id + "/logo", {
+      sendAuthToken: true,
+      responseType: ResponseContentType.Blob
+    }).map(res => res.blob()).map(blob => this.sanatizer.bypassSecurityTrustUrl(window.URL.createObjectURL(blob)));
+  }
+
+  saveCompany(company: any) {
+    return this.http.put("/api/uas/company/" + company.id, company, {sendAuthToken: true});
+  }
+
+  createCompany(company: any) {
+    return this.http.post("/api/uas/company/", company, {sendAuthToken: true});
   }
 
   private static addLink(invitation: any) {

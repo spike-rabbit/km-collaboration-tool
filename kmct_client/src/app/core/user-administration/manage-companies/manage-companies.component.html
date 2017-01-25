@@ -1,17 +1,19 @@
 
 <div class="form-horizontal">
-  <h3>Firmen</h3>
+  <h3 i18n>Firmen</h3>
 
   <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-striped table-hover">
       <thead>
       <tr>
-        <th>Firma</th>
+        <th i18n>Firma</th>
+        <th i18n>Logo</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let n of companies" (click)="onSelect(n)">
-        <td  (click)="onClick(n)">{{n.name}}</td>
+      <tr *ngFor="let n of companies" (click)="onClick(n)">
+        <td>{{n.name}}</td>
+        <td><img style="max-height: 50px; max-width: 8000px" [attr.src]="n.logo" [alt]="n.name"></td>
       <tr>
       </tbody>
     </table>

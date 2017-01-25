@@ -1,4 +1,4 @@
-import {URLSearchParams, Headers} from "@angular/http";
+import {URLSearchParams, Headers, ResponseContentType} from "@angular/http";
 /**
  * Created by Maxi- PC on 16.12.2016.
  */
@@ -6,6 +6,7 @@ export interface KmctRequestOptions {
   search?: string | URLSearchParams;
   headers?: Headers;
   sendAuthToken?: boolean;
+  responseType?: ResponseContentType
 }
 
 export class User {
@@ -18,13 +19,3 @@ export class User {
   }
 }
 
-export interface Ausbildungsnachweis {
-  mondayDate: Date;
-  createdBy : string;
-  isMine : string[];
-  monday?: string[];
-  tuesday?: string[];
-  wednesday?: string[];
-  thursday?: string[];
-  friday?: string[];
-}

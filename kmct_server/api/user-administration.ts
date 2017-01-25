@@ -3,7 +3,10 @@ import {ProtectedRequest, requireRole} from "../authentication-manager";
 import {database} from "../database-manager";
 import * as uuid from "uuid";
 import {ROLES, Invitation} from "../models/data-types";
+import * as multer from "multer";
+import {kmctCache} from "../app";
 let router = express.Router();
+let upload = multer({storage: multer.memoryStorage()});
 
 router.get('/invitations', requireRole(ROLES.ksspr), getInvitations);
 //TODO auch admin Rolle geht
@@ -14,6 +17,8 @@ router.get('/classes', requireRole(ROLES.admin), getClasses);
 router.post('/class', requireRole(ROLES.admin), postClass);
 router.get('/companies', requireRole(ROLES.admin), getCompanies);
 router.post('/company', requireRole(ROLES.admin), postCompany);
+router.get("/company/:id/logo", requireRole(ROLES.admin), getLogo);
+router.post("/company/:id/logo", requireRole(ROLES.admin), upload.single("file"), postLogo);
 router.put('/company', requireRole(ROLES.admin), putCompany);
 
 
@@ -93,7 +98,7 @@ interface ClassWithInitialInvitation extends Invitation {
 }
 
 function getCompanies(req: ProtectedRequest, res: express.Response) {
-    database.companies.findAll().then(comps => res.send({
+    database.companies.findAll({attributes: ["id", "name"]}).then(comps => res.send({
         companies: comps
     }), reason => {
         //TODO log better
@@ -102,13 +107,20 @@ function getCompanies(req: ProtectedRequest, res: express.Response) {
     });
 }
 function postCompany(req: ProtectedRequest, res: express.Response) {
-    database.companies.create(req.body.name).then(() => {
-        res.send();
-    }, reason => {
-        //TODO log better
-        //TODO send error to client
-        console.log(reason);
+    let company = req.body;
+    kmctCache.get("company" + company.id, file => {
+        if(file) {
+            company.logo = file.buffer;
+        }
+        database.companies.create(company).then(() => {
+            res.send();
+        }, reason => {
+            //TODO log better
+            //TODO send error to client
+            console.log(reason);
+        });
     });
+
 }
 function putCompany(req: ProtectedRequest, res: express.Response) {
     database.companies.findById(req.body.company.id).then(comp => {
@@ -123,6 +135,24 @@ function putCompany(req: ProtectedRequest, res: express.Response) {
         // Irgendwas mit der DB stimmt nicht
         console.log(err);
     });
+}
+
+function getLogo(req: ProtectedRequest, res: express.Response) {
+    database.companies.findById(req.params["id"], {attributes: ["logo"]}).then(ci => {
+        if (ci) {
+            res.contentType("application/blob");
+            res.setHeader("Content-Length", ci.logo.length + "");
+            res.send(ci.logo);
+        } else {
+            res.status(404).send();
+        }
+    });
+}
+
+function postLogo(req: ProtectedRequest, res: express.Response) {
+    console.log("Ich war hier");
+    kmctCache.set("company" + req.params["id"], req.file);
+    res.send();
 }
 
 
