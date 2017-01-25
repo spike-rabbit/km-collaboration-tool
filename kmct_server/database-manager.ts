@@ -215,9 +215,9 @@ class DatabaseManager {
 
 
         this.threads = this.sequelize.define<ThreadInstance, Thread>(ThreadTable, {
-            id: {type: Sequelize.INTEGER, primaryKey: true},
+            id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
             title: Sequelize.CHAR(34),
-            question: Sequelize.CHAR(255),
+            question: Sequelize.CHAR(500),
             owner: Sequelize.INTEGER,
             created_at: Sequelize.DATE,
             updated_at: Sequelize.DATE,

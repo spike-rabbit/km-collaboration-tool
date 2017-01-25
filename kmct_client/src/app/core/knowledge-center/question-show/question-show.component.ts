@@ -30,6 +30,7 @@ export class QuestionShowComponent implements OnInit {
   submit() {
     this.kncService.addAnswer(this.question.id, this.answer).subscribe(answer => {
      this.question.answers.push({answer: this.answer, likeCount: 0});
+     this.answer = "";
     });
 
   }
