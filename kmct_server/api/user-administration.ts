@@ -4,7 +4,6 @@ import {database} from "../database-manager";
 import * as uuid from "uuid";
 import {ROLES, Invitation} from "../models/data-types";
 import * as multer from "multer";
-import {kmctCache} from "../app";
 let router = express.Router();
 let upload = multer({storage: multer.memoryStorage()});
 
@@ -20,7 +19,7 @@ router.get('/company/:id', requireRole(ROLES.admin), getCompany);
 router.post('/company', requireRole(ROLES.admin), postCompany);
 router.get("/company/:id/logo", requireRole(ROLES.admin), getLogo);
 router.post("/company/:id/logo", requireRole(ROLES.admin), upload.single("file"), postLogo);
-router.put('/company', requireRole(ROLES.admin), putCompany);
+router.put('/company/:id', requireRole(ROLES.admin), putCompany);
 
 
 function getInvitations(req: ProtectedRequest, res: express.Response) {
@@ -109,23 +108,18 @@ function getCompanies(req: ProtectedRequest, res: express.Response) {
 }
 function postCompany(req: ProtectedRequest, res: express.Response) {
     let company = req.body;
-    kmctCache.get("company" + company.id, file => {
-        if (file) {
-            company.logo = file.buffer;
-        }
-        database.companies.create(company).then(() => {
-            res.send();
-        }, reason => {
-            //TODO log better
-            //TODO send error to client
-            console.log(reason);
-        });
+    database.companies.create(company).then((company) => {
+        res.send(company);
+    }, reason => {
+        //TODO log better
+        //TODO send error to client
+        console.log(reason);
     });
 
 }
 function putCompany(req: ProtectedRequest, res: express.Response) {
-    database.companies.findById(req.body.company.id).then(comp => {
-        comp.name = req.body.company.name;
+    database.companies.findById(req.params["id"]).then(comp => {
+        comp.name = req.body.name;
         comp.save().then(saved => {
             res.send(saved.toJSON());
         }, err => {
@@ -140,7 +134,7 @@ function putCompany(req: ProtectedRequest, res: express.Response) {
 
 function getLogo(req: ProtectedRequest, res: express.Response) {
     database.companies.findById(req.params["id"], {attributes: ["logo"]}).then(ci => {
-        if (ci) {
+        if (ci.logo) {
             res.contentType("application/blob");
             res.setHeader("Content-Length", ci.logo.length + "");
             res.send(ci.logo);
@@ -150,14 +144,26 @@ function getLogo(req: ProtectedRequest, res: express.Response) {
     });
 }
 
+
 function postLogo(req: ProtectedRequest, res: express.Response) {
-    console.log("Ich war hier");
-    kmctCache.set("company" + req.params["id"], req.file);
-    res.send();
+    database.companies.findById(req.params["id"]).then(company => {
+        company.update({logo: req.file.buffer}).then(() => {
+            res.send();
+
+        }, reason => {
+            //TODO log better
+            //TODO send error to client
+            console.log(reason);
+        });
+    }, reason => {
+        //TODO log better
+        //TODO send error to client
+        console.log(reason);
+    });
 }
 
 function getCompany(req: ProtectedRequest, res: express.Response) {
-    database.companies.findById(req.params["id"], {attributes: ["id","name"]}).then(company => {
+    database.companies.findById(req.params["id"], {attributes: ["id", "name"]}).then(company => {
         res.send({company: company});
     }, reason => {
         //TODO log better

@@ -7,7 +7,7 @@ import Instance = Sequelize.Instance;
 // POJOs
 export interface Company {
     id?: number;
-    name: string;
+    name?: string;
     logo?: any[];
 }
 

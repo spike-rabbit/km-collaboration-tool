@@ -116,14 +116,14 @@ export class UserAdministrationService {
   }
 
   saveCompany(company: any) {
-    return this.http.put("/api/uas/company/" + company.id, company, {sendAuthToken: true}).catch((response: Response) => {
+    return this.http.post("/api/uas/company/" + company.id, company, {sendAuthToken: true}).catch((response: Response) => {
       console.log(response);
       return Observable.throw("Error");
     });
   }
 
   createCompany(company: any) {
-    return this.http.post("/api/uas/company/", company, {sendAuthToken: true}).catch((response: Response) => {
+    return this.http.post("/api/uas/company/", company, {sendAuthToken: true}).map(res => res.json()).catch((response: Response) => {
       console.log(response);
       return Observable.throw("Error");
     });

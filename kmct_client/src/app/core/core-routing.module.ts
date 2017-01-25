@@ -44,7 +44,7 @@ const coreRoutes: Routes = [{
       canActivate: [UserGuardService]
     }, {
       path: 'xcc/edit-journal',
-      component : JournalEditorComponent,
+      component: JournalEditorComponent,
       canActivate: [UserGuardService]
     }, {
       path: 'xcm',
@@ -54,7 +54,7 @@ const coreRoutes: Routes = [{
       path: 'knc',
       component: KnowledgeCenterComponent,
       canActivate: [UserGuardService]
-    },  {
+    }, {
       path: 'knc/show-question/:question',
       component: QuestionShowComponent,
       canActivate: [UserGuardService]
@@ -91,6 +91,10 @@ const coreRoutes: Routes = [{
       canActivate: [AdminGuardService]
     }, {
       path: 'uas/manage-companies/edit/:company',
+      component: EditCompanyComponent,
+      canActivate: [AdminGuardService]
+    }, {
+      path: 'uas/manage-companies/create-company',
       component: EditCompanyComponent,
       canActivate: [AdminGuardService]
     }, {
