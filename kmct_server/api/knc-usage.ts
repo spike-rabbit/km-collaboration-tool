@@ -19,7 +19,10 @@ router.post('/categories', postCategory);
 function getAllThreads(req: ProtectedRequest, res: express.Response) {
     database.threads.findAll({
         where: {class: req.user.class.id},
-        include: [{model: database.categories, attributes: ["category"]}, {model: database.users, attributes: ["name", "firstname"]}]
+        include: [{model: database.categories, attributes: ["category"]}, {
+            model: database.users,
+            attributes: ["name", "firstname"]
+        }]
     })
         .then(threads => {
             res.send(
@@ -40,11 +43,10 @@ function getThread(req: ProtectedRequest, res: express.Response) {
     database.threads.findAll(
         {
             where: {id: req.params['id']},
-            include: [{
-                all: true,
-                include: [{all: true}]
-            }
-            ]
+            include: [{model: database.answers, include: [database.likes]}, {
+                model: database.users,
+                attributes: ["name", "firstname"]
+            }, {model: database.categories, attributes: ["id", "category"]}]
         }
     ).then((thread: ThreadInstance[]) => {
             let tarray = [];
@@ -52,22 +54,28 @@ function getThread(req: ProtectedRequest, res: express.Response) {
                 let tJSON = t.toJSON();
                 tarray.push(tJSON);
                 for (let a of tJSON.answers) {
+                    (<any>a).likeCount = a.likes.length;
                     for (let l of a.likes) {
-                        a.liked = l.user_id == req.user.id;
+                        if (l.user_id == req.user.id) {
+                            a.liked = true;
+                            break;
+                        }
                     }
+                    delete a.likes;
                 }
                 t.answers = t.answers.sort(function (a, b) {
                     return a.creationDate.getDate() - b.creationDate.getDate();
                 });
             }
-            res.send({thread: thread}), reason => {
-                //TODO log better
-                //TODO send error to client
-                console.log(reason);
-            }
+            res.send({thread: tarray});
+        }, reason => {
+            //TODO log better
+            //TODO send error to client
+            console.log(reason);
         }
     );
 }
+
 
 function postThread(req: ProtectedRequest, res: express.Response) {
 
