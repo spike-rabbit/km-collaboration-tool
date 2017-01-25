@@ -17,7 +17,10 @@ router.post('/categories', postCategory);
 
 
 function getAllThreads(req: ProtectedRequest, res: express.Response) {
-    database.threads.findAll({where: {class: req.user.class.id}, include: [database.categories]})
+    database.threads.findAll({
+        where: {class: req.user.class.id},
+        include: [{model: database.categories, attributes: ["category"]}, {model: database.users, attributes: ["name", "firstname"]}]
+    })
         .then(threads => {
             res.send(
                 {
