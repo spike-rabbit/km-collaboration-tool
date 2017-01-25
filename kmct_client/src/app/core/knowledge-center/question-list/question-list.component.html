@@ -12,7 +12,7 @@
     <tbody>
     <tr *ngFor="let q of questions" (click)="onSelect(q)">
       <td>{{q.title}}</td>
-      <td>{{q.owner}}</td>
+      <td>{{q.user.firstname}} {{q.user.name}}</td>
       <td>{{q.category.category}}</td>
       <td></td>
     </tr>

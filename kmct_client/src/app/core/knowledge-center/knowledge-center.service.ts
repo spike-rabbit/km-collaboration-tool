@@ -4,6 +4,7 @@ import {Category} from "./category";
 import {Response} from "@angular/http";
 import {Observable} from "rxjs";
 import {KmctHttpService} from "../../global-services/kmct-http.service";
+import {Answer} from "./answer";
 
 @Injectable()
 export class KnowledgeCenterService {
@@ -46,6 +47,11 @@ export class KnowledgeCenterService {
         console.log(response);
         return Observable.throw("Error");
       });
+  }
+
+  addQuestion(questionId: number, answer: string) {
+
+
   }
 
 }

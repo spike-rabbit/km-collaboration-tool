@@ -1,8 +1,6 @@
 import {Component, OnInit, HostBinding} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {Company} from "../../../../../../kmct_server/models/data-types";
-import {FileUploader} from "ng2-file-upload";
-import {base_url} from "../../../../environments/environment";
 import {slideInOutAnimation} from "../../router-animations";
 
 @Component({
@@ -23,7 +21,6 @@ export class EditCompanyComponent implements OnInit {
   id: number;
   company: Company;
 
-  logoUploader: FileUploader;
 
   constructor(private route: ActivatedRoute) {
   }

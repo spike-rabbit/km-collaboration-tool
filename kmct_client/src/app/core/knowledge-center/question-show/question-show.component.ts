@@ -26,4 +26,8 @@ export class QuestionShowComponent implements OnInit {
     this.kncService.loadQuestion(this.id).subscribe(question => this.question = question);
   }
 
+  submit() {
+    // this.kncService.addQuestion()
+  }
+
 }
