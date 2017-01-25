@@ -56,7 +56,10 @@ export class UserAdministrationService {
     // TODO catch errors
     return this.http.get("/api/uas/class-members", {sendAuthToken: true}).map(res => res.json().classMembers.map(member => {
       return {name: member.name, firstname: member.firstname, email: member.email};
-    }));
+    })).catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
+    });
   }
 
   loadClasses() {
@@ -67,7 +70,10 @@ export class UserAdministrationService {
         classwi.link = "TODO Klasse Aktiv";
         return classwi;
       }
-    }));
+    })).catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
+    });
   }
 
   addClass(className: string, classLeaderName: string, classLeaderFirstname: string, classLeaderEmail: string) {
@@ -79,26 +85,48 @@ export class UserAdministrationService {
         targetRole: ROLES.ksspr,
         classId: className
       });
+    }).catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
     });
   }
 
   loadCompanies() {
-    return this.http.get("/api/uas/companies", {sendAuthToken: true}).map(res => res.json().companies);
+    return this.http.get("/api/uas/companies", {sendAuthToken: true}).map(res => res.json().companies).catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
+    });
+  }
+
+  loadCompany(id: number) {
+    return this.http.get("/api/uas/company/" + id).map(res => res.json().company).catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
+    });
   }
 
   loadCompanyLogo(id: number) {
     return this.http.get("/api/uas/company/" + id + "/logo", {
       sendAuthToken: true,
       responseType: ResponseContentType.Blob
-    }).map(res => res.blob()).map(blob => this.sanatizer.bypassSecurityTrustUrl(window.URL.createObjectURL(blob)));
+    }).map(res => res.blob()).map(blob => this.sanatizer.bypassSecurityTrustUrl(window.URL.createObjectURL(blob))).catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
+    });
   }
 
   saveCompany(company: any) {
-    return this.http.put("/api/uas/company/" + company.id, company, {sendAuthToken: true});
+    return this.http.put("/api/uas/company/" + company.id, company, {sendAuthToken: true}).catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
+    });
   }
 
   createCompany(company: any) {
-    return this.http.post("/api/uas/company/", company, {sendAuthToken: true});
+    return this.http.post("/api/uas/company/", company, {sendAuthToken: true}).catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
+    });
   }
 
   private static addLink(invitation: any) {

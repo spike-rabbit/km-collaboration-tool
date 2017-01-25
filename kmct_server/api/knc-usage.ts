@@ -84,7 +84,7 @@ function postThread(req: ProtectedRequest, res: express.Response) {
 
 function postAnswer(req: ProtectedRequest, res: express.Response) {
 
-    let answer = req.body.answer;
+    let answer = req.body;
     database.answers.create(answer).then(() => res.send(), reason => {
         //TODO log better
         //TODO send error to client
