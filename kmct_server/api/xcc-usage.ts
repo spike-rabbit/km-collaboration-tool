@@ -9,7 +9,7 @@ let router = express.Router();
 router.get('/journals', getJournals);
 router.get('/journal/:id', getJournal);
 router.post('/journal', postJournal);
-router.patch('/journal', patchJournal);
+router.patch('/journal/:id', patchJournal);
 //TODO journalTemplates moved to later state
 
 function getJournals(req: ProtectedRequest, res: express.Response) {
@@ -51,13 +51,8 @@ function postJournal(req: ProtectedRequest, res: express.Response) {
 function patchJournal(req: ProtectedRequest, res: express.Response) {
 
 
-    database.journals.findById(req.params['id]']).then(journal =>
-        journal.update(
-            {
-                monday: req.params['monday'], tuesday: req.params['tuesday'],
-                wednesday: req.params['wednesday'], thursday: req.params['thursday'],
-                friday: req.params['friday'], spe: req.params['spe'], activated: req.params['activated']
-            }).then(journal => res.send({
+    database.journals.findById(req.params['id']).then(journal =>
+        journal.update(req.body).then(journal => res.send({
                 journal: journal,
                 classId: req.user.class.id
             }),
