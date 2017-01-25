@@ -40,34 +40,28 @@ function getAllThreads(req: ProtectedRequest, res: express.Response) {
 }
 
 function getThread(req: ProtectedRequest, res: express.Response) {
-    database.threads.findAll(
-        {
-            where: {id: req.params['id']},
+    database.threads.findById(req.params['id'], {
             include: [{model: database.answers, include: [database.likes]}, {
                 model: database.users,
                 attributes: ["name", "firstname"]
             }, {model: database.categories, attributes: ["id", "category"]}]
         }
-    ).then((thread: ThreadInstance[]) => {
-            let tarray = [];
-            for (let t of thread) {
-                let tJSON = t.toJSON();
-                tarray.push(tJSON);
-                for (let a of tJSON.answers) {
-                    (<any>a).likeCount = a.likes.length;
-                    for (let l of a.likes) {
-                        if (l.user_id == req.user.id) {
-                            a.liked = true;
-                            break;
-                        }
+    ).then((thread: ThreadInstance) => {
+            let tJSON = thread.toJSON();
+            for (let a of tJSON.answers) {
+                (<any>a).likeCount = a.likes.length;
+                for (let l of a.likes) {
+                    if (l.user_id == req.user.id) {
+                        a.liked = true;
+                        break;
                     }
-                    delete a.likes;
                 }
-                t.answers = t.answers.sort(function (a, b) {
-                    return a.creationDate.getDate() - b.creationDate.getDate();
-                });
+                delete a.likes;
             }
-            res.send({thread: tarray});
+            tJSON.answers = tJSON.answers.sort(function (a, b) {
+                return a.creationDate.getDate() - b.creationDate.getDate();
+            });
+            res.send({thread: tJSON});
         }, reason => {
             //TODO log better
             //TODO send error to client
