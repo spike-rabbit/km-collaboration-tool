@@ -226,7 +226,8 @@ class DatabaseManager {
 
 
         this.answers = this.sequelize.define<AnswerInstance, Answer>(AnswerTable, {
-            id: {type: Sequelize.INTEGER, primaryKey: true},
+            id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
+            threadId: {type: Sequelize.INTEGER, field: "thread_id"},
             answer: Sequelize.CHAR(255)
         }, withDefOpts());
 

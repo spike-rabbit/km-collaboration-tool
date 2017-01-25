@@ -16,6 +16,7 @@ router.get('/class-members', requireRole(ROLES.ksspr), getClassMember);
 router.get('/classes', requireRole(ROLES.admin), getClasses);
 router.post('/class', requireRole(ROLES.admin), postClass);
 router.get('/companies', requireRole(ROLES.admin), getCompanies);
+router.get('/company/:id', requireRole(ROLES.admin), getCompany);
 router.post('/company', requireRole(ROLES.admin), postCompany);
 router.get("/company/:id/logo", requireRole(ROLES.admin), getLogo);
 router.post("/company/:id/logo", requireRole(ROLES.admin), upload.single("file"), postLogo);
@@ -109,7 +110,7 @@ function getCompanies(req: ProtectedRequest, res: express.Response) {
 function postCompany(req: ProtectedRequest, res: express.Response) {
     let company = req.body;
     kmctCache.get("company" + company.id, file => {
-        if(file) {
+        if (file) {
             company.logo = file.buffer;
         }
         database.companies.create(company).then(() => {
@@ -153,6 +154,16 @@ function postLogo(req: ProtectedRequest, res: express.Response) {
     console.log("Ich war hier");
     kmctCache.set("company" + req.params["id"], req.file);
     res.send();
+}
+
+function getCompany(req: ProtectedRequest, res: express.Response) {
+    database.companies.findById(req.params["id"], {attributes: ["id","name"]}).then(company => {
+        res.send({company: company});
+    }, reason => {
+        //TODO log better
+        //TODO send error to client
+        console.log(reason);
+    });
 }
 
 
