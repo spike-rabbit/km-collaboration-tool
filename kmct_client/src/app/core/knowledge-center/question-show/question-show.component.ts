@@ -19,11 +19,11 @@ export class QuestionShowComponent implements OnInit {
   id: number;
 
   constructor(private route: ActivatedRoute, private kncService: KnowledgeCenterService) {
-    this.id = route.snapshot.params['question'];
-    this.question = this.kncService.questions[0];
   }
 
   ngOnInit() {
+    this.id = this.route.snapshot.params['question'];
+    this.kncService.loadQuestion(this.id).subscribe(question => this.question = question);
   }
 
 }

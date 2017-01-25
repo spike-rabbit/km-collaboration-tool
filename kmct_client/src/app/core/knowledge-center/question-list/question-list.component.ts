@@ -19,7 +19,7 @@ export class QuestionListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.questions = this.service.questions;
+    this.service.loadQuestions().subscribe(questions => this.questions = questions);
   }
 
 }
