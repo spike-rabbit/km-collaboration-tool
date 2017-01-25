@@ -1,6 +1,7 @@
 import {Component, OnInit, HostBinding} from "@angular/core";
 import {slideInOutAnimation} from "../../router-animations";
 import {SigninStateService} from "../../../global-services/signin-state.service";
+import {Company} from "../../../../../../kmct_server/models/data-types";
 import {UserAdministrationService} from "../user-administration.service";
 
 @Component({
@@ -19,12 +20,18 @@ export class EditProfileComponent implements OnInit {
 
   name: string;
   firstname: string;
+  companies:Company[];
+  workinghours:number;
 
   ngOnInit() {
     this.signInService.user.subscribe(user => {
       this.name = user.name;
       this.firstname = user.firstname;
     });
+    this.uasService.loadCompanies().subscribe(companies => {
+      this.companies = companies;
+    });
+    this.workinghours = 35;
   }
 
   onSubmit() {
