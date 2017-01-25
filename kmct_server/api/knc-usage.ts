@@ -50,6 +50,7 @@ function getThread(req: ProtectedRequest, res: express.Response) {
             let tJSON = thread.toJSON();
             for (let a of tJSON.answers) {
                 (<any>a).likeCount = a.likes.length;
+                a.liked = thread.owner == req.user.id;
                 for (let l of a.likes) {
                     if (l.user_id == req.user.id) {
                         a.liked = true;
@@ -70,11 +71,19 @@ function getThread(req: ProtectedRequest, res: express.Response) {
     );
 }
 
-
 function postThread(req: ProtectedRequest, res: express.Response) {
-
-    let thread = req.body.thread;
-    database.threads.create(thread).then(() => res.send(), reason => {
+    let thread = req.body;
+    thread.class = req.user.class.id;
+    thread.owner = req.user.id;
+    database.threads.create(thread).then((post: ThreadInstance) => {
+        post.setCategory(thread.categoryId).then(() => {
+            res.send(post.toJSON());
+        }, reason => {
+            //TODO log better
+            //TODO send error to client
+            console.log(reason);
+        });
+    }, reason => {
         //TODO log better
         //TODO send error to client
         console.log(reason);

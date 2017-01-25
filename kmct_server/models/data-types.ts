@@ -148,6 +148,7 @@ export interface AppointmentInstance extends Sequelize.Instance<Appointment>, Ap
 }
 
 export interface ThreadInstance extends Sequelize.Instance<Thread> , Thread {
+    setCategory: (id: number) => Promise<ThreadInstance>;
 }
 
 export interface AnswerInstance extends Sequelize.Instance<Answer>, Answer{
