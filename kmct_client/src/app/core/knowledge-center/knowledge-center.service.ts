@@ -49,9 +49,12 @@ export class KnowledgeCenterService {
       });
   }
 
-  addQuestion(questionId: number, answer: string) {
-
-
+  addAnswer(questionId: number, answer: string) {
+    return this.http.post("/api/knc/answer", {threadId: questionId, answer: answer}, {sendAuthToken: true})
+      .catch((response: Response) => {
+        console.log(response);
+        return Observable.throw("Error");
+      });
   }
 
 }

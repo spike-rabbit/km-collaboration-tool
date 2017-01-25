@@ -1,5 +1,5 @@
 import {Component, OnInit, HostBinding} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Question} from "../question";
 import {slideInOutAnimation} from "../../router-animations";
 import {KnowledgeCenterService} from "../knowledge-center.service";
@@ -17,8 +17,9 @@ export class QuestionShowComponent implements OnInit {
 
   question: Question;
   id: number;
+  answer: string;
 
-  constructor(private route: ActivatedRoute, private kncService: KnowledgeCenterService) {
+  constructor(private route: ActivatedRoute, private kncService: KnowledgeCenterService, private router: Router) {
   }
 
   ngOnInit() {
@@ -27,7 +28,10 @@ export class QuestionShowComponent implements OnInit {
   }
 
   submit() {
-    // this.kncService.addQuestion()
+    this.kncService.addAnswer(this.question.id, this.answer).subscribe(answer => {
+     this.question.answers.push({answer: this.answer, likeCount: 0});
+    });
+
   }
 
 }
