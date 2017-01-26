@@ -64,7 +64,7 @@ function deleteInvitation(req: ProtectedRequest, res: express.Response) {
 }
 
 function getClassMember(req: ProtectedRequest, res: express.Response) {
-    database.users.findAll({where: {"class_id": req.user.class.id}}).then(users => {
+    database.users.findAll({where: {"class_id": req.user.class.id}, include: [database.roles]}).then(users => {
         res.send({classMembers: users, classId: req.user.class.id});
     }, reason => {
         //TODO log better
@@ -72,6 +72,7 @@ function getClassMember(req: ProtectedRequest, res: express.Response) {
         console.log(reason);
     });
 }
+
 
 function getClasses(req: ProtectedRequest, res: express.Response) {
     database.sequelize.query("select * from classes_with_initial_invitations").then((classesWithInitialInvitations: ClassWithInitialInvitation) => {

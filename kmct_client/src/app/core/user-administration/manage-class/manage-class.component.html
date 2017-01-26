@@ -5,6 +5,8 @@
     <tr>
       <th>Name</th>
       <th>Vorname</th>
+      <th>KNC</th>
+      <th>XCC</th>
     </tr>
     </thead>
     <tbody>
@@ -12,9 +14,12 @@
       <td>{{item.name}}</td>
       <td>{{item.firstname}}</td>
       <td>
-        <div class="text-right">
-          <button class="btn btn-danger glyphicon glyphicon-trash" (click)="smModal.show()"></button>
-        </div>
+        <button *ngIf="item.knc" (click)="revokeRole(item, 'KNC')" class="btn btn-success glyphicon glyphicon-eye-open"></button>
+        <button *ngIf="!item.knc" (click)="addRole(item, 'KNC')" class="btn btn-danger glyphicon glyphicon-eye-close"></button>
+      </td>
+      <td>
+        <button *ngIf="item.xcc" (click)="revokeRole(item, 'XCC')" class="btn btn-success glyphicon glyphicon-eye-open"></button>
+        <button *ngIf="!item.xcc" (click)="addRole(item, 'XCC')" class="btn btn-danger glyphicon glyphicon-eye-close"></button>
       </td>
     </tr>
     </tbody>
@@ -30,6 +35,7 @@
         <th>Vorname</th>
         <th>Email</th>
         <th>Link</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
