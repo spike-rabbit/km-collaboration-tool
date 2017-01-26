@@ -8,16 +8,14 @@ import {LocalizerService} from "./global-services/localizer.service";
 })
 export class AppComponent implements OnInit {
 
-  constructor(private localizer: LocalizerService) {
+  constructor() {
   }
 
 
   ngOnInit(): void {
   }
 
-  onLocaleSwitch() {
-    this.localizer.switchLocale();
-  }
+
 
 
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {User} from "../../data-definitions";
 import {SigninStateService} from "../global-services/signin-state.service";
+import {LocalizerService} from "../global-services/localizer.service";
 
 @Component({
   selector: 'app-core',
@@ -9,7 +10,7 @@ import {SigninStateService} from "../global-services/signin-state.service";
 })
 export class CoreComponent implements OnInit {
 
-  constructor(private signInService: SigninStateService) {
+  constructor(private signInService: SigninStateService, private localizer: LocalizerService) {
   }
 
   user: User;
@@ -19,4 +20,7 @@ export class CoreComponent implements OnInit {
     this.signInService.user.subscribe(user => this.user = user);
   }
 
+  onLocaleSwitch() {
+    this.localizer.switchLocale();
+  }
 }

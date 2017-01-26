@@ -148,7 +148,7 @@ function postCategory(req: ProtectedRequest, res: express.Response) {
 }
 
 function getCategory(req: ProtectedRequest, res: express.Response) {
-    database.categories.findById(req.params["id"]).then(res.send, reason => {
+    database.categories.findById(req.params["id"]).then(c => res.send(c.toJSON()), reason => {
             //TODO log better
             //TODO send error to client
             console.log(reason);
@@ -158,7 +158,7 @@ function getCategory(req: ProtectedRequest, res: express.Response) {
 }
 function patchCategory(req: ProtectedRequest, res: express.Response) {
     database.categories.findById(req.params["id"]).then(category => {
-            category.update({category: req.body.category}).then(res.send, reason => {
+            category.update({category: req.body.category}).then(() => res.send(), reason => {
                 //TODO log better
                 //TODO send error to client
                 console.log(reason);

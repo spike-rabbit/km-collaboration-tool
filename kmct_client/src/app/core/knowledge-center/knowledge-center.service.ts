@@ -65,8 +65,26 @@ export class KnowledgeCenterService {
       );
   }
 
+  loadCategory(id: number) {
+    return this.http.get("/api/knc/category/" + id, {sendAuthToken: true})
+      .map(res => res.json().category)
+      .catch((response: Response) => {
+          console.log(response);
+          return Observable.throw("Error");
+        }
+      );
+  }
+
   addCategory(category: string) {
     return this.http.post("/api/knc/category", {category: category}, {sendAuthToken: true})
+      .catch((response: Response) => {
+        console.log(response);
+        return Observable.throw("Error");
+      });
+  }
+
+  patchCategory(category: string, id: number) {
+    return this.http.patch("/api/knc/category/" + id, {category: category}, {sendAuthToken: true})
       .catch((response: Response) => {
         console.log(response);
         return Observable.throw("Error");
