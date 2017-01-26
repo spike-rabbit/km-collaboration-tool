@@ -44,7 +44,7 @@ export function protect(req: ProtectedRequest, res: express.Response, next: expr
     else {
         database.users.getUserByGid('123').then(user => {
             req.user = user.toJSON();
-            req.user.roles = [{id: ROLES.ksmem}, {id: ROLES.admin}];
+            req.user.roles = [{id: ROLES.ksmem}, {id: ROLES.admin}, {id: ROLES.ksspr}];
             next();
         }).catch(reason => {
             res.status(404).send({error: "user not found"});

@@ -57,7 +57,14 @@ export class UserAdministrationService {
   loadClassMembers() {
     // TODO catch errors
     return this.http.get("/api/uas/class-members", {sendAuthToken: true}).map(res => res.json().classMembers.map(member => {
-      return {name: member.name, firstname: member.firstname, email: member.email};
+      return {
+        id: member.id,
+        name: member.name,
+        firstname: member.firstname,
+        email: member.email,
+        knc: member.roles.some(role => role.id == ROLES.knc),
+        xcc: member.roles.some(role => role.id == ROLES.xcc)
+      };
     })).catch((response: Response) => {
       console.log(response);
       return Observable.throw("Error");
@@ -126,6 +133,27 @@ export class UserAdministrationService {
 
   createCompany(company: any) {
     return this.http.post("/api/uas/company/", company, {sendAuthToken: true}).map(res => res.json()).catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
+    });
+  }
+
+  addRole(userId: number, role: string) {
+    return this.http.patch("/api/user/" + userId + "/role/" + role, {}, {sendAuthToken: true}).catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
+    });
+  }
+
+  removeRole(userId: number, role: string) {
+    return this.http.delete("/api/user/" + userId + "/role/" + role, {sendAuthToken: true}).catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
+    });
+  }
+
+  loadUsers() {
+    return this.http.get("/api/users", {sendAuthToken: true}).map(res => res.json().users).catch((response: Response) => {
       console.log(response);
       return Observable.throw("Error");
     });

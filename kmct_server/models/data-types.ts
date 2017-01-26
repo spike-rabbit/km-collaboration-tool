@@ -125,8 +125,9 @@ export interface CompanyInstance extends Sequelize.Instance<Company>, Company {
 export interface UsersInstance extends Sequelize.Instance<User>, User {
     getRoles?: () => Promise<RoleInstance[]>;
     setRoles?: (roles: any) => any;
-    addRole?: (role: any) => any;
+    addRole?: (role: any) => Promise<RoleInstance>;
     addRoles?: (roles: any) => any;
+    removeRole?: (role: any) => Promise<void>;
     setCompany?: (id: number) => Promise<CompanyInstance>;
 }
 export interface ClassInstance extends Sequelize.Instance<Class>, Class {
@@ -224,5 +225,5 @@ export const LikeTable ="like";
 export const CategoryTable ="category";
 export const KarmaTransactionTable = "karma_transaction";
 // Other Types
-export const ROLES = {admin: "ADMIN", ksmem: "KSMEM", ksspr: "KSSPR"};
+export const ROLES = {admin: "ADMIN", ksmem: "KSMEM", ksspr: "KSSPR", knc: "KNC", xcc: "XCC"};
 export const APPOINTEMENT_TYPES = {spe: "SPE", atiw: "ATIW", standart: "STANDARD", exam: "EXAM", lecture: "LECTURE"};

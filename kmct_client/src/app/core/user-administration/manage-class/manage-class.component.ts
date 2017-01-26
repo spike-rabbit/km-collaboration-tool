@@ -20,7 +20,7 @@ export class ManageClassComponent implements OnInit {
 
   invitationList: any[];
   memberList: any[];
-  focusedInvitation:any = {};
+  focusedInvitation: any = {};
   editMode = false;
 
   ngOnInit() {
@@ -44,6 +44,30 @@ export class ManageClassComponent implements OnInit {
       }
     };
     this.popupsService.confirmDeleteInvitation.element.show();
+  }
+
+  addRole(user: any, role: string) {
+    this.userAdminService.addRole(user.id, role).subscribe(() => {
+      switch (role) {
+        case ROLES.knc:
+          user.knc = true;
+          break;
+        case ROLES.xcc:
+          user.xcc = true
+      }
+    });
+  }
+
+  revokeRole(user: any, role: string) {
+    this.userAdminService.removeRole(user.id, role).subscribe(() => {
+      switch (role) {
+        case ROLES.knc:
+          user.knc = false;
+          break;
+        case ROLES.xcc:
+          user.xcc = false
+      }
+    });
   }
 
   onAdd() {
