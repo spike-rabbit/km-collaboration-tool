@@ -14,18 +14,17 @@
 
       <ul class="nav navbar-nav">
 
-        <li *ngIf="user.isUserInRole('KSMEM')" [routerLinkActive]="['active']"><a [routerLink]="['xcc']">XChange
+        <li *ngIf="user.isUserInRole('XCC')" [routerLinkActive]="['active']"><a [routerLink]="['xcc']">XChange
           Center</a></li>
-        <li *ngIf="user.isUserInRole('KSMEM')" [routerLinkActive]="['active']"><a [routerLink]="['knc']">Knowledge
+        <li *ngIf="user.isUserInRole('KNC')" [routerLinkActive]="['active']"><a [routerLink]="['knc']">Knowledge
           Center</a></li>
 
         <li class="dropdown" *ngIf="user.isUserInRole('KSSPR')">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" i18n="Manage Class Module Header">Klasse
             verwalten<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-class']">Klassenmitglieder einladen</a></li>
-            <li [routerLinkActive]="['active']"><a [routerLink]="['knc/categories']">Kategorien hinzufügen</a></li>
-            <li><a href="#">Rechte verwalten</a></li>
+            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-class']">Klassenmitglieder verwalten</a></li>
+            <li [routerLinkActive]="['active']"><a [routerLink]="['knc/categories']">Kategorien verwalten</a></li>
           </ul>
         </li>
 
@@ -55,7 +54,7 @@
             class="caret"></span></a>
           <ul class="dropdown-menu">
             <li [routerLinkActive]="['active']"><a [routerLink]="['uas/edit-profile']">Daten ändern</a></li>
-            <li><a href="#">Log out</a></li>
+            <li><a href="#" (click)="onLocaleSwitch()">Sprache wechseln</a></li>
           </ul>
         </li>
 
