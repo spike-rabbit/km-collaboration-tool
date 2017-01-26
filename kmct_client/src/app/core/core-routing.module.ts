@@ -22,6 +22,7 @@ import {QuestionShowComponent} from "./knowledge-center/question-show/question-s
 import {EditEventComponent} from "./shared-event-management/edit-event/edit-event.component";
 import {CategoryListComponent} from "./knowledge-center/category-list/category-list.component";
 import {CategoryCreateComponent} from "./knowledge-center/category-create/category-create.component";
+import {CategoryEditComponent} from "./knowledge-center/category-edit/category-edit.component";
 /**
  * Created by Maxi- PC on 17.12.2016.
  */
@@ -69,6 +70,10 @@ const coreRoutes: Routes = [{
     }, {
       path: 'knc/categories/create',
       component: CategoryCreateComponent,
+      canActivate: [UserGuardService]
+    }, {
+      path: 'knc/categories/edit/:category',
+      component: CategoryEditComponent,
       canActivate: [UserGuardService]
     }, {
       path: 'uas/manage-class',

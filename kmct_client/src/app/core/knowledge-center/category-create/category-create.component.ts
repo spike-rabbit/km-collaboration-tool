@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {KnowledgeCenterService} from "../knowledge-center.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-category-create',
@@ -9,13 +11,13 @@ export class CategoryCreateComponent implements OnInit {
 
   category: string;
 
-  constructor() { }
+  constructor(private kncService: KnowledgeCenterService, private router: Router) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-
+      this.kncService.addCategory(this.category).subscribe( () => this.router.navigate(["home/knc/categories"]));
   }
 
 }

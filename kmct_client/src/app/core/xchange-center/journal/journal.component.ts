@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Journal} from "../journal";
 import {XchangeCenterService} from "../xchange-center.service";
 import {slideInOutAnimation} from "../../router-animations";
+import {SigninStateService} from "../../../global-services/signin-state.service";
+import {User} from "../../../../data-definitions";
 
 @Component({
   selector: 'app-journal',
@@ -18,14 +20,16 @@ export class JournalComponent implements OnInit {
   journal: Journal = (<Journal>{});
   id: number;
   success = false;
+  user: User;
 
-  constructor(private route: ActivatedRoute, private xccService: XchangeCenterService, private router: Router) {
+  constructor(private route: ActivatedRoute, private xccService: XchangeCenterService, private router: Router, private signService: SigninStateService) {
 
   }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['journal'];
     this.xccService.loadJournal(this.id).subscribe(journal => this.journal = journal);
+    this.user = this.signService.unsafeUser;
   }
 
   onSubmit() {
@@ -40,6 +44,10 @@ export class JournalComponent implements OnInit {
 
   activate() {
     this.xccService.setActivated(this.id).subscribe(activate => this.router.navigate(['/home/xcc']));
+  }
+
+  alert() {
+
   }
 
 }

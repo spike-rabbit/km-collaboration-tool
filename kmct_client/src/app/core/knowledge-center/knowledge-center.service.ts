@@ -66,7 +66,11 @@ export class KnowledgeCenterService {
   }
 
   addCategory(category: string) {
-
+    return this.http.post("/api/knc/category", {category: category}, {sendAuthToken: true})
+      .catch((response: Response) => {
+        console.log(response);
+        return Observable.throw("Error");
+      });
   }
 
   addQuestion(question: string, title: string, categoryId: number) {

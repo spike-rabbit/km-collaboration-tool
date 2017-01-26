@@ -10,6 +10,7 @@ import {XchangeCenterModule} from "../xchange-center/xchange-center.module";
 import { QuestionListComponent } from './question-list/question-list.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryCreateComponent } from './category-create/category-create.component';
+import { CategoryEditComponent } from './category-edit/category-edit.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { CategoryCreateComponent } from './category-create/category-create.compo
     FormsModule,
     XchangeCenterModule
   ],
-  declarations: [KnowledgeCenterComponent, QuestionCreateComponent, QuestionShowComponent, QuestionListComponent, CategoryListComponent, CategoryCreateComponent],
+  declarations: [KnowledgeCenterComponent, QuestionCreateComponent, QuestionShowComponent, QuestionListComponent, CategoryListComponent, CategoryCreateComponent, CategoryEditComponent],
   providers: [KnowledgeCenterService]
 })
 export class KnowledgeCenterModule { }

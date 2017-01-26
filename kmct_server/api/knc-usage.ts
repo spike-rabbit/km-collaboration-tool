@@ -12,7 +12,7 @@ router.post('/thread', postThread);
 router.post('/answer', postAnswer);
 router.post('/thread/answer/:id/like', postLike);
 router.get('/categories', getAllCategories);
-router.post('/categories', postCategory);
+router.post('/category', postCategory);
 //category & sort
 
 
