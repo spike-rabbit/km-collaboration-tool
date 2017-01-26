@@ -12,7 +12,9 @@ router.post('/thread', postThread);
 router.post('/answer', postAnswer);
 router.post('/thread/answer/:id/like', postLike);
 router.get('/categories', getAllCategories);
-router.post('/categories', postCategory);
+router.get('/category/:id', getCategory);
+router.patch('/category/:id', patchCategory);
+router.post('/category', postCategory);
 //category & sort
 
 
@@ -142,6 +144,30 @@ function postCategory(req: ProtectedRequest, res: express.Response) {
         console.log(reason);
     });
 
+}
+
+function getCategory(req: ProtectedRequest, res: express.Response) {
+    database.categories.findById(req.params["id"]).then(res.send, reason => {
+            //TODO log better
+            //TODO send error to client
+            console.log(reason);
+        }
+    )
+
+}
+function patchCategory(req: ProtectedRequest, res: express.Response) {
+    database.categories.findById(req.params["id"]).then(category => {
+            category.update({category: req.body.category}).then(res.send, reason => {
+                //TODO log better
+                //TODO send error to client
+                console.log(reason);
+            })
+        }, reason => {
+            //TODO log better
+            //TODO send error to client
+            console.log(reason);
+        }
+    )
 }
 
 export {router as kncUsage};
