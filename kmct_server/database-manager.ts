@@ -51,7 +51,11 @@ import {
     KarmaTransaction,
     KarmaTransactionInstance,
     KarmaTransactionTable,
-    APPOINTEMENT_TYPES, CategoryModel, CategoryTable, CategoryInstance, Category
+    APPOINTEMENT_TYPES,
+    CategoryModel,
+    CategoryTable,
+    CategoryInstance,
+    Category
 } from "./models/data-types";
 import DefineOptions = Sequelize.DefineOptions;
 
@@ -113,6 +117,7 @@ class DatabaseManager {
             firstname: Sequelize.CHAR(45),
             workinghours: Sequelize.INTEGER
         }, withDefOpts({
+            paranoid: true,
             classMethods: {
                 getUserByGid: (gid: string) => {
                     let where: {[key: string]: any} = {};
@@ -285,7 +290,7 @@ function withDefOpts(defOpts?: Sequelize.DefineOptions<any>) {
     };
 }
 
-function withDate(defOpts?: Sequelize.DefineOptions<any>){
+function withDate(defOpts?: Sequelize.DefineOptions<any>) {
     if (defOpts) {
         defOpts.timestamps = true;
         defOpts.underscored = true;

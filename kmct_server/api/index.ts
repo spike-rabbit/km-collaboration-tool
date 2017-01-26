@@ -19,6 +19,8 @@ index.get('/user', protect, getUser);
 index.get('/user/company', protect, getCompany);
 index.patch("/user/:id/role/:role", protect, requireRole(ROLES.ksspr), patchRole);
 index.delete("/user/:id/role/:role", protect, requireRole(ROLES.ksspr), deleteRole);
+index.delete("/user/:id", protect, requireRole(ROLES.admin), deleteUser);
+index.get("/users", protect, requireRole(ROLES.admin), getUsers);
 
 function postUser(req: express.Request, res: express.Response, next) {
     database.invitations.getInvitationByUUID(req.body.uuid).then(invitation => {
@@ -130,7 +132,41 @@ function deleteRole(req: ProtectedRequest, res: express.Response, next: express.
     database.users.findById(req.params["id"]).then(user => {
         user.removeRole(req.params["role"]).then(() => {
             res.send();
+        }, err => {
+            // Irgendwas mit der DB stimmt nicht
+            console.log(err);
+            next(err);
         });
+    }, err => {
+        // Irgendwas mit der DB stimmt nicht
+        console.log(err);
+        next(err);
+    });
+}
+
+function deleteUser(req: ProtectedRequest, res: express.Response, next: express.NextFunction) {
+    database.users.findById(req.params["id"]).then(user => {
+        user.destroy().then(() => {
+            res.send();
+        }, err => {
+            // Irgendwas mit der DB stimmt nicht
+            console.log(err);
+            next(err);
+        });
+    }, err => {
+        // Irgendwas mit der DB stimmt nicht
+        console.log(err);
+        next(err);
+    });
+}
+
+function getUsers(req: ProtectedRequest, res: express.Response, next: express.NextFunction) {
+    database.users.findAll().then(users => {
+        res.send({users: users});
+    }, err => {
+        // Irgendwas mit der DB stimmt nicht
+        console.log(err);
+        next(err);
     });
 }
 

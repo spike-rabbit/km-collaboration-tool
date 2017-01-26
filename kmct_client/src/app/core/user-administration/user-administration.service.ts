@@ -152,6 +152,13 @@ export class UserAdministrationService {
     });
   }
 
+  loadUsers() {
+    return this.http.get("/api/users", {sendAuthToken: true}).map(res => res.json().users).catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
+    });
+  }
+
   private static addLink(invitation: any) {
     invitation.link = window.location.origin + "/login;invitation=" + invitation.uuid;
     return invitation;

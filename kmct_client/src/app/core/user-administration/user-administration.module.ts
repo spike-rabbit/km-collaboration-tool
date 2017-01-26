@@ -11,6 +11,7 @@ import { ManageCompaniesComponent } from './manage-companies/manage-companies.co
 import { EditCompanyComponent } from './edit-company/edit-company.component';
 import {RouterModule} from "@angular/router";
 import {FileUploadModule} from "ng2-file-upload";
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import {FileUploadModule} from "ng2-file-upload";
     FileUploadModule // prot
   ],
   providers: [UserAdministrationService],
-  declarations: [ManageClassComponent, EditProfileComponent, ManageClassesComponent, CreateClassComponent, ManageCompaniesComponent, EditCompanyComponent]
+  declarations: [ManageClassComponent, EditProfileComponent, ManageClassesComponent, CreateClassComponent, ManageCompaniesComponent, EditCompanyComponent, ManageUsersComponent]
 })
 export class UserAdministrationModule { }
