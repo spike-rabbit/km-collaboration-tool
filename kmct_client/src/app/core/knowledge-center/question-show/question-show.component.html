@@ -6,7 +6,14 @@
     <p>{{question.question}}</p>
 
     <div *ngFor="let a of question.answers; let i = index" class="intend50">
-      <p style="font-weight: bold">{{i + 1}}. Antwort von {{a.user.firstname + ' ' + a.user.name}}</p>
+      <div>
+        <div style="font-weight: bold">
+          {{i + 1}}. Antwort von {{a.user.firstname + ' ' + a.user.name}}
+        </div>
+        <span>
+          {{a.created_at | date:"dd.MM.yyyy"}}
+        </span>
+      </div>
       <hr style="height: 1px; background-color:black;">
 
       <div>
