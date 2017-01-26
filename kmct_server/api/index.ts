@@ -170,6 +170,3 @@ function getUsers(req: ProtectedRequest, res: express.Response, next: express.Ne
     });
 }
 
-// function getKarmapoints(req: ProtectedRequest, res: express.Response) {
-//     karmaPoints(req.user.id).then(points => res.send({points: points}));
-// }

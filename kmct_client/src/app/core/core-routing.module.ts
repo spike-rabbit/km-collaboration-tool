@@ -23,6 +23,7 @@ import {EditEventComponent} from "./shared-event-management/edit-event/edit-even
 import {CategoryListComponent} from "./knowledge-center/category-list/category-list.component";
 import {CategoryCreateComponent} from "./knowledge-center/category-create/category-create.component";
 import {CategoryEditComponent} from "./knowledge-center/category-edit/category-edit.component";
+import {ManageUsersComponent} from "./user-administration/manage-users/manage-users.component";
 /**
  * Created by Maxi- PC on 17.12.2016.
  */
@@ -82,6 +83,10 @@ const coreRoutes: Routes = [{
     }, {
       path: 'uas/edit-profile',
       component: EditProfileComponent
+    }, {
+      path: 'uas/manage-users',
+      component: ManageUsersComponent,
+      canActivate: [AdminGuardService]
     }, {
       path: 'uas/manage-classes',
       component: ManageClassesComponent,
