@@ -111,6 +111,7 @@ class DatabaseManager {
             gid: Sequelize.CHAR(45),
             name: Sequelize.CHAR(45),
             firstname: Sequelize.CHAR(45),
+            workinghours: Sequelize.INTEGER
         }, withDefOpts({
             classMethods: {
                 getUserByGid: (gid: string) => {

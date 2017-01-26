@@ -19,6 +19,7 @@ export interface User {
     class: Class;
     company?: Company;
     roles?: Role[];
+    workinghours: number;
 }
 
 export interface Class {
@@ -126,6 +127,7 @@ export interface UsersInstance extends Sequelize.Instance<User>, User {
     setRoles?: (roles: any) => any;
     addRole?: (role: any) => any;
     addRoles?: (roles: any) => any;
+    setCompany?: (id: number) => Promise<CompanyInstance>;
 }
 export interface ClassInstance extends Sequelize.Instance<Class>, Class {
     getAppointments?: (options?: Sequelize.FindOptions) => Promise<AppointmentInstance[]>;
