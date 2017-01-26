@@ -256,7 +256,7 @@ class DatabaseManager {
 
 
         this.categories = this.sequelize.define<CategoryInstance, Category>(CategoryTable, {
-            id: {type: Sequelize.INTEGER, primaryKey: true},
+            id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
             category: Sequelize.CHAR(30),
             class_id: Sequelize.CHAR(5)
         }, withDefOpts());

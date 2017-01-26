@@ -162,6 +162,7 @@ export interface  LikeInstance extends Sequelize.Instance<Like>, Like {
 }
 
 export interface  CategoryInstance extends  Sequelize.Instance<Category>, Category {
+    setClass?: (id: number | string) => Promise<ClassInstance>;
 }
 
 export interface KarmaTransactionInstance extends Sequelize.Instance<KarmaTransaction>, KarmaTransaction{}

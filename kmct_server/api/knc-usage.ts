@@ -136,9 +136,10 @@ function getAllCategories(req: ProtectedRequest, res: express.Response) {
 }
 
 function postCategory(req: ProtectedRequest, res: express.Response) {
-
-    let cat = req.body.category;
-    database.categories.create(cat).then(() => res.send(), reason => {
+    let cat = req.body;
+    database.categories.create(cat).then((category) => {
+        category.setClass(req.user.class.id).then(() => res.send());
+    }, reason => {
         //TODO log better
         //TODO send error to client
         console.log(reason);
