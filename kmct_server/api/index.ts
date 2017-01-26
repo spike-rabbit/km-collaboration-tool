@@ -7,7 +7,6 @@ import {xccUsage} from "./xcc-usage";
 import {kncUsage} from "./knc-usage";
 import {kmctCache} from "../app";
 import {sem} from "./shared-event-management";
-import {karmaPoints} from "../karma-manager";
 export const index = express.Router();
 
 index.use("/xcc", protect, xccUsage);
@@ -34,6 +33,7 @@ function postUser(req: express.Request, res: express.Response, next) {
                             company: null,
                             name: invitation.name,
                             firstname: invitation.firstname,
+                            workinghours: 0
                         }
                     }).spread((user: UsersInstance, created) => {
                         if (created) {
@@ -76,13 +76,23 @@ function getUser(req: ProtectedRequest, res: express.Response) {
 
 function patchUser(req: ProtectedRequest, res: express.Response, next: express.NextFunction) {
     database.users.findById(req.user.id).then(user => {
-        user.name = req.body.user.name;
-        user.firstname = req.body.user.firstname;
-        user.save().then(saved => {
-            req.user.firstname = saved.firstname;
-            req.user.name = saved.name;
-            kmctCache.set(req.get("authentication-token"), req.user);
-            res.send(saved.toJSON());
+        user.update({
+            name: req.body.user.name,
+            firstname: req.body.user.firstname,
+            workinghours: req.body.user.workinghours
+        }).then(saved => {
+            saved.setCompany(req.body.user.companyId).then(company => {
+                req.user.firstname = saved.firstname;
+                req.user.name = saved.name;
+                (<any>req.user).company_id = company.id;
+                req.user.workinghours = saved.workinghours;
+                kmctCache.set(req.get("authentication-token"), req.user);
+                res.send(saved.toJSON());
+            }, err => {
+                // Irgendwas mit der DB stimmt nicht
+                console.log(err);
+                next(err);
+            });
         }, err => {
             // Irgendwas mit der DB stimmt nicht
             console.log(err);
@@ -96,7 +106,10 @@ function patchUser(req: ProtectedRequest, res: express.Response, next: express.N
 }
 
 function getCompany(req: ProtectedRequest, res: express.Response) {
-    database.users.findById(req.user.id, {include: [database.companies], attributes: []}).then(userwc => {
+    database.users.findById(req.user.id, {
+        include: [{model: database.companies, attributes: ["id", "name"]}],
+        attributes: []
+    }).then(userwc => {
         res.send(userwc.company);
     });
 }

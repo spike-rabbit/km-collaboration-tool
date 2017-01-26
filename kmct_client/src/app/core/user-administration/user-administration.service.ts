@@ -31,11 +31,13 @@ export class UserAdministrationService {
     );
   }
 
-  applyUserChanges(name: string, firstname: string) {
+  applyUserChanges(name: string, firstname: string, companyId: number, workinghours: number) {
     return this.http.patch("/api/user", {
       user: {
         name: name,
-        firstname: firstname
+        firstname: firstname,
+        companyId: companyId,
+        workinghours: workinghours
       }
     }, {sendAuthToken: true}).map(res => res.json()).catch((response: Response) => {
         console.log(response);

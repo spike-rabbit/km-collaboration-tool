@@ -22,7 +22,7 @@ export class SigninStateService implements CanActivate, CanActivateChild {
       } else {
         this.isSigningIn = true;
         this.signIn().subscribe(user => {
-          this.unsafeUser = new User(user.firstname, user.name, user.roles.map(role => role.id), gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token);
+          this.unsafeUser = new User(user.firstname, user.name, user.roles.map(role => role.id), gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token, user.company_id, user.workinghours);
           callback(null, this.unsafeUser);
           callBackStack.forEach(cb => cb(null, this.unsafeUser));
         }, error => {
