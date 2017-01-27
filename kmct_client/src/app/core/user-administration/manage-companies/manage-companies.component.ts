@@ -1,14 +1,19 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, HostBinding} from "@angular/core";
 import {Router} from "@angular/router";
 import {Company} from "../../../../../../kmct_server/models/data-types";
 import {UserAdministrationService} from "../user-administration.service";
+import {slideInOutAnimation} from "../../router-animations";
 
 @Component({
   selector: 'app-manage-companies',
   templateUrl: './manage-companies.component.html',
-  styleUrls: ['./manage-companies.component.css']
+  styleUrls: ['./manage-companies.component.css'],
+  animations: [slideInOutAnimation]
 })
 export class ManageCompaniesComponent implements OnInit {
+  @HostBinding('@routeAnimation') routeAnimation = true;
+  @HostBinding('style.display') display = 'block';
+  @HostBinding('style.position') position = 'absolute';
   companies: Company[];
 
   constructor(private router: Router, private uasService: UserAdministrationService) {

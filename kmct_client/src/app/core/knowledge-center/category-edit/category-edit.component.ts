@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, HostBinding} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {KnowledgeCenterService} from "../knowledge-center.service";
+import {slideInOutAnimation} from "../../router-animations";
 
 @Component({
   selector: 'app-category-edit',
   templateUrl: './category-edit.component.html',
-  styleUrls: ['./category-edit.component.css']
+  styleUrls: ['./category-edit.component.css'],
+  animations: [slideInOutAnimation]
 })
 export class CategoryEditComponent implements OnInit {
-
+  @HostBinding('@routeAnimation') routeAnimation = true;
+  @HostBinding('style.display') display = 'block';
+  @HostBinding('style.position') position = 'absolute';
   id: number;
   category: string;
 

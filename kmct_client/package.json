@@ -5,14 +5,15 @@
   "angular-cli": {},
   "scripts": {
     "start": "ng serve",
+    "version": "ng version",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
     "extract-i18n": "cd src && ng-xi18n",
     "build": "npm run build:de && npm run build:en",
-    "build:de": "ng build -prod --locale de --o \"../kmct_server/public/de\"",
-    "build:en": "ng build -prod --locale en --o \"../kmct_server/public/en\""
+    "build:de": "ng build -prod --aot --o \"../kmct_server/public/de\"",
+    "build:en": "ng build -prod --aot  --locale en --i18n-file=src/i18n/messages.en.xlf --i18n-format xlf --o \"../kmct_server/public/en\""
   },
   "private": true,
   "dependencies": {

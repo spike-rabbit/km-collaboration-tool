@@ -14,18 +14,18 @@
 
       <ul class="nav navbar-nav">
 
-        <li *ngIf="user.isUserInRole('XCC')" [routerLinkActive]="['active']"><a [routerLink]="['xcc']" i18n>XChange
+        <li *ngIf="user.isUserInRole('XCC')" [routerLinkActive]="['active']"><a [routerLink]="['xcc']" i18n="">XChange
           Center</a></li>
-        <li *ngIf="user.isUserInRole('KNC')" [routerLinkActive]="['active']"><a [routerLink]="['knc']" i18n>Knowledge
+        <li *ngIf="user.isUserInRole('KNC')" [routerLinkActive]="['active']"><a [routerLink]="['knc']" i18n="">Knowledge
           Center</a></li>
 
         <li class="dropdown" *ngIf="user.isUserInRole('KSSPR')">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" i18n="Manage Class Module Header" i18n>Klasse
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" i18n="Manage Class Module Header" i18n="">Klasse
             verwalten<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-class']" i18n>Klassenmitglieder
+            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-class']" i18n="">Klassenmitglieder
               verwalten</a></li>
-            <li [routerLinkActive]="['active']"><a [routerLink]="['knc/categories']" i18n>Kategorien verwalten</a></li>
+            <li [routerLinkActive]="['active']"><a [routerLink]="['knc/categories']" i18n="">Kategorien verwalten</a></li>
           </ul>
         </li>
 
@@ -33,11 +33,11 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"
              i18n="Manage Class Module Header">Administration<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-users']" i18n>User verwalten</a>
+            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-users']" i18n="">User verwalten</a>
             </li>
-            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-classes']" i18n>Klassen hinzufügen</a>
+            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-classes']" i18n="">Klassen hinzufügen</a>
             </li>
-            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-companies']" i18n>Firmen verwalten</a>
+            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-companies']" i18n="">Firmen verwalten</a>
             </li>
           </ul>
         </li>
@@ -46,7 +46,7 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" i18n>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" i18n="">
             <img src="../assets/images/km_notification.png" height="25px" class="d-inline-block align-top" alt="">
             <span class="badge">{{notifications.length}}</span>
           </a>
@@ -64,8 +64,8 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.firstname + " " + user.name}}<span
             class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/edit-profile']" i18n>Daten ändern</a></li>
-            <li><a href="#" (click)="onLocaleSwitch()" i18n>Sprache wechseln</a></li>
+            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/edit-profile']" i18n="">Daten ändern</a></li>
+            <li><a href="#" (click)="onLocaleSwitch()" i18n="">Switch language</a></li>
           </ul>
         </li>
 

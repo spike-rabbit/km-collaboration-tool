@@ -119,8 +119,7 @@ export class UserAdministrationService {
       sendAuthToken: true,
       responseType: ResponseContentType.Blob
     }).map(res => res.blob()).map(blob => this.sanatizer.bypassSecurityTrustUrl(window.URL.createObjectURL(blob))).catch((response: Response) => {
-      console.log(response);
-      return Observable.throw("Error");
+      return Observable.empty();
     });
   }
 

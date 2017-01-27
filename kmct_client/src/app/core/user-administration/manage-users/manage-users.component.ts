@@ -1,14 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, HostBinding} from '@angular/core';
 import {User} from "../../../../../../kmct_server/models/data-types";
 import {UserAdministrationService} from "../user-administration.service";
 import {PopupsService} from "../../popups/popups.service";
+import {slideInOutAnimation} from "../../router-animations";
 
 @Component({
   selector: 'app-manage-users',
   templateUrl: './manage-users.component.html',
-  styleUrls: ['./manage-users.component.css']
+  styleUrls: ['./manage-users.component.css'],
+  animations: [slideInOutAnimation]
 })
 export class ManageUsersComponent implements OnInit {
+  @HostBinding('@routeAnimation') routeAnimation = true;
+  @HostBinding('style.display') display = 'block';
+  @HostBinding('style.position') position = 'absolute';
 
   users: User[];
 

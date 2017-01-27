@@ -12,7 +12,7 @@ import {AdminGuardService} from "./global-services/guards/admin.service";
 import {UserGuardService} from "./global-services/guards/user-guard.service";
 import {GlobalServicesModule} from "./global-services/global-services.module";
 import {LoginGuardService} from "./global-services/guards/login-guard.service";
-import {CookieService} from "angular2-cookie/services/cookies.service";
+import {BaseCookieOptions} from "angular2-cookie/services/base-cookie-options";
 
 const routes: Routes = [{path: "login", component: LoginComponent, canActivate: [LoginGuardService]}, {
   path: "",
@@ -31,9 +31,9 @@ const routes: Routes = [{path: "login", component: LoginComponent, canActivate: 
     HttpModule,
     CoreModule,
     RouterModule.forRoot(routes, {useHash: true}),
-    GlobalServicesModule
+    GlobalServicesModule,
   ],
-  providers: [LoginService, ClassLeaderGuardService, AdminGuardService, UserGuardService, CookieService],
+  providers: [LoginService, ClassLeaderGuardService, AdminGuardService, UserGuardService, BaseCookieOptions],
   bootstrap: [AppComponent]
 })
 export class AppModule {

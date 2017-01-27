@@ -2,19 +2,105 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="139240df5a7c7048441c578ed49a61097999e880" datatype="html">
+        <source>XChange
+          Center</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="a70231b7be127250fd7960ce9a00f03b1e9cac43" datatype="html">
+        <source>Knowledge
+          Center</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="3f0c91c7837f48b4a644f010f8cd713d797faa3d" datatype="html">
         <source>Klasse
             verwalten<x id="START_TAG_SPAN" ctype="x-span"/><x id="CLOSE_TAG_SPAN" ctype="x-span"/></source>
         <target/>
         <note priority="1" from="description">Manage Class Module Header</note>
       </trans-unit>
+      <trans-unit id="86ab482dd94e3421c0f309e53ecc2e2d0d8e315e" datatype="html">
+        <source>Klassenmitglieder
+              verwalten</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8fdbf7527337689721115d9fcf13c0baa027ebcf" datatype="html">
+        <source>Kategorien verwalten</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="f0255499f5d6103f493e6aaef4d2fa6afe2441fb" datatype="html">
         <source>Administration<x id="START_TAG_SPAN" ctype="x-span"/><x id="CLOSE_TAG_SPAN" ctype="x-span"/></source>
         <target/>
         <note priority="1" from="description">Manage Class Module Header</note>
       </trans-unit>
+      <trans-unit id="58e53d5928be01502eb03072d64a29086c9ce674" datatype="html">
+        <source>User verwalten</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4542f3ebe7ebd17c851c6ff1465da39cdb09ef1c" datatype="html">
+        <source>Klassen hinzufügen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="bb9ca5b0a88e7236522c703f111a37fdba860c92" datatype="html">
+        <source>Firmen verwalten</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="471b66a3435a56e4009866fc10cb841d205ac4fe" datatype="html">
+        <source>
+            <x id="TAG_IMG" ctype="image"/>
+            <x id="START_TAG_SPAN" ctype="x-span"/><x id="INTERPOLATION"/><x id="CLOSE_TAG_SPAN" ctype="x-span"/>
+          </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="96ec95ccf2c0d952febad63462d6cc643711aec0" datatype="html">
+        <source>Daten ändern</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="b795a6199ce787ad16cfa518d0c40ba54c2961d2" datatype="html">
+        <source>Sprache wechseln</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2a54c5c48afd388308cfb8c2cb12fa94b350e37a" datatype="html">
+        <source>Herzlich willkommen im KM Collaboration Tool!</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="ed754d0aa1625f348fc8e699a1e842ae83f0ff91" datatype="html">
         <source>Hier geht&apos;s zu den Ausbildungsnachweisen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="65a6fabc4407454f25581e51622e477a0938ea76" datatype="html">
+        <source>Hier geht&apos;s zum Exchange Market</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="b4c846d94649d94e12dafcc804b86c667c7d5f33" datatype="html">
+        <source>Hier geht&apos;s zum Forum</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="b113319e62c34ca7b5ab8ca4fe229d04706ccd79" datatype="html">
+        <source>Ausbildungsnachweis KW <x id="INTERPOLATION"/> ab <x id="INTERPOLATION_1"/></source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9b3e44e2d3e397992245a7f549f5fb0b1dec7be7" datatype="html">
+        <source>Erfolgreich gespeichert!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="bf368b20dd6f8b723da95af276a60aef302fbf10" datatype="html">
+        <source>Montag</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8affb23f699bff5faa12d2e146452299dd8b5306" datatype="html">
+        <source>Dienstag</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="0a906c4a1273de8f89eef4b38ed1ca9d16d8a883" datatype="html">
+        <source>Mittwoch</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="cf102fff9343ad59dd2edbc31c50aa0da2370450" datatype="html">
+        <source>Donnerstag</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="58ac82ac1e318477780bac08e2417b9c9321e93c" datatype="html">
+        <source>Freitag</source>
         <target/>
       </trans-unit>
       <trans-unit id="70a43fcaa38b25e671bfb649f8f155f4e17e1cb2" datatype="html">
@@ -25,12 +111,252 @@
       <trans-unit id="05d6def11b80c405276ad18c4fc5183e8cea4f75" datatype="html">
         <source>Speichern</source>
         <target/>
-        <note priority="1" from="description">SpeichernButton</note>
+      </trans-unit>
+      <trans-unit id="c4b940dafd9189afd5fbc4fcd08b078d68d4c19a" datatype="html">
+        <source>Aktivieren
+      </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6c80673987b1e2b00c68a39cc0e5a6151e2c0982" datatype="html">
+        <source>Ausbildungsnachweis erstellen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="1470eabded471793a7ef2271e2a1dc30a1a3265f" datatype="html">
+        <source>Datum</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2874cc632736c8ad22a4341fb6bb04fe78cf4814" datatype="html">
+        <source>KW</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6b0ee47afa46fb719fd4c28f81a147609c108642" datatype="html">
+        <source>Hochladen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9dca8ee91534ba98975ed3f4acd15da045bc0025" datatype="html">
+        <source>Ausbildungsnachweise: Übersicht</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="ba3e47369ae6c5f069f5759b2f79a9f704089df7" datatype="html">
+        <source>Ausbildungswoche</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5fcd6244d4bc6d8ea4c30d493d822546da850255" datatype="html">
+        <source>Startdatum</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="0d55eb9f3e0b31935040b8e5d5ed67d7701bbeae" datatype="html">
+        <source>Frage stellen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="e4542d825f48937d44c380db078a21893eabe326" datatype="html">
+        <source>Mitglieder</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+        <source>Name</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="d6507e7b5ae51f1734f3e169ef4cf6ef56f0001f" datatype="html">
+        <source>Vorname</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="1d9f87ed7280814a1b9e0139131a0aafa98dfb33" datatype="html">
+        <source>KNC</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="636078554b529a87c14dcb0639968403bcbc9d27" datatype="html">
+        <source>XCC</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="bc6a24eccb16ce239bd49aba8c4fe144d5f4b292" datatype="html">
+        <source>Offene Einladungen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
+        <source>Email</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="e03b6cba7c88318e4f91a60a079870e8fba4bee7" datatype="html">
+        <source>Link</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="0653a11adb633fe28d3e60d9f2116f791e9b9fae" datatype="html">
+        <source>Persönliche Daten ändern</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2d585ceb745c52cf8f2e9e4192b5c97a685c24fe" datatype="html">
+        <source>Firma</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="aa35b79d19b0be9b2bd7080e442329c0452e5178" datatype="html">
+        <source>Wochenstunden</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="ac4af78a5a62897eae38ba545e1466e9ab9c6e64" datatype="html">
+        <source>Verwerfen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="cfbd813838ff8569f9a754aa7efe42e85489e2ac" datatype="html">
+        <source>Klassen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="0f3cf4a6e21f854e2a6bf93bd5e53adfd34646c7" datatype="html">
+        <source>Klasse hinzufügen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4f8391dda8b095bf2fd1bfe3f450d8189580918b" datatype="html">
+        <source>Klasse erstellen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="600281e6946bd00344d2153ca21ea39fd76f232d" datatype="html">
+        <source>Klasse</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="186cac8b03aae85b42316d7071885f8f8fb57018" datatype="html">
+        <source>Daten des Klassensprechers</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="1b24932d0f2269e4b41d0f936fdb5de1b94da401" datatype="html">
+        <source>Abbrechen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5d23212e9a0641a2ea9fe37d09b6ab14725876d1" datatype="html">
+        <source>Firmen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="e1ec9749196346b5a9bd8047e3bcc60ada632666" datatype="html">
+        <source>Logo</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="35e39444aff9cf6d543f4021368b305a7dcbf8d7" datatype="html">
+        <source>Firma anlegen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2f59d2e1534b1c1b504bec78db3109a0b25c940b" datatype="html">
+        <source>Firma bearbeiten</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="af9af47f9e0a482e6c62e2bad1e33c0ba7f1629e" datatype="html">
+        <source>Firmenlogo</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4025f31c2192a27d755f8dfa6be12e3b72e3a6b6" datatype="html">
+        <source>Firma speichern</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="b7f6cd735e8b660a6ec3d3dfb09de14ab32a10c8" datatype="html">
+        <source>Titel</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="a801ddbd6326f1290645b1b4639168dcb6c7f88f" datatype="html">
+        <source>Komplette Frage</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="ccb97f0a9828fadf14388eb899443b52c12cfd9b" datatype="html">
+        <source>Kategorie</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="f504721f06d60b5f234278f84ffeb23086f292ba" datatype="html">
+        <source>Absenden</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="264d61cd680d1c28ac09524713c0209bdc012b7b" datatype="html">
+        <source>Frage</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="db00ae24e0d6379c152ed1d27806878349ef0d6e" datatype="html">
+        <source><x id="INTERPOLATION"/> fand(en) das hilfreich</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="a37ae4db9a71ee5519a7541a951ec26b4b93b544" datatype="html">
+        <source>Antworten</source>
+        <target/>
       </trans-unit>
       <trans-unit id="e0b8de4234e9d45d8e14152f262e805ba005e1c1" datatype="html">
         <source>Termin ändern
     <x id="START_TAG_BUTTON" ctype="x-button"/><x id="CLOSE_TAG_BUTTON" ctype="x-button"/>
   </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="a583219a4758b0b56503cde5770e26ab3c704930" datatype="html">
+        <source>Typ</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="a74f43dce2ade81eac44322aca6690e23dd43d2a" datatype="html">
+        <source>Klausur</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="c6b48dd48cb5ef29f106bd6248bca1a5b1b491cc" datatype="html">
+        <source>Vorlesung</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="f09ad66c1ebf16217ba1a1072be7a98de2d95eac" datatype="html">
+        <source>Beschreibung</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="e783467d6f482831218ffe5a8e477d29f0581bcc" datatype="html">
+        <source>Ende</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="57f2e28a8332fbd6590532f206a6c030e4afc484" datatype="html">
+        <source>Wiederholungen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="90e2f1cfa127ca7b3f12bcd473837cfbe447eb75" datatype="html">
+        <source>Keine</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2834307663fb7cd475ca89dc87e6cd2615285fdc" datatype="html">
+        <source>Täglich</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5060cb41125c5dc2327191acf10de21ab2f7199e" datatype="html">
+        <source>Wöchentlich</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="83757a803087d55e168349c84ae40f9b80cc88f5" datatype="html">
+        <source>Anzahl Wiederholungen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="0817b822e686b0ff325a843be1a70a93b0715627" datatype="html">
+        <source>Kategorien</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="138c1276c1d430b7435b7b3a4d70eba812b5e848" datatype="html">
+        <source>Neue Kategorie</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="373c833451a5698fef45c19b14393e4f100034a0" datatype="html">
+        <source>Kategorie hinzufügen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="208324f3bba679dc888f1d6ff86fe124e917b1e1" datatype="html">
+        <source>Kategorie ändern</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="83871375c4e5c51dbb0bdc1c63796e916a220579" datatype="html">
+        <source>Änderung speichern</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="0013035b47edd8c920a76d0d5d2a18afacc336d8" datatype="html">
+        <source>Forum</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="ce39780f9329f9513f6652388c8bc6efc2a66432" datatype="html">
+        <source>Fragender</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="845171931a1062c5c30c643a94e3f87a2c50ced5" datatype="html">
+        <source>Invitation Löschen?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="1802c0cd995dd80b57a089f04cf0fcab05728c31" datatype="html">
+        <source>Sind sie sich sicher?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="f566736cfb29174ab1560dfa55449028dd0c814c" datatype="html">
+        <source>User löschen?</source>
         <target/>
       </trans-unit>
     </body>

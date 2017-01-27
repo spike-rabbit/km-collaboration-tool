@@ -1,7 +1,7 @@
 <div *ngIf="question">
   <form class="form-horizontal" (submit)="submit()">
     <h2>{{question.title}}</h2>
-    <p style="font-weight: bold" i18n>Frage</p>
+    <p style="font-weight: bold" i18n="">Frage</p>
     <hr style="height: 1px; background-color:black;">
     <p>{{question.question}}</p>
 
@@ -19,7 +19,7 @@
       <div>
         <div>
           <button type="button" class="btn btn-default btn-xs glyphicon glyphicon-thumbs-up" style="font-size: x-large" [disabled]="a.liked" (click)="onLike(a)"></button>
-          <label style="color: blue" i18n>{{a.likeCount}} fand(en) das hilfreich</label>
+          <label style="color: blue" i18n="">{{a.likeCount}} fand(en) das hilfreich</label>
         </div>
 
         <p style="margin-left: 60px">
@@ -29,11 +29,11 @@
     </div>
 
     <div class="intend50">
-      <p style="font-weight: bold" i18n>Antworten</p>
+      <p style="font-weight: bold" i18n="">Antworten</p>
       <hr style="height: 1px; background-color:black;">
       <textarea class="form-control" rows="4" cols="100" name="answerNew" [(ngModel)]="answer"></textarea>
       <br>
-      <button class="btn btn-default col-sm-2" type="submit" i18n>Antworten</button>
+      <button class="btn btn-default col-sm-2" type="submit" i18n="">Antworten</button>
     </div>
   </form>
 </div>

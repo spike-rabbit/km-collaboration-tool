@@ -1,36 +1,36 @@
-<h2 i18n>Ausbildungsnachweis KW {{journal.week}} ab {{journal.startDate | date:"dd.MM.yyyy"}}</h2>
-<div class="alert alert-success" *ngIf="success" i18n>Erfolgreich gespeichert!</div>
+<h2 i18n="">Ausbildungsnachweis KW {{journal.week}} ab {{journal.startDate | date:"dd.MM.yyyy"}}</h2>
+<div class="alert alert-success" *ngIf="success" i18n="">Erfolgreich gespeichert!</div>
 <form class="form-horizontal" (submit)="onSubmit()">
   <div class="form-group">
-    <label class="col-xs-4 col-sm-2 col-md-2 col-lg-2 control-label" for="monday" i18n>Montag</label>
+    <label class="col-xs-4 col-sm-2 col-md-2 col-lg-2 control-label" for="monday" i18n="">Montag</label>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
       <textarea class="form-control" type="text" name="monday" id="monday" cols="100" [(ngModel)]="journal.monday"
                 [disabled]="!journal.editable"></textarea>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-xs-4 col-sm-2 col-md-2 col-lg-2 control-label" for="tuesday" i18n>Dienstag</label>
+    <label class="col-xs-4 col-sm-2 col-md-2 col-lg-2 control-label" for="tuesday" i18n="">Dienstag</label>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
       <textarea class="form-control" type="text" name="tuesday" id="tuesday" [(ngModel)]="journal.tuesday"
                 [disabled]="!journal.editable"></textarea>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-xs-4 col-sm-2 col-md-2 col-lg-2 control-label" for="wednesday" i18n>Mittwoch</label>
+    <label class="col-xs-4 col-sm-2 col-md-2 col-lg-2 control-label" for="wednesday" i18n="">Mittwoch</label>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
       <textarea class="form-control" type="text" name="wednesday" id="wednesday" [(ngModel)]="journal.wednesday"
                 [disabled]="!journal.editable"></textarea>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-xs-4 col-sm-2 col-md-2 col-lg-2 control-label" for="thursday" i18n>Donnerstag</label>
+    <label class="col-xs-4 col-sm-2 col-md-2 col-lg-2 control-label" for="thursday" i18n="">Donnerstag</label>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
       <textarea class="form-control" type="text" name="thursday" id="thursday" [(ngModel)]="journal.thursday"
                 [disabled]="!journal.editable"></textarea>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-xs-4 col-sm-2 col-md-2 col-lg-2 control-label" for="friday" i18n>Freitag</label>
+    <label class="col-xs-4 col-sm-2 col-md-2 col-lg-2 control-label" for="friday" i18n="">Freitag</label>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
       <textarea class="form-control" type="text" name="friday" id="friday" [(ngModel)]="journal.friday"
                 [disabled]="!journal.editable"></textarea>
@@ -39,9 +39,9 @@
   <div class="form-group">
     <label class="col-xs-4 col-sm-2 col-md-2 col-lg-2 control-label"></label>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 btn-group">
-      <button class="btn  btn-default" type="button" i18n="DownloadButton" (click)="download()" i18n>Herunterladen</button>
-      <button class="btn btn-primary" type="submit" *ngIf="journal.editable" i18n>Speichern</button>
-      <button class="btn btn-primary" type="submit" *ngIf="!journal.activated" (click)="activate()" i18n>Aktivieren
+      <button class="btn  btn-default" type="button" i18n="DownloadButton" (click)="download()" i18n="">Herunterladen</button>
+      <button class="btn btn-primary" type="submit" *ngIf="journal.editable" i18n="">Speichern</button>
+      <button class="btn btn-primary" type="submit" *ngIf="!journal.activated" (click)="activate()" i18n="">Aktivieren
       </button>
     </div>
   </div>
