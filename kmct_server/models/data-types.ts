@@ -89,7 +89,7 @@ export interface Like {
     answer?: number;
 }
 
-export interface Category{
+export interface Category {
     id?: number;
     category: string;
     class_id: string;
@@ -115,9 +115,19 @@ export interface KarmaTransaction {
     toUser: number;
     fromUser?: number;
     productId?: number;
-    appointmentId?:number
+    appointmentId?: number
 }
 
+export interface Notification {
+    id?: number;
+    description: string;
+    link: string;
+}
+
+export interface NotificationTarget {
+    notification?: Notification;
+    user?: User;
+}
 
 // Instances
 export interface CompanyInstance extends Sequelize.Instance<Company>, Company {
@@ -150,11 +160,11 @@ export interface JournalTemplateInstance extends Sequelize.Instance<JournalTempl
 export interface AppointmentInstance extends Sequelize.Instance<Appointment>, Appointment {
 }
 
-export interface ThreadInstance extends Sequelize.Instance<Thread> , Thread {
+export interface ThreadInstance extends Sequelize.Instance<Thread>, Thread {
     setCategory: (id: number) => Promise<ThreadInstance>;
 }
 
-export interface AnswerInstance extends Sequelize.Instance<Answer>, Answer{
+export interface AnswerInstance extends Sequelize.Instance<Answer>, Answer {
 }
 
 export interface  LikeInstance extends Sequelize.Instance<Like>, Like {
@@ -162,11 +172,18 @@ export interface  LikeInstance extends Sequelize.Instance<Like>, Like {
     setAnswer: (id: number) => Promise<AnswerInstance>;
 }
 
-export interface  CategoryInstance extends  Sequelize.Instance<Category>, Category {
+export interface  CategoryInstance extends Sequelize.Instance<Category>, Category {
     setClass?: (id: number | string) => Promise<ClassInstance>;
 }
 
-export interface KarmaTransactionInstance extends Sequelize.Instance<KarmaTransaction>, KarmaTransaction{}
+export interface KarmaTransactionInstance extends Sequelize.Instance<KarmaTransaction>, KarmaTransaction {
+}
+
+export interface NotificationInstance extends Sequelize.Instance<Notification>, Notification {
+}
+
+export interface NotificationTargetInstance extends Sequelize.Instance<NotificationTarget>, NotificationTarget {
+}
 
 
 // Models
@@ -194,7 +211,7 @@ export interface  JournalTemplateModel extends Sequelize.Model<JournalTemplateIn
 export interface AppointmentModel extends Sequelize.Model<AppointmentInstance, Appointment> {
 }
 
-export interface ThreadModel extends  Sequelize.Model<ThreadInstance, Thread> {
+export interface ThreadModel extends Sequelize.Model<ThreadInstance, Thread> {
 }
 
 export interface AnswerModel extends Sequelize.Model<AnswerInstance, Answer> {
@@ -206,7 +223,14 @@ export interface LikeModel extends Sequelize.Model<LikeInstance, Like> {
 export interface CategoryModel extends Sequelize.Model<CategoryInstance, Category> {
 }
 
-export interface KarmaTransactionModel extends Sequelize.Model<KarmaTransactionInstance, KarmaTransaction>{}
+export interface KarmaTransactionModel extends Sequelize.Model<KarmaTransactionInstance, KarmaTransaction> {
+}
+
+export interface NotificationModel extends Sequelize.Model<NotificationInstance, Notification> {
+}
+
+export interface NotificationTargetModel extends Sequelize.Model<NotificationTargetInstance, NotificationTarget> {
+}
 
 // Tables
 export const CompanyTable = "company";
@@ -219,11 +243,14 @@ export const JournalTable = "journal";
 export const JournalTemplateTable = "journal_template";
 export const AppointmentTable = "appointment";
 
-export const ThreadTable ="thread";
-export const AnswerTable ="answer";
-export const LikeTable ="like";
-export const CategoryTable ="category";
+export const ThreadTable = "thread";
+export const AnswerTable = "answer";
+export const LikeTable = "like";
+export const CategoryTable = "category";
 export const KarmaTransactionTable = "karma_transaction";
+
+export const NotificationTable = "notification";
+export const NotificationTargetTable = "notificatoin_target";
 // Other Types
 export const ROLES = {admin: "ADMIN", ksmem: "KSMEM", ksspr: "KSSPR", knc: "KNC", xcc: "XCC"};
 export const APPOINTEMENT_TYPES = {spe: "SPE", atiw: "ATIW", standart: "STANDARD", exam: "EXAM", lecture: "LECTURE"};

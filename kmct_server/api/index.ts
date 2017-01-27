@@ -7,12 +7,14 @@ import {xccUsage} from "./xcc-usage";
 import {kncUsage} from "./knc-usage";
 import {kmctCache} from "../app";
 import {sem} from "./shared-event-management";
+import {notificationDistributionSystem} from "./notificiation-distribution-system";
 export const index = express.Router();
 
 index.use("/xcc", protect, xccUsage);
 index.use("/knc", protect, kncUsage);
 index.use("/uas", protect, userAdministration);
 index.use("/sem", protect, requireRole(ROLES.ksmem), sem);
+index.use("/nds", protect, notificationDistributionSystem);
 index.post('/user', postUser);
 index.patch('/user', protect, patchUser);
 index.get('/user', protect, getUser);
