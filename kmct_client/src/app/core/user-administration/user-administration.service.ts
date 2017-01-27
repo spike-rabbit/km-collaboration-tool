@@ -153,7 +153,17 @@ export class UserAdministrationService {
   }
 
   loadUsers() {
-    return this.http.get("/api/users", {sendAuthToken: true}).map(res => res.json().users).catch((response: Response) => {
+    return this.http.get("/api/users", {sendAuthToken: true}).map(res => res.json().users).map(users => users.map(user => {
+      user.class = user.class_id; return user;
+    })).catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
+    });
+  }
+
+  deleteUser(userId: number) {
+    return this.http.delete("/api/user/" + userId, {sendAuthToken: true})
+      .catch((response: Response) => {
       console.log(response);
       return Observable.throw("Error");
     });

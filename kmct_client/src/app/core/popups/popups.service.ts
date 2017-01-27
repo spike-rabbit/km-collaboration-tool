@@ -5,6 +5,8 @@ export class PopupsService {
 
   confirmDeleteInvitation : any = {};
 
+  confirmDeleteUser : any = {};
+
   constructor() { }
 
 }

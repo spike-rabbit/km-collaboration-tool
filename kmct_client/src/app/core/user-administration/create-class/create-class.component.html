@@ -1,13 +1,13 @@
-<h3>Klasse erstellen</h3>
+<h3 i18n>Klasse erstellen</h3>
 <form class="form-horizontal" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="className">Klasse</label>
+      <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="className" i18n>Klasse</label>
       <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
         <input id="className" name="className" type="text" class="form-control" [(ngModel)]="className" required>
       </div>
     </div>
 
-  <h4 align="left">Daten des Klassensprechers</h4>
+  <h4 align="left" i18n>Daten des Klassensprechers</h4>
     <div class="form-group">
       <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="classLeaderName">Name</label>
       <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="classLeaderFirstname">Vorname</label>
+      <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="classLeaderFirstname" i18n>Vorname</label>
       <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
         <input id="classLeaderFirstname" name="classLeaderFirstname" type="text" class="form-control"
                [(ngModel)]="classLeaderFirstname" required>
@@ -34,8 +34,8 @@
     <div class="form-group">
       <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label"></label>
       <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 btn-group">
-        <button type="submit" class="btn btn-primary">Speichern</button>
-        <button type="button" class="btn btn-default" (click)="onCancel()">Abbrechen</button>
+        <button type="submit" class="btn btn-primary" i18n>Speichern</button>
+        <button type="button" class="btn btn-default" (click)="onCancel()" i18n>Abbrechen</button>
       </div>
     </div>
 

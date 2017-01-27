@@ -1,3 +1,25 @@
-<p>
-  manage-users works!
-</p>
+<label for="member-table" i18n>Mitglieder</label>
+<div id="member-table" class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th i18n>Vorname</th>
+      <th i18n>Klasse</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of users">
+      <td>{{item.name}}</td>
+      <td>{{item.firstname}}</td>
+      <td>{{item.class}}</td>
+      <td>
+        <button class="btn btn-danger glyphicon glyphicon-trash" (click)="delete(item)"></button>
+      </td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

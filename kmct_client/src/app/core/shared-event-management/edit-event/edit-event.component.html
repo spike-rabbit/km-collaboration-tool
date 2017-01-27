@@ -8,17 +8,17 @@
       <input id="name" class="form-control" name="name" [(ngModel)]="name" required>
     </div>
     <div class="form-group">
-      <label class="control-label" for="type">Typ</label>
+      <label class="control-label" for="type" i18n>Typ</label>
       <select id="type" name="typ" class="form-control" [(ngModel)]="type" required>
-        <option value="STANDARD">Standart</option>
-        <option value="ATIW">Atiw</option>
+        <option value="STANDARD">Standard</option>
+        <option value="ATIW">ATIW</option>
         <option value="SPE">SPE</option>
-        <option value="EXAM">Klausur</option>
-        <option value="LECTURE">Vorlesung</option>
+        <option value="EXAM" i18n>Klausur</option>
+        <option value="LECTURE" i18n>Vorlesung</option>
       </select>
     </div>
     <div class="form-group">
-      <label class="control-label" for="description">Beschreibung</label>
+      <label class="control-label" for="description" i18n>Beschreibung</label>
       <textarea id="description" class="form-control" name="description" [(ngModel)]="description" required></textarea>
     </div>
     <div class="form-group">
@@ -27,21 +27,21 @@
       <input id="startTime" name="startTime" class="form-control" type="time" [(ngModel)]="startTime" required>
     </div>
     <div class="form-group">
-      <label class="control-label" for="end">Ende</label>
+      <label class="control-label" for="end" i18n>Ende</label>
       <input id="end" name="end" class="form-control" type="date" [(ngModel)]="endDate" required>
       <input id="endTime" name="endTime" class="form-control" type="time" [(ngModel)]="endTime" required>
     </div>
     <div class="form-group">
-      <label class="control-label" for="repetitionType">Wiederholungen</label>
+      <label class="control-label" for="repetitionType" i18n>Wiederholungen</label>
       <select id="repetitionType" name="repetitionType" class="form-control" [(ngModel)]="repetitionType" required>
-        <option value="none"> Keine</option>
-        <option value="daily">Täglich</option>
-        <option value="weekly">Wöchentlich</option>
+        <option value="none" i18n>Keine</option>
+        <option value="daily" i18n>Täglich</option>
+        <option value="weekly" i18n>Wöchentlich</option>
       </select>
     </div>
 
     <div class="form-group" *ngIf="repetitionType && repetitionType != 'none'">
-      <label class="control-label" for="repetitionNumber">Anzahl Wiederholungen</label>
+      <label class="control-label" for="repetitionNumber" i18n>Anzahl Wiederholungen</label>
       <input id="repetitionNumber" name="repetitionCount" class="form-control" type="number"
              [(ngModel)]="repetitionCount" required>
     </div>
@@ -49,8 +49,8 @@
     <div class="form-group">
       <div class="text-center">
         <div class="btn-group">
-          <button type="submit" class="btn btn-primary">Speichern</button>
-          <button type="button" class="btn btn-default" (click)="onCancel()">Abbrechen</button>
+          <button type="submit" class="btn btn-primary" i18n>Speichern</button>
+          <button type="button" class="btn btn-default" (click)="onCancel()" i18n>Abbrechen</button>
         </div>
       </div>
     </div>
