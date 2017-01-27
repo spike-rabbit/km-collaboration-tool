@@ -6,4 +6,15 @@ import {Response} from "@angular/http";
 @Injectable()
 export class CoreService {
 
+  constructor(private http: KmctHttpService){}
+
+  loadNotifications() {
+    this.http.get("/api/nds/notifications", {sendAuthToken: true})
+      .map(res => res.json().notifications)
+      .catch((response: Response) => {
+      console.log(response);
+      return Observable.throw("Error");
+    });
+  }
+
 }

@@ -14,7 +14,7 @@ export class CoreComponent implements OnInit {
   }
 
   user: User;
-
+  notification: any;
 
   ngOnInit() {
     this.signInService.user.subscribe(user => this.user = user);

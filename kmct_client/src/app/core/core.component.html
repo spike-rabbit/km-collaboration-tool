@@ -29,7 +29,7 @@
         </li>
 
         <li class="dropdown" *ngIf="user.isUserInRole('ADMIN')">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" i18n="Manage Class Module Header" i18n>Administration<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" i18n="Manage Class Module Header">Administration<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-users']" i18n>User verwalten</a>
             </li>
@@ -44,11 +44,14 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="#">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" i18n>
             <img src="../assets/images/km_notification.png" height="25px" class="d-inline-block align-top" alt="">
             <!--ToDo: schöner machen und anpassen-->
             <span class="badge">1</span>
           </a>
+          <ul class="dropdown-menu">
+
+          </ul>
         </li>
 
         <li class="dropdown">
