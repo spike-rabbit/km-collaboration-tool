@@ -62,24 +62,31 @@
   }
 
   // Links within the dropdown menu
-  > li > a {
-    display: block;
+  .special-dropdown-menu, .special-dropdown-menu > a, > li > a {
+    display: inline-block;
     padding: 3px 20px;
     clear: both;
     font-weight: normal;
     line-height: @line-height-base;
     color: @dropdown-link-color;
+    width: 100%;
     white-space: nowrap; // prevent links from randomly breaking onto new lines
   }
 }
 
 // Hover/Focus state
-.dropdown-menu > li > a {
+.dropdown-menu > li > a, .special-dropdown-menu {
   &:hover,
   &:focus {
     text-decoration: none;
     color: @dropdown-link-hover-color;
     background-color: @dropdown-link-hover-bg;
+  }
+}
+
+.special-dropdown-menu > a {
+  &:hover {
+    text-decoration: none;
   }
 }
 

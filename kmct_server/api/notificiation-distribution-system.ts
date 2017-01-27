@@ -15,7 +15,7 @@ notificationDistributionSystem.get("/notifications", (req: ProtectedRequest, res
 });
 
 notificationDistributionSystem.delete("/notification/:id", (req: ProtectedRequest, res, next) => {
-    database.notificationTarget.findAll({where: {notification: req.params["id"]}}).then(((not) => {
+    database.notificationTarget.findAll({where: {notification_id: req.params["id"]}}).then(((not) => {
         not[0].destroy().then(() => {
             res.send();
         });

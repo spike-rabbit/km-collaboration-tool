@@ -23,13 +23,15 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" i18n="Manage Class Module Header" i18n>Klasse
             verwalten<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-class']" i18n>Klassenmitglieder verwalten</a></li>
+            <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-class']" i18n>Klassenmitglieder
+              verwalten</a></li>
             <li [routerLinkActive]="['active']"><a [routerLink]="['knc/categories']" i18n>Kategorien verwalten</a></li>
           </ul>
         </li>
 
         <li class="dropdown" *ngIf="user.isUserInRole('ADMIN')">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" i18n="Manage Class Module Header">Administration<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+             i18n="Manage Class Module Header">Administration<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li [routerLinkActive]="['active']"><a [routerLink]="['uas/manage-users']" i18n>User verwalten</a>
             </li>
@@ -49,7 +51,12 @@
             <span class="badge">{{notifications.length}}</span>
           </a>
           <ul class="dropdown-menu" *ngFor="let item of notifications">
-            <li><a [routerLink]="item.link">{{item.description}}</a><button class="btn btn-primary glyphicon glyphicon-ok" (click)="onDelete(item)"></button></li>
+            <li>
+              <span class="special-dropdown-menu">
+                <a [routerLink]="item.link">{{item.description}}</a>
+                <button class="btn btn-success glyphicon glyphicon-ok" (click)="onDelete(item)"></button>
+              </span>
+            </li>
           </ul>
         </li>
 
