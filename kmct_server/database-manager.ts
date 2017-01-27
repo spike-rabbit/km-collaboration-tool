@@ -55,7 +55,15 @@ import {
     CategoryModel,
     CategoryTable,
     CategoryInstance,
-    Category
+    Category,
+    NotificationModel,
+    NotificationInstance,
+    Notification,
+    NotificationTable,
+    NotificationTargetModel,
+    NotificationTargetInstance,
+    NotificationTarget,
+    NotificationTargetTable
 } from "./models/data-types";
 import DefineOptions = Sequelize.DefineOptions;
 
@@ -74,6 +82,8 @@ class DatabaseManager {
     likes: LikeModel;
     karmaTransactions: KarmaTransactionModel;
     categories: CategoryModel;
+    notification: NotificationModel;
+    notificationTarget: NotificationTargetModel;
 
     constructor() {
         this.sequelize = new Sequelize('kmct', 'kmct_admin', 'G2i65%7089@u', {
@@ -266,6 +276,18 @@ class DatabaseManager {
             class_id: Sequelize.CHAR(5)
         }, withDefOpts());
 
+        this.notification = this.sequelize.define<NotificationInstance, Notification>(NotificationTable, {
+            id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
+            description: Sequelize.CHAR(100),
+            link: Sequelize.CHAR(45)
+        });
+
+        this.notificationTarget = this.sequelize.define<NotificationTargetInstance, NotificationTarget>(NotificationTargetTable, {
+            id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
+        });
+
+        this.notificationTarget.belongsTo(this.notification);
+        this.notificationTarget.belongsTo(this.users);
         this.classes.hasMany(this.categories);
         this.categories.belongsTo(this.classes);
         this.answers.belongsTo(this.users, {foreignKey: "owner"});
