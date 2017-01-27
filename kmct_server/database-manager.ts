@@ -281,10 +281,9 @@ class DatabaseManager {
             description: Sequelize.CHAR(100),
             link: Sequelize.CHAR(45)
         });
-
         this.notificationTarget = this.sequelize.define<NotificationTargetInstance, NotificationTarget>(NotificationTargetTable, {
             id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
-        });
+        }, withDefOpts());
 
         this.notificationTarget.belongsTo(this.notification);
         this.notificationTarget.belongsTo(this.users);

@@ -46,11 +46,10 @@
         <li>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" i18n>
             <img src="../assets/images/km_notification.png" height="25px" class="d-inline-block align-top" alt="">
-            <!--ToDo: schöner machen und anpassen-->
-            <span class="badge">1</span>
+            <span class="badge">{{notifications.length}}</span>
           </a>
-          <ul class="dropdown-menu">
-
+          <ul class="dropdown-menu" *ngFor="let item of notifications">
+            <li><a [routerLink]="item.link">{{item.description}}</a><button class="btn btn-primary glyphicon glyphicon-ok" (click)="onDelete(item)"></button></li>
           </ul>
         </li>
 

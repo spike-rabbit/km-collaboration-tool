@@ -9,12 +9,20 @@ export class CoreService {
   constructor(private http: KmctHttpService){}
 
   loadNotifications() {
-    this.http.get("/api/nds/notifications", {sendAuthToken: true})
+    return this.http.get("/api/nds/notifications", {sendAuthToken: true})
       .map(res => res.json().notifications)
       .catch((response: Response) => {
       console.log(response);
       return Observable.throw("Error");
     });
+  }
+
+  deleteNotification(id: number) {
+    return this.http.delete("/api/nds/notification/" + id, {sendAuthToken: true})
+      .catch((response: Response) => {
+        console.log(response);
+        return Observable.throw("Error");
+      });
   }
 
 }

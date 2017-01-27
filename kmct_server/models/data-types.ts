@@ -250,7 +250,7 @@ export const CategoryTable = "category";
 export const KarmaTransactionTable = "karma_transaction";
 
 export const NotificationTable = "notification";
-export const NotificationTargetTable = "notificatoin_target";
+export const NotificationTargetTable = "notification_target";
 // Other Types
 export const ROLES = {admin: "ADMIN", ksmem: "KSMEM", ksspr: "KSSPR", knc: "KNC", xcc: "XCC"};
 export const APPOINTEMENT_TYPES = {spe: "SPE", atiw: "ATIW", standart: "STANDARD", exam: "EXAM", lecture: "LECTURE"};

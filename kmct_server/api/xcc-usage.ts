@@ -10,7 +10,6 @@ router.get('/journals', getJournals);
 router.get('/journal/:id', getJournal);
 router.patch('/journal/:id', patchJournal);
 router.get('/journalHtml', getJournalHtml);
-//TODO journalTemplates moved to later state
 
 function getJournals(req: ProtectedRequest, res: express.Response) {
     database.classes.findById(req.user.class.id).then(cs => {
