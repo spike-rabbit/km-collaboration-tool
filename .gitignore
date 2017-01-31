@@ -53,3 +53,5 @@ jspm_packages
 /kmct_server/karma-manager.js
 /kmct_server/karma-manager.js.map
 /kmct_server/public/
+/kmct_server/notification-manager.js.map
+/kmct_server/notification-manager.js
