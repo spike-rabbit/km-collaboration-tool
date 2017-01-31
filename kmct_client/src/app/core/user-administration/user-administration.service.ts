@@ -76,7 +76,7 @@ export class UserAdministrationService {
       if (classwi.uuid) {
         return UserAdministrationService.addLink(classwi);
       } else {
-        classwi.link = "TODO Klasse Aktiv";
+        classwi.link = "";
         return classwi;
       }
     })).catch((response: Response) => {
@@ -124,7 +124,7 @@ export class UserAdministrationService {
   }
 
   saveCompany(company: any) {
-    return this.http.post("/api/uas/company/" + company.id, company, {sendAuthToken: true}).catch((response: Response) => {
+    return this.http.put("/api/uas/company/" + company.id, company, {sendAuthToken: true}).catch((response: Response) => {
       console.log(response);
       return Observable.throw("Error");
     });

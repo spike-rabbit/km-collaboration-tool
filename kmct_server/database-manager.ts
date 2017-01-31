@@ -128,6 +128,9 @@ class DatabaseManager {
             workinghours: Sequelize.INTEGER
         }, withDefOpts({
             paranoid: true,
+            timestamps: true,
+            createdAt: false,
+            updatedAt: false,
             classMethods: {
                 getUserByGid: (gid: string) => {
                     let where: {[key: string]: any} = {};
@@ -301,7 +304,8 @@ export const database = new DatabaseManager();
 
 function withDefOpts(defOpts?: Sequelize.DefineOptions<any>) {
     if (defOpts) {
-        defOpts.timestamps = false;
+        if (!defOpts.timestamps)
+            defOpts.timestamps = false;
         defOpts.underscored = true;
         return defOpts;
     }

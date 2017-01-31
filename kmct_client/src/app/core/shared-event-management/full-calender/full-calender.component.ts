@@ -29,7 +29,7 @@ export class FullCalenderComponent implements OnInit {
     },
     customButtons: {
       addBtn: {
-        text: "Neuer Termin",
+        text: this.localizer.getLocale() == "de"? "Neuer Termin" : "Add appointment",
         click: () => {
           this.urlStore.storedUrl = "/home";
           this.router.navigate(["/home/sem/create-event"]);

@@ -1,15 +1,20 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, HostBinding} from "@angular/core";
 import * as moment from "moment";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SharedEventManagementService} from "../shared-event-management.service";
 import {UrlStoreService} from "../../../global-services/url-store.service";
+import {slideInOutAnimation} from "../../router-animations";
 
 @Component({
   selector: 'app-edit-event',
   templateUrl: './edit-event.component.html',
-  styleUrls: ['./edit-event.component.css']
+  styleUrls: ['./edit-event.component.css'],
+  animations: [slideInOutAnimation]
 })
 export class EditEventComponent implements OnInit {
+  @HostBinding('@routeAnimation') routeAnimation = true;
+  @HostBinding('style.display') display = 'block';
+  @HostBinding('style.position') position = 'absolute';
 
   constructor(private route: ActivatedRoute, private semService: SharedEventManagementService, private router: Router, private urlStore: UrlStoreService) {
   }

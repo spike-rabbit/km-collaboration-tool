@@ -359,6 +359,13 @@
         <source>User löschen?</source>
         <target/>
       </trans-unit>
+      <trans-unit id="2b7785cf350bc7f079eaf64219fe4c1a1ce2c73d" datatype="html">
+        <source>
+          Durchsuchen
+          <x id="TAG_INPUT" ctype="x-input"/>
+        </source>
+        <target>Durchsuchen</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

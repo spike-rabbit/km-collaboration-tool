@@ -2,7 +2,7 @@ import {Component, OnInit, HostBinding} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {slideInOutAnimation} from "../../router-animations";
 import {UserAdministrationService} from "../user-administration.service";
-import {FileUploader, FileUploaderOptions} from "ng2-file-upload";
+import {FileUploader, FileUploaderOptions, FileItem} from "ng2-file-upload";
 import {base_url} from "../../../../environments/environment";
 
 @Component({
@@ -42,6 +42,7 @@ export class EditCompanyComponent implements OnInit {
         }],
       }, () => {
         this.router.navigate(["/home/uas/manage-companies"]);
+      }, (fi) => {
       });
     });
   }
@@ -79,12 +80,18 @@ export class EditCompanyComponent implements OnInit {
 class KmctFileUpload extends FileUploader {
 
 
-  constructor(options: FileUploaderOptions, private callback: () => void) {
+  constructor(options: FileUploaderOptions, private callbackcomplete: () => void, private callbackonAdd: (fileItem: FileItem) => void) {
     super(options);
   }
 
+
+  onAfterAddingFile(fileItem: FileItem): any {
+    this.callbackonAdd(fileItem);
+    return super.onAfterAddingFile(fileItem);
+  }
+
   onCompleteAll(): any {
-    this.callback();
+    this.callbackcomplete();
     return super.onCompleteAll();
   }
 }

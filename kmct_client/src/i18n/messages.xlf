@@ -241,8 +241,20 @@
         <source>Firmenlogo</source>
         <target/>
       </trans-unit>
+      <trans-unit id="2b7785cf350bc7f079eaf64219fe4c1a1ce2c73d" datatype="html">
+        <source>
+            Durchsuchen<x id="TAG_INPUT" ctype="x-input"/>
+          </source>
+        <target/>
+      </trans-unit>
       <trans-unit id="4025f31c2192a27d755f8dfa6be12e3b72e3a6b6" datatype="html">
         <source>Firma speichern</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5b4d318efd775e16a174517445662f73c3e99869" datatype="html">
+        <source>
+  Ein bereits vorhandens Logo wird hier nicht angezeigt. Falls kein neues Logo ausgewählt wird, wird das bisherige beibehalten.
+</source>
         <target/>
       </trans-unit>
       <trans-unit id="b7f6cd735e8b660a6ec3d3dfb09de14ab32a10c8" datatype="html">
@@ -273,10 +285,10 @@
         <source>Antworten</source>
         <target/>
       </trans-unit>
-      <trans-unit id="e0b8de4234e9d45d8e14152f262e805ba005e1c1" datatype="html">
+      <trans-unit id="1ad7b1106669264c8bb7e6a394078866ee8574fa" datatype="html">
         <source>Termin ändern
-    <x id="START_TAG_BUTTON" ctype="x-button"/><x id="CLOSE_TAG_BUTTON" ctype="x-button"/>
-  </source>
+      <x id="START_TAG_BUTTON" ctype="x-button"/><x id="CLOSE_TAG_BUTTON" ctype="x-button"/>
+    </source>
         <target/>
       </trans-unit>
       <trans-unit id="a583219a4758b0b56503cde5770e26ab3c704930" datatype="html">

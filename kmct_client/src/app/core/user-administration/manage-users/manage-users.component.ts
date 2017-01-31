@@ -27,6 +27,7 @@ export class ManageUsersComponent implements OnInit {
     this.popupsService.confirmDeleteUser.onDelete = popup => {
       if (user) {
         this.uasService.deleteUser(user.id).subscribe(res => {
+          this.users.splice(this.users.indexOf(user),1);
           popup.hide();
         }, error => {
           //TODO print error

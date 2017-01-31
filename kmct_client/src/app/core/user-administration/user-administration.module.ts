@@ -12,6 +12,7 @@ import { EditCompanyComponent } from './edit-company/edit-company.component';
 import {RouterModule} from "@angular/router";
 import {FileUploadModule} from "ng2-file-upload";
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import {PopoverModule} from "ng2-bootstrap";
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     FormsModule,
     RouterModule,
     ModalModule.forRoot(),
-    FileUploadModule // prot
+    FileUploadModule, // prot
+    PopoverModule.forRoot()
   ],
   providers: [UserAdministrationService],
   declarations: [ManageClassComponent, EditProfileComponent, ManageClassesComponent, CreateClassComponent, ManageCompaniesComponent, EditCompanyComponent, ManageUsersComponent]

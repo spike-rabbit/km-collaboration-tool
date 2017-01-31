@@ -1,15 +1,27 @@
 <form class="form-horizontal" (submit)="onSubmit()">
-  <h3 i18n="">Firma bearbeiten</h3>
+  <div class="container">
+    <h3 i18n="">Firma bearbeiten</h3>
 
-  <div>
-    <div class="col-sm-8 col-md-8 col-lg-8">
+    <div class="col-lg-8 col-md-8 col-sm-8">
       <div class="form-group">
         <label class="control-label" for="name">Name</label>
         <input id="name" name="name" class="form-control" type="text" [(ngModel)]="name">
       </div>
+
       <div class="form-group">
-        <label class="control-label" for="logo" i18n="">Firmenlogo</label>
-        <input id="logo" ng2FileSelect name="logo" class="form-control" type="file" [uploader]="logoUpload">
+        <div>
+          <label class="control-label" for="logo" i18n="">Firmenlogo</label>
+          <span class="glyphicon glyphicon-question-sign" [popover]="logoHelpText" triggers="mouseenter:mouseleave" placement="right"></span>
+        </div>
+        <div>
+          <label *ngIf="logoUpload.queue.length == 0" class="btn btn-default btn-file" i18n="">
+            Durchsuchen<input id="logo" ng2FileSelect name="logo" type="file" [uploader]="logoUpload" hidden>
+          </label>
+        </div>
+        <div *ngIf="logoUpload.queue.length > 0" class="text-nowrap">
+          {{logoUpload.queue[0].file.name}}
+          <button (click)="logoUpload.clearQueue()" class="btn btn-danger glyphicon glyphicon-remove"></button>
+        </div>
       </div>
 
       <div class="form-group">
@@ -20,3 +32,6 @@
     </div>
   </div>
 </form>
+<template i18n="" #logoHelpText>
+  Ein bereits vorhandens Logo wird hier nicht angezeigt. Falls kein neues Logo ausgewählt wird, wird das bisherige beibehalten.
+</template>
