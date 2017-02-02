@@ -9,11 +9,6 @@ import {Options} from "fullcalendar";
   template: `
 <h1 i18n>Herzlich willkommen im KM Collaboration Tool!</h1>
 <p>Hier könnte eine Beschreibung stehen, was das Tool macht.</p>
-  <a routerLink="xcc" routerLinkActive="active" i18n>Hier geht's zu den Ausbildungsnachweisen</a>
-  <br>
-  <a routerLink="xcm" routerLinkActive="active" i18n>Hier geht's zum Exchange Market</a>
-  <br>
-  <a routerLink="knc" routerLinkActive="active" i18n>Hier geht's zum Forum</a>
   <br/>
   <br/>
   <app-full-calender></app-full-calender>
