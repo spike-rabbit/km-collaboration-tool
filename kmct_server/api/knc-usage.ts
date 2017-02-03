@@ -67,7 +67,6 @@ function getThread(req: ProtectedRequest, res: express.Response) {
             tJSON.answers = tJSON.answers.sort(function (a, b) {
                 return a.created_at.getDate() - b.created_at.getDate();
             });
-            console.log(JSON.stringify(tJSON));
             res.send({thread: tJSON});
         }, reason => {
             //TODO log better

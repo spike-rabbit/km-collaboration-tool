@@ -3,7 +3,6 @@ import {OverviewComponent} from "./overview/overview.component";
 import {XchangeCenterComponent} from "./xchange-center/xchange-center.component";
 import {Routes, RouterModule} from "@angular/router";
 import {CoreComponent} from "./core.component";
-import {XchangeMarketComponent} from "./xchange-market/xchange-market.component";
 import {KnowledgeCenterComponent} from "./knowledge-center/knowledge-center.component";
 import {SigninStateService} from "../global-services/signin-state.service";
 import {JournalComponent} from "./xchange-center/journal/journal.component";
@@ -47,10 +46,6 @@ const coreRoutes: Routes = [{
     }, {
       path: 'xcc/edit-journal',
       component: JournalEditorComponent,
-      canActivate: [UserGuardService]
-    }, {
-      path: 'xcm',
-      component: XchangeMarketComponent,
       canActivate: [UserGuardService]
     }, {
       path: 'knc',

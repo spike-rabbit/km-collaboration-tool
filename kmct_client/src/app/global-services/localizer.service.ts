@@ -17,7 +17,8 @@ export class LocalizerService {
       case "en":
         document.cookie = "locale=de;";
     }
-    location.reload(true);
+    window.location.reload();
+    // location.replace(window.location.pathname + window.location.search + window.location.hash);
   }
 
   getLocale() {

@@ -24,6 +24,7 @@ app.use(function (req, res, next) {
             for (let l of req.acceptsLanguages()) {
                 if (lang == "de" || lang == "en") {
                     lang = l;
+                    res.cookie("locale", lang);
                     break;
                 }
             }
@@ -34,7 +35,6 @@ app.use(function (req, res, next) {
         req.url = "/" + lang + req.url;
 
     }
-    console.log(req.url);
     next();
 });
 app.use(morgan('dev'));

@@ -4,6 +4,7 @@ import {Question} from "../question";
 import {slideInOutAnimation} from "../../router-animations";
 import {KnowledgeCenterService} from "../knowledge-center.service";
 import {Answer} from "../answer";
+import {SigninStateService} from "../../../global-services/signin-state.service";
 
 @Component({
   selector: 'app-question-show',
@@ -20,7 +21,7 @@ export class QuestionShowComponent implements OnInit {
   id: number;
   answer: string;
 
-  constructor(private route: ActivatedRoute, private kncService: KnowledgeCenterService, private router: Router) {
+  constructor(private route: ActivatedRoute, private kncService: KnowledgeCenterService, private signInService: SigninStateService) {
   }
 
   ngOnInit() {
@@ -37,7 +38,7 @@ export class QuestionShowComponent implements OnInit {
 
   submit() {
     this.kncService.addAnswer(this.question.id, this.answer).subscribe(answer => {
-     this.question.answers.push({answer: this.answer, likeCount: 0, liked: true});
+     this.question.answers.push({answer: this.answer, likeCount: 0, liked: true, user: this.signInService.unsafeUser});
      this.answer = "";
     });
 

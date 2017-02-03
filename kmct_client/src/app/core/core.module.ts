@@ -4,7 +4,6 @@ import {CoreComponent} from "./core.component";
 import {OverviewComponent} from "./overview/overview.component";
 import {XchangeCenterModule} from "./xchange-center/xchange-center.module";
 import {CoreRoutingModule} from "./core-routing.module";
-import {XchangeMarketModule} from "./xchange-market/xchange-market.module";
 import {KnowledgeCenterModule} from "./knowledge-center/knowledge-center.module";
 import {TabsModule} from "ng2-bootstrap";
 import {UserAdministrationModule} from "./user-administration/user-administration.module";
@@ -18,7 +17,6 @@ import {SharedEventManagementModule} from "./shared-event-management/shared-even
     CommonModule,
     CoreRoutingModule,
     XchangeCenterModule,
-    XchangeMarketModule,
     KnowledgeCenterModule,
     UserAdministrationModule,
     PopupsModule,

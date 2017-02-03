@@ -50,8 +50,8 @@
             <img src="../assets/images/km_notification.png" height="25px" class="d-inline-block align-top" alt="">
             <span class="badge">{{notifications.length}}</span>
           </a>
-          <ul class="dropdown-menu" *ngFor="let item of notifications">
-            <li>
+          <ul class="dropdown-menu">
+            <li *ngFor="let item of notifications">
               <span class="special-dropdown-menu">
                 <a [routerLink]="item.link">{{item.description}}</a>
                 <button class="btn btn-success glyphicon glyphicon-ok" (click)="onDelete(item)"></button>
@@ -65,7 +65,7 @@
             class="caret"></span></a>
           <ul class="dropdown-menu">
             <li [routerLinkActive]="['active']"><a [routerLink]="['uas/edit-profile']" i18n="">Daten ändern</a></li>
-            <li><a href="#" (click)="onLocaleSwitch()" i18n="">Switch language</a></li>
+            <li><a class="language-link" (click)="onLocaleSwitch()" i18n="">Switch language</a></li>
           </ul>
         </li>
 
