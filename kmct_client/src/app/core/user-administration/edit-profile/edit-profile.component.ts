@@ -38,7 +38,12 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSubmit() {
+    this.success = false;
     this.uasService.applyUserChanges(this.name, this.firstname, this.company, this.workinghours).subscribe(user => {
+      this.signInService.unsafeUser.firstname = user.firstname;
+      this.signInService.unsafeUser.name = user.name;
+      this.signInService.unsafeUser.companyId = user.company_id;
+      this.signInService.unsafeUser.workingHours = user.workinghours;
       this.success = true;
     });
   }

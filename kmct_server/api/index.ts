@@ -79,6 +79,7 @@ function getUser(req: ProtectedRequest, res: express.Response) {
 }
 
 function patchUser(req: ProtectedRequest, res: express.Response, next: express.NextFunction) {
+    console.log(JSON.stringify(req.user));
     database.users.findById(req.user.id).then(user => {
         user.update({
             name: req.body.user.name,
@@ -88,8 +89,9 @@ function patchUser(req: ProtectedRequest, res: express.Response, next: express.N
             saved.setCompany(req.body.user.companyId).then(company => {
                 req.user.firstname = saved.firstname;
                 req.user.name = saved.name;
-                (<any>req.user).company_id = company.id;
+                (<any>req.user).company_id = (<any>company).company_id;
                 req.user.workinghours = saved.workinghours;
+                console.log(JSON.stringify(company));
                 kmctCache.set(req.get("authentication-token"), req.user);
                 res.send(saved.toJSON());
             }, err => {
